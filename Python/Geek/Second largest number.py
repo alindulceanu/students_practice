@@ -1,0 +1,1 @@
+print ([n for i, n in enumerate([6,7,3,3,4,5]) if i == n])
