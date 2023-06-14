@@ -2,10 +2,10 @@ user_choice = input("Please enter your choice (A, B, or C): ")
 
 if user_choice == "A":
  
-    exec(open("Caz1").read())
+    exec(open("Caz1.py").read())
 elif user_choice == "B":
     
-    exec(open("Caz2").read())
+    exec(open("Caz2.py").read())
 
 
 
