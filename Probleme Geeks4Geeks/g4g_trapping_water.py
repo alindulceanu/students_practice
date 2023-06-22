@@ -77,7 +77,7 @@ print(ob.trappingWater([8, 8, 2, 4, 5, 5, 1], 7))
 class Solution:
     def trappingWater(self, height, n):
         left = 0
-        right = len(height) - 1
+        right = n - 1
         maxLeft = maxRight = waterTrapped = 0
     
         while left <= right:
