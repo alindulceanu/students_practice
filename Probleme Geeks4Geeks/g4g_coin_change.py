@@ -7,8 +7,8 @@ class Solution:
         sums = [0 for i in range(Sum + 1)]
         sums[0] = 1
         
-        for i in range(len(coins)):
-            for j in range(1, Sum+1):
+        for i in range(len(coins)):                         #Using Dynamic Programming to calculate all the possible sums 
+            for j in range(1, Sum+1):                       #From 0 to Sum
                 if j >=coins[i]:
                     sums[j] += sums[j-coins[i]]
         return sums[Sum]
