@@ -12,7 +12,7 @@ class Solution:
         for i in range(len(arr)):
             sum += arr[i]               #Adding the current value to the sum, 
                                         #without looking for the negative integers
-            if sum > maxSum:            #Updateing the maxsum if sum is greater
+            if sum > maxSum:            #Updating the maxsum if sum is greater
                 maxSum = sum
                 
             if sum < 0:                 #Reseting the sum if it's gone negative
