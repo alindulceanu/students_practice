@@ -6,8 +6,8 @@ Note: In a path, no cell can be visited more than one time. If the source cell i
 
 
 class Solution:
-    def findPath(self, m, n):
-        self.n = n
+    def findPath(self, m, n):                               # Method to initialize all the parameters we need
+        self.n = n                                          # and call the backtracking method
         self.start = (0, 0)
         self.finish = (n-1, n-1)
         path = ''
@@ -22,22 +22,22 @@ class Solution:
         return self.paths
 
 
-    def solve(self, m, path, i, j):
-        if i == self.finish[0] and j == self.finish[1]:
+    def solve(self, m, path, i, j):                         # Backtracking method to check every posibillity in a maze
+        if i == self.finish[0] and j == self.finish[1]:     # If a path has reached the finish, we save it
             self.paths.append(path)
             return True
 
-        moves = self.checkVecinity(i, j, m)
+        moves = self.checkVecinity(i, j, m)                 # Moves will store the possible moves
 
         if moves != None:
-            for move in moves:
-                path += move
-                m[i][j] = 0
+            for move in moves:                              # We iterate every move
+                path += move                                # Adding the move to path
+                m[i][j] = 0                                 # Turning the current position to 0 to avoid returning at it in the future
 
                 if move == 'U':
-                    i -= 1
+                    i -= 1                                  # We move
                     self.solve(m, path, i, j)
-                    i += 1
+                    i += 1                                  # After all the possibilities we want to undo so we can check for other moves
 
                 if move == 'D':
                     i += 1
@@ -54,11 +54,11 @@ class Solution:
                     self.solve(m, path, i, j)
                     j -= 1
 
-                path = path[:-1]
+                path = path[:-1]                            # Undoing the changes we made at lines 34, 35
                 m[i][j] = 1
 
 
-    def checkVecinity(self, x, y, arr):
+    def checkVecinity(self, x, y, arr):             # Method to check the possible moves from m[i][j]
         posMoves = []
 
         if x != 0:

@@ -2,7 +2,7 @@
 
 
 class Solution:
-    def missingNumber(self,array,n):
+    def missingNumber(self,array,n):                             # Troll
         return list({i for i in range(1, n+1)}.difference(set(array)))[0]
     
 ob = Solution()

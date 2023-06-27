@@ -15,12 +15,12 @@ class Solution:
         arr.sort()
         ans = arr[-1] - arr[0]
     
-        for i in range(1, n):
+        for i in range(1, n):                           # In a sorted array arr[i - 1] < arr[i] so we add k to arr[i - 1] and substract k to arr[i]
             if arr[i] - k < 0:
                 continue
-            max_ = max(arr[i-1] + k, arr[-1] - k)
-            min_ = min(arr[i] - k, arr[0] + k)
-            ans = min(ans, max_ - min_)
+            maxi = max(arr[i-1] + k, arr[-1] - k)
+            mini = min(arr[i] - k, arr[0] + k)
+            ans = min(ans, maxi - mini)
         return ans
 
 

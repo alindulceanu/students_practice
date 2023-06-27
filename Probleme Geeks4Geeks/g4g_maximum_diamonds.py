@@ -7,15 +7,15 @@ class Solution:
     def maxDiamonds(self, A, N, K):
         diamonds = 0
         for i in range(K):
-            diamonds += max(A)
-            A[A.index(max(A))] = int(A[A.index(max(A))] / 2)
+            diamonds += max(A)                                      # We add the value of the biggest bag of diamonds in our collection
+            A[A.index(max(A))] = int(A[A.index(max(A))] / 2)        # Then, we halve that bag
 
         return diamonds
     
 ob = Solution()
 print(ob.maxDiamonds([2,1,7,4,2], 5, 3))
 
-class Solution2:
+class Solution2:                                #Same thing but we use the SortedList from sortedcontainers library which is faster
     def maxDiamonds(self, A, N, K):
         diamonds = 0
 

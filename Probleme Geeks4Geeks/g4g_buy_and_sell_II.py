@@ -1,7 +1,9 @@
-'''The cost of stock on each day is given in an array A[] of size N. Find all the days on which you buy and sell the stock so that in between those days your profit is maximum.
+'''The cost of stock on each day is given in an array A[] of size N. Find all the days on which you 
+buy and sell the stock so that in between those days your profit is maximum.
 
 Note: Output format is as follows - (buy_day sell_day) (buy_day sell_day)
-For each input, the output should be in a single line, i.e. It's important to move to a new/next line for printing the output of other test cases.'''
+For each input, the output should be in a single line, i.e. It's important to move to a new/next line 
+for printing the output of other test cases.'''
 
 def stockBuySell(price, n): #metoda mea, mai buna IMO
     sol = []
@@ -11,20 +13,20 @@ def stockBuySell(price, n): #metoda mea, mai buna IMO
     
     for i in range(1, n):
         
-        if i == n - 1 and buyPrice != 0:
+        if i == n - 1 and buyPrice != 0:                                    # If the price list end but we haven't sold yet, we force sell it now
             sell = i
             sol.append((buy, sell))
         
-        if price[i - 1] < price[i] and buyPrice == 0:
+        if price[i - 1] < price[i] and buyPrice == 0:                       # We buy when the left adjacent value if lesser than the current one and we haven't bought already
             buy = i - 1
             buyPrice = price[i - 1]
             
-        elif price[i - 1] > price[i] and buyPrice > price[i]:
+        elif price[i - 1] > price[i] and buyPrice > price[i]:               # We sell right before the price drops
             sell = i - 1
-            sol.append((buy, sell))
+            sol.append((buy, sell))                                         # We save the buy - sell interval
             buyPrice = 0
             
-    formatted_output = ' '.join('({} {})'.format(x, y) for x, y in sol)
+    formatted_output = ' '.join('({} {})'.format(x, y) for x, y in sol)     # We format the output like this (buy sell)
         
     print(formatted_output)
             

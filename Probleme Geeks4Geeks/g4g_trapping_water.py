@@ -76,16 +76,16 @@ print(ob.trappingWater([8, 8, 2, 4, 5, 5, 1], 7))
 
 class Solution:
     def trappingWater(self, height, n):
-        left = 0
+        left = 0                                                # We start 2 iterators, one from the left and one from the right
         right = n - 1
-        maxLeft = maxRight = waterTrapped = 0
+        maxLeft = maxRight = waterTrapped = 0                   # We store the max values each iterator meets in its path
     
-        while left <= right:
-            if height[left] <= height[right]:
+        while left <= right:                                    # Do this until the left and right iterators meet
+            if height[left] <= height[right]:                   
                 if height[left] > maxLeft:
                     maxLeft = height[left]
                 else:
-                    waterTrapped += maxLeft - height[left]
+                    waterTrapped += maxLeft - height[left]      # The trapped water will be the difference between the maxheighht found by this iterator - the current height
                 left += 1
             else:
                 if height[right] > maxRight:
