@@ -1,8 +1,9 @@
-#https://practice.geeksforgeeks.org/problems/search-in-a-rotated-array4618/1?page=5&status[]=unsolved&sortBy=submissions
+n = 4
+m = 5
 
-class Solution:
-    def search(self, A : list, l : int, h : int, key : int):
-        for i in range(len(A)):
-            if A[i]==key:
-                return i
-        return -1
+arr1 = [1, 3, 5, 7]
+arr2 = [0, 2, 6, 8, 9]
+
+arr_temp = arr1 + arr2
+arr_temp.sort()
+print(arr_temp)
