@@ -1,1 +1,1 @@
-print("Sent from a docker container using vscode")
+print('sent from a container using wsl')
