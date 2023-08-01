@@ -8,7 +8,11 @@ RUN apt-get update \
        curl \
        gnupg-agent \
        software-properties-common \
-       docker.io
+       docker.io \
+       python3-pip \
+       sudo \
+       git \
+       python3
 
 # Add Docker's official GPG key
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -22,19 +26,14 @@ RUN echo \
 RUN apt-get update \
     && apt-get install -y --no-install-recommends docker-ce docker-ce-cli containerd.io
 
-# Install git
-RUN apt-get update \
-    && apt-get install -y git
-
-
-# Install sudo
-RUN apt-get update && apt-get install -y sudo
+# Install pandas
+RUN python3 -m pip install pandas
 
 # Adding new user
-RUN useradd -m -s /bin/bash name \
-    && echo "name ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -m -s /bin/bash alin \
+    && echo "alin ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-USER name
+USER alin
 
 # Expose the Docker daemon port
 EXPOSE 2375
