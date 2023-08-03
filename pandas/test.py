@@ -1,4 +1,7 @@
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
 
 mydataset = {
     'cars': ['BMW', 'Volvo', 'Ford'],
@@ -32,6 +35,7 @@ myvar = pd.DataFrame(data)
 print(myvar.loc[2])
 
 myvar = pd.read_csv('data.csv')
+
 pd.options.display.max_rows = 9999
 
 print(myvar.to_string())
@@ -66,5 +70,14 @@ print(new_myvar.to_string())
 new_myvar = myvar['Calories'].fillna(myvar['Calories'].mode()[0])
 
 print(new_myvar.to_string())
+
+print(myvar.duplicated())
+
+print(myvar.corr())
+
+#myvar.plot(kind = 'scatter', x = 'Duration', y = 'Maxpulse')
+myvar['Duration'].plot(kind = 'hist')
+plt.show()
+
 
 
