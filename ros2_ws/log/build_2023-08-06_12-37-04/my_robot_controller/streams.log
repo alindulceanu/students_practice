@@ -1,0 +1,20 @@
+[0.406s] Invoking command in '/home/alin/ros2_ws/build/my_robot_controller': PYTHONPATH=/home/alin/ros2_ws/build/my_robot_controller/prefix_override:/home/alin/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/alin/ros2_ws/build/my_robot_controller/build --no-deps install_data
+[0.556s] running develop
+[0.634s] running egg_info
+[0.634s] writing my_robot_controller.egg-info/PKG-INFO
+[0.634s] writing dependency_links to my_robot_controller.egg-info/dependency_links.txt
+[0.634s] writing entry points to my_robot_controller.egg-info/entry_points.txt
+[0.634s] writing requirements to my_robot_controller.egg-info/requires.txt
+[0.634s] writing top-level names to my_robot_controller.egg-info/top_level.txt
+[0.635s] reading manifest file 'my_robot_controller.egg-info/SOURCES.txt'
+[0.636s] writing manifest file 'my_robot_controller.egg-info/SOURCES.txt'
+[0.637s] running build_ext
+[0.637s] Creating /home/alin/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages/my-robot-controller.egg-link (link to .)
+[0.638s] Installing draw_circle script to /home/alin/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[0.638s] Installing pose_subscriber script to /home/alin/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[0.638s] Installing test_node script to /home/alin/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[0.638s] Installing turtle_controller script to /home/alin/ros2_ws/install/my_robot_controller/lib/my_robot_controller
+[0.638s] 
+[0.638s] Installed /home/alin/ros2_ws/build/my_robot_controller
+[0.639s] running install_data
+[0.658s] Invoked command in '/home/alin/ros2_ws/build/my_robot_controller' returned '0': PYTHONPATH=/home/alin/ros2_ws/build/my_robot_controller/prefix_override:/home/alin/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/alin/ros2_ws/build/my_robot_controller/build --no-deps install_data
