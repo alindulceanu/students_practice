@@ -12,7 +12,9 @@ Welcome to our project documentation!
 
    setup
    start
-
+   step1_ros
+   docker
+   VMbox
 
 
 Indices and tables
