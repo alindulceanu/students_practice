@@ -9,29 +9,34 @@ Making a ros2 talker
 	from geometry_msgs.msg import Twist
 	import random
 	import argparse
-	import pandas as pd
 
-	class Subscriber(Node):
+	class Randomiser(Node):
 
 	    def __init__(self, topic:str):
-		super().__init__("subscriber")
 		self.topic = topic
-		self.df=pd.DataFrame(columns=["TOPIC","LX", "LY", "LZ", "AX", "AY", "AZ"])
-		self.subscriber = self.create_subscription(Twist, self.topic, self.pose_callback, 10)
-
-	    def pose_callback(self, msg: Twist):
-		self.get_logger().info("Transfered")
-		row={"TOPIC": self.topic, "LX": msg.linear.x, "LY": msg.linear.y, "LZ": msg.linear.z, "AX": msg.angular.x, "AY": msg.angular.y, "AZ": msg.angular.z, 'msg':msg}
-		self.df.loc[len(self.df)]=row
-		print(self.df.to_string())
-		self.df.to_csv()
+		super().__init__("Generator")
+		self.cmd_vel_pub = self.create_publisher(Twist, self.topic, 10)
+		self.get_logger().info("Generating...")
+		self.counter = 0
+		self.timer = self.create_timer(1.0, self.send_velocity_command)
+	    
+	    def send_velocity_command(self):
+		msg = Twist()
+		msg.linear.x = random.random() * random.randint(-10,10)
+		msg.angular.x = random.random() * random.randint(-10,10)
+		msg.linear.y = random.random() * random.randint(-10,10)
+		msg.angular.y = random.random() * random.randint(-10,10)
+		msg.linear.z = random.random() * random.randint(-10,10)
+		msg.angular.z = random.random() * random.randint(-10,10)
+		self.cmd_vel_pub.publish(msg)
+		self.counter += 1 
 
 	def main(args=None):
 	    rclpy.init(args=args)
 	    parser = argparse.ArgumentParser(description=__doc__)
-	    parser.add_argument("input", help="add topic")
+	    parser.add_argument("input",help="topic name")
 	    args = parser.parse_args()
-	    node = Subscriber(str(args.input))
+	    node = Randomiser(str(args.input))
 	    rclpy.spin(node)
 	    rclpy.shutdown()
 
