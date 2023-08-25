@@ -645,6 +645,6 @@ The difference between the three options is crucial. They mean the following:
 
 .. note:: WARNING! This is equivalent to pulling the power plug on a real computer without shutting it down properly. If you start the machine again after powering it off, your OS will have to reboot completely and may begin a lengthy check of its virtual system disks. As a result, this should not normally be done, since it can potentially cause data loss or an inconsistent state of the guest system on disk.
 
-	As an exception, if your virtual machine has any snapshots, see Section 1.11, “Snapshots”, you can use this option to quickly restore the current snapshot of the virtual machine. In that case, powering off the machine will discard the current state and any changes made since the previous snapshot was taken will be lost.
+	As an exception, if your virtual machine has any snapshots, you can use this option to quickly restore the current snapshot of the virtual machine. In that case, powering off the machine will discard the current state and any changes made since the previous snapshot was taken will be lost.
 
 The Discard button in the VirtualBox Manager window discards a virtual machine's saved state. This has the same effect as powering it off, and the same warnings apply.
