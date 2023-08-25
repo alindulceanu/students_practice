@@ -32,7 +32,7 @@ Some Terminology
 
 When dealing with virtualization, and also for understanding the following chapters of this documentation, it helps to acquaint oneself with a bit of crucial terminology, especially the following terms:
 
- * Host operating system (host OS). This is the OS of the physical computer on which Oracle VM VirtualBox was installed. There are versions of Oracle VM VirtualBox for Windows, macOS, Linux, and Oracle Solaris hosts. See Section 1.4, “Supported Host Operating Systems”.
+ * Host operating system (host OS). This is the OS of the physical computer on which Oracle VM VirtualBox was installed. There are versions of Oracle VM VirtualBox for Windows, macOS, Linux, and Oracle Solaris hosts.
 
  * Most of the time, this manual discusses all Oracle VM VirtualBox versions together. There may be platform-specific differences which we will point out where appropriate.
 
@@ -42,7 +42,7 @@ When dealing with virtualization, and also for understanding the following chapt
 
  * Internally, Oracle VM VirtualBox treats a VM as a set of parameters that specify its behavior. Some parameters describe hardware settings, such as the amount of memory and number of CPUs assigned. Other parameters describe the state information, such as whether the VM is running or saved.
 
- * You can view these VM settings in VirtualBox Manager, in the Settings window, and by running the VBoxManage command. See Chapter 8, VBoxManage.
+ * You can view these VM settings in VirtualBox Manager, in the Settings window, and by running the VBoxManage command.
 
  * Guest Additions. This refers to special software packages which are shipped with Oracle VM VirtualBox but designed to be installed inside a VM to improve performance of the guest OS and to add extra features.
 
@@ -57,19 +57,19 @@ Oracle VM VirtualBox is a so-called hosted hypervisor, sometimes referred to as 
 
 To a very large degree, Oracle VM VirtualBox is functionally identical on all of the host platforms, and the same file and image formats are used. This enables you to run virtual machines created on one host on another host with a different host OS. For example, you can create a virtual machine on Windows and then run it on Linux.
 
-In addition, virtual machines can easily be imported and exported using the Open Virtualization Format (OVF), an industry standard created for this purpose. You can even import OVFs that were created with a different virtualization software. See Section 1.15, “Importing and Exporting Virtual Machines”.
+In addition, virtual machines can easily be imported and exported using the Open Virtualization Format (OVF), an industry standard created for this purpose. You can even import OVFs that were created with a different virtualization software.
 
-For users of Oracle Cloud Infrastructure the functionality extends to exporting and importing virtual machines to and from the cloud. This simplifies development of applications and deployment to the production environment. See Section 1.16.8, “Exporting an Appliance to Oracle Cloud Infrastructure”.
+For users of Oracle Cloud Infrastructure the functionality extends to exporting and importing virtual machines to and from the cloud. This simplifies development of applications and deployment to the production environment.
 
- * Guest Additions: shared folders, seamless windows, 3D virtualization. The Oracle VM VirtualBox Guest Additions are software packages which can be installed inside of supported guest systems to improve their performance and to provide additional integration and communication with the host system. After installing the Guest Additions, a virtual machine will support automatic adjustment of video resolutions, seamless windows, accelerated 3D graphics and more. See Chapter 4, Guest Additions.
+ * Guest Additions: shared folders, seamless windows, 3D virtualization. The Oracle VM VirtualBox Guest Additions are software packages which can be installed inside of supported guest systems to improve their performance and to provide additional integration and communication with the host system. After installing the Guest Additions, a virtual machine will support automatic adjustment of video resolutions, seamless windows, accelerated 3D graphics and more.
 
-In particular, Guest Additions provide for shared folders, which let you access files on the host system from within a guest machine. See Section 4.3, “Shared Folders”.
+In particular, Guest Additions provide for shared folders, which let you access files on the host system from within a guest machine.
 
  * Comprehensive hardware support. Among other features, Oracle VM VirtualBox supports the following:
 
  * Guest multiprocessing (SMP). Oracle VM VirtualBox can present up to 32 virtual CPUs to each virtual machine, irrespective of how many CPU cores are physically present on your host.
 
- * USB device support. Oracle VM VirtualBox implements a virtual USB controller and enables you to connect arbitrary USB devices to your virtual machines without having to install device-specific drivers on the host. USB support is not limited to certain device categories. See Section 3.11.1, “USB Settings”.
+ * USB device support. Oracle VM VirtualBox implements a virtual USB controller and enables you to connect arbitrary USB devices to your virtual machines without having to install device-specific drivers on the host. USB support is not limited to certain device categories.
 
  * Hardware compatibility. Oracle VM VirtualBox virtualizes a vast array of virtual devices, among them many devices that are typically provided by other virtualization platforms. That includes IDE, SCSI, and SATA hard disk controllers, several virtual network cards and sound cards, virtual serial and parallel ports and an Input/Output Advanced Programmable Interrupt Controller (I/O APIC), which is found in many computer systems. This enables easy cloning of disk images from real machines and importing of third-party virtual machines into Oracle VM VirtualBox.
 
@@ -77,17 +77,17 @@ In particular, Guest Additions provide for shared folders, which let you access 
 
  * Multiscreen resolutions. Oracle VM VirtualBox virtual machines support screen resolutions many times that of a physical screen, allowing them to be spread over a large number of screens attached to the host system.
 
- * Built-in iSCSI support. This unique feature enables you to connect a virtual machine directly to an iSCSI storage server without going through the host system. The VM accesses the iSCSI target directly without the extra overhead that is required for virtualizing hard disks in container files. See Section 5.10, “iSCSI Servers”.
+ * Built-in iSCSI support. This unique feature enables you to connect a virtual machine directly to an iSCSI storage server without going through the host system. The VM accesses the iSCSI target directly without the extra overhead that is required for virtualizing hard disks in container files.
 
  * PXE Network boot. The integrated virtual network cards of Oracle VM VirtualBox fully support remote booting using the Preboot Execution Environment (PXE).
 
- * Multigeneration branched snapshots. Oracle VM VirtualBox can save arbitrary snapshots of the state of the virtual machine. You can go back in time and revert the virtual machine to any such snapshot and start an alternative VM configuration from there, effectively creating a whole snapshot tree. See Section 1.11, “Snapshots”. You can create and delete snapshots while the virtual machine is running.
+ * Multigeneration branched snapshots. Oracle VM VirtualBox can save arbitrary snapshots of the state of the virtual machine. You can go back in time and revert the virtual machine to any such snapshot and start an alternative VM configuration from there, effectively creating a whole snapshot tree. You can create and delete snapshots while the virtual machine is running.
 
  * VM groups. Oracle VM VirtualBox provides a groups feature that enables the user to organize and control virtual machines collectively, as well as individually. In addition to basic groups, it is also possible for any VM to be in more than one group, and for groups to be nested in a hierarchy. This means you can have groups of groups. In general, the operations that can be performed on groups are the same as those that can be applied to individual VMs: Start, Pause, Reset, Close (Save state, Send Shutdown, Poweroff), Discard Saved State, Show in File System, Sort.
 
- * Clean architecture and unprecedented modularity. Oracle VM VirtualBox has an extremely modular design with well-defined internal programming interfaces and a clean separation of client and server code. This makes it easy to control it from several interfaces at once. For example, you can start a VM simply by clicking on a button in the Oracle VM VirtualBox graphical user interface and then control that machine from the command line, or even remotely. See Section 1.18, “Alternative Front-Ends”.
+ * Clean architecture and unprecedented modularity. Oracle VM VirtualBox has an extremely modular design with well-defined internal programming interfaces and a clean separation of client and server code. This makes it easy to control it from several interfaces at once. For example, you can start a VM simply by clicking on a button in the Oracle VM VirtualBox graphical user interface and then control that machine from the command line, or even remotely.
 
-Due to its modular architecture, Oracle VM VirtualBox can also expose its full functionality and configurability through a comprehensive software development kit (SDK), which enables integration of Oracle VM VirtualBox with other software systems. See Chapter 11, Oracle VM VirtualBox Programming Interfaces.
+Due to its modular architecture, Oracle VM VirtualBox can also expose its full functionality and configurability through a comprehensive software development kit (SDK), which enables integration of Oracle VM VirtualBox with other software systems.
 
  * Remote machine display. The VirtualBox Remote Desktop Extension (VRDE) enables high-performance remote access to any running virtual machine. This extension supports the Remote Desktop Protocol (RDP) originally built into Microsoft Windows, with special additions for full client USB support.
 
@@ -95,9 +95,9 @@ The VRDE does not rely on the RDP server that is built into Microsoft Windows. I
 
 On top of this special capacity, Oracle VM VirtualBox offers you more unique features:
 
- * Extensible RDP authentication. Oracle VM VirtualBox already supports Winlogon on Windows and PAM on Linux for RDP authentication. In addition, it includes an easy-to-use SDK which enables you to create arbitrary interfaces for other methods of authentication. See Section 7.1.5, “RDP Authentication”.
+ * Extensible RDP authentication. Oracle VM VirtualBox already supports Winlogon on Windows and PAM on Linux for RDP authentication. In addition, it includes an easy-to-use SDK which enables you to create arbitrary interfaces for other methods of authentication.
 
- * USB over RDP. Using RDP virtual channel support, Oracle VM VirtualBox also enables you to connect arbitrary USB devices locally to a virtual machine which is running remotely on an Oracle VM VirtualBox RDP server. See Section 7.1.4, “Remote USB”.
+ * USB over RDP. Using RDP virtual channel support, Oracle VM VirtualBox also enables you to connect arbitrary USB devices locally to a virtual machine which is running remotely on an Oracle VM VirtualBox RDP server.
 
 Supported Host Operating Systems
 ====================================
@@ -156,7 +156,7 @@ Linux hosts (64-bit). Includes the following:
 
  * openSUSE Leap 15.3
 
-It should be possible to use Oracle VM VirtualBox on most systems based on Linux kernel 2.6, 3.x, 4.x or 5.x using either the Oracle VM VirtualBox installer or by doing a manual installation. See Section 2.3, “Installing on Linux Hosts”. However, the formally tested and supported Linux distributions are those for which we offer a dedicated package.
+It should be possible to use Oracle VM VirtualBox on most systems based on Linux kernel 2.6, 3.x, 4.x or 5.x using either the Oracle VM VirtualBox installer or by doing a manual installation. However, the formally tested and supported Linux distributions are those for which we offer a dedicated package.
 
 Note that Linux 2.4-based host OSes are no longer supported.
 
@@ -174,7 +174,7 @@ SSE2 (Streaming SIMD Extensions 2) support is required for host CPUs.
 Installing Oracle VM VirtualBox and Extension Packs
 ====================================================
 
-Oracle VM VirtualBox comes in many different packages, and installation depends on your host OS. If you have installed software before, installation should be straightforward. On each host platform, Oracle VM VirtualBox uses the installation method that is most common and easy to use. If you run into trouble or have special requirements, see Chapter 2, Installation Details for details about the various installation methods.
+Oracle VM VirtualBox comes in many different packages, and installation depends on your host OS. If you have installed software before, installation should be straightforward. On each host platform, Oracle VM VirtualBox uses the installation method that is most common and easy to use.
 
 Oracle VM VirtualBox is split into the following components:
 
@@ -182,17 +182,15 @@ Oracle VM VirtualBox is split into the following components:
 
  * Extension packs. Additional extension packs can be downloaded which extend the functionality of the Oracle VM VirtualBox base package. Currently, Oracle provides a single extension pack, available from: http://www.virtualbox.org. The extension pack provides the following added functionality:
 
-	 * VirtualBox Remote Desktop Protocol (VRDP) support. See Section 7.1, “Remote Display (VRDP Support)”.
+	 * VirtualBox Remote Desktop Protocol (VRDP) support.
 
-	 * Host webcam passthrough. See Section 9.5, “Webcam Passthrough”.
+	 * Host webcam passthrough.
 	
 	 * Intel PXE boot ROM.
 
-	 * Disk image encryption with AES algorithm. See Section 9.29, “Encryption of Disk Images”.
+	 * Disk image encryption with AES algorithm.
 
-	 * Cloud integration features. See Section 1.16, “Integrating with Oracle Cloud Infrastructure”.
-
-	 * For details of how to install an extension pack, see Section 2.5, “Installing an Extension Pack”.
+	 * Cloud integration features.
 
 Starting Oracle VM VirtualBox
 ==============================
@@ -205,7 +203,7 @@ After installation, you can start Oracle VM VirtualBox as follows:
 
  * Linux or Oracle Solaris hosts. Depending on your desktop environment, an Oracle VM VirtualBox item may have been placed in either the System or System Tools group of your Applications menu. Alternatively, you can enter VirtualBox in a terminal window.
 
-When you start Oracle VM VirtualBox, the VirtualBox Manager interface is shown. See Section 1.7, “VirtualBox Manager”.
+When you start Oracle VM VirtualBox, the VirtualBox Manager interface is shown.
 
 VirtualBox Manager
 ===================
@@ -218,13 +216,13 @@ When you start Oracle VM VirtualBox, the VirtualBox Manager window is displayed.
 
 The main components of the VirtualBox Manager window are as follows:
 
- * The machine list. The left pane of the VirtualBox Manager window lists all your virtual machines. If you have not yet created any virtual machines, this list is empty. See Section 1.7.1, “The Machine List”.
+ * The machine list. The left pane of the VirtualBox Manager window lists all your virtual machines. If you have not yet created any virtual machines, this list is empty.
 
  * The Details pane. The pane on the right displays the properties of the currently selected virtual machine. If you do not have any machines yet, the pane displays a welcome message.
 
-The toolbar buttons on the Details pane can be used to create and work with virtual machines. See Section 1.7.2, “The Details Pane”.
+The toolbar buttons on the Details pane can be used to create and work with virtual machines.
 
- * Help Viewer. A window that displays context-sensitive help topics for VirtualBox Manager tasks. See Section 1.7.4, “Help Viewer”.
+ * Help Viewer. A window that displays context-sensitive help topics for VirtualBox Manager tasks.
 
 The Machine List
 =================
@@ -235,9 +233,9 @@ The following methods can be used to control and configure virtual machines in t
 
  * Right-click on the virtual machine name, to display menu options.
 
- * Click on the Machine Tools menu, to the right of the virtual machine name. See the section called “Machine Tools”.
+ * Click on the Machine Tools menu, to the right of the virtual machine name.
 
- * Click a button in the toolbar in the Details pane. See Section 1.7.2, “The Details Pane”.
+ * Click a button in the toolbar in the Details pane.
 
 The Details Pane
 =================
@@ -274,7 +272,7 @@ You can change some virtual machine settings, by clicking on the setting in the 
 
 Virtual machine settings can also be changed using the Settings button on the VirtualBox Manager toolbar.
 
-The virtual machine settings on the Details pane are organized in sections that correspond to those used in the Settings window. See Chapter 3, Configuring Virtual Machines.
+The virtual machine settings on the Details pane are organized in sections that correspond to those used in the Settings window.
 
 Click the arrow icon to hide or show each section.
 
@@ -301,9 +299,9 @@ VirtualBox Manager Tools
 
 VirtualBox Manager provides two types of user tools, to enable you to perform common tasks easily.
 
- * Global Tools. These tools apply to all virtual machines. See the section called “Global Tools”.
+ * Global Tools. These tools apply to all virtual machines.
 
- * Machine Tools. These tools apply to a specific virtual machine. See the section called “Machine Tools”.
+ * Machine Tools. These tools apply to a specific virtual machine.
 
 Global Tools
 *************
@@ -312,17 +310,17 @@ In the left pane of the VirtualBox Manager window, click the Menu icon in the To
 
 A drop-down list enables you to select from the following global tools:
 
- * Welcome. Displays the VirtualBox Manager welcome message. The VirtualBox Manager toolbar is also included, to enable you to get started with using Oracle VM VirtualBox. See Figure 1.2, “VirtualBox Manager, Showing Welcome Screen After Initial Startup”.
+ * Welcome. Displays the VirtualBox Manager welcome message. The VirtualBox Manager toolbar is also included, to enable you to get started with using Oracle VM VirtualBox.
 
- * Extensions. Displays the Extension Pack Manager tool. This tool is used to install and uninstall Oracle VM VirtualBox Extension Packs. See Section 2.5.1, “The Extension Pack Manager”.
+ * Extensions. Displays the Extension Pack Manager tool. This tool is used to install and uninstall Oracle VM VirtualBox Extension Packs.
 
- * Media. Displays the Virtual Media Manager tool. This tool is used to manage the disk images used by Oracle VM VirtualBox. See Section 5.3, “The Virtual Media Manager”.
+ * Media. Displays the Virtual Media Manager tool. This tool is used to manage the disk images used by Oracle VM VirtualBox.
 
- * Network. Displays the Network Manager tool. This tool is used to create and configure some types of networks used by Oracle VM VirtualBox. See Section 6.11, “Network Manager”.
+ * Network. Displays the Network Manager tool. This tool is used to create and configure some types of networks used by Oracle VM VirtualBox.
 
- * Cloud. Displays the Cloud Profile Editor tool. This tool is used to configure connections to a cloud service, such as Oracle Cloud Infrastructure. See Section 1.16.5, “Using the Cloud Profile Manager”.
+ * Cloud. Displays the Cloud Profile Editor tool. This tool is used to configure connections to a cloud service, such as Oracle Cloud Infrastructure.
 
- * Activities. Displays the VM Activity Overview tool. This tool is used to monitor performance and resource usage of virtual machines. See Section 1.20, “Monitoring of Virtual Machines”.
+ * Activities. Displays the VM Activity Overview tool. This tool is used to monitor performance and resource usage of virtual machines.
 
 The Pin icon is used to keep the Tools banner visible as you scroll down the entries in the machine list.
 
@@ -335,15 +333,15 @@ Click the Menu icon to the right of the virtual machine name. The Machine Tools 
 
 A drop-down list enables you to select from the following machine tools:
 
- * Details. Displays the Details pane for the selected virtual machine. See Section 1.7.2, “The Details Pane”.
+ * Details. Displays the Details pane for the selected virtual machine.
 
- * Snapshots. Displays the Snapshots tool. This tool enables you to view and manage snapshots for the virtual machine. See Section 1.11, “Snapshots”.
+ * Snapshots. Displays the Snapshots tool. This tool enables you to view and manage snapshots for the virtual machine.
+ 
+ * Logs. Displays the Log Viewer tool. This tool enables you to view and search system logs for the virtual machine.
 
- * Logs. Displays the Log Viewer tool. This tool enables you to view and search system logs for the virtual machine. See Section 1.21, “The Log Viewer”.
+ * Activity. Displays the VM Activity page of the Session Information dialog. This dialog enables you to view and analyze performance metrics for the virtual machine.
 
- * Activity. Displays the VM Activity page of the Session Information dialog. This dialog enables you to view and analyze performance metrics for the virtual machine. See Section 1.20, “Monitoring of Virtual Machines”.
-
- * File Manager. Displays the Guest Control File Manager tool. This tool enables you to manage files on the guest system. See Section 4.8, “Guest Control File Manager”.
+ * File Manager. Displays the Guest Control File Manager tool. This tool enables you to manage files on the guest system.
 
 Help Viewer
 ============
@@ -403,7 +401,7 @@ Create Virtual Machine Wizard: Name and Operating System
 
 Use this page to specify a name and operating system (OS) for the virtual machine and to change the storage location used for VMs.
 
-You can also choose to disable the unattended guest operating system install feature. See also Section 1.8.2, “(Optional) Create Virtual Machine Wizard: Unattended Guest OS Install”.
+You can also choose to disable the unattended guest operating system install feature.
 
 The following fields are available on this wizard page:
 
@@ -413,13 +411,13 @@ The following fields are available on this wizard page:
 
  * Folder. The location where VMs are stored on your computer, called the machine folder. The default folder location is shown.
 
-	Ensure that the folder location has enough free space, especially if you intend to use the snapshots feature. See also Section 10.1.1, “The Machine Folder”.
+	Ensure that the folder location has enough free space, especially if you intend to use the snapshots feature.
 
  * ISO Image. Select an ISO image file. The image file can be used to install an OS on the new virtual machine or it can be attached to a DVD drive on the new virtual machine.
 
  * Type and Version. These fields are used to select the OS that you want to install on the new virtual machine.
 
-	The supported OSes are grouped into types. If you want to install something very unusual that is not listed, select the Other type. Depending on your selection, Oracle VM VirtualBox will enable or disable certain VM settings that your guest OS may require. This is particularly important for 64-bit guests. See Section 3.1.2, “64-bit Guests”. It is therefore recommended to always set this field to the correct value.
+	The supported OSes are grouped into types. If you want to install something very unusual that is not listed, select the Other type. Depending on your selection, Oracle VM VirtualBox will enable or disable certain VM settings that your guest OS may require. This is particularly important for 64-bit guests.
 
 	If an ISO image is selected and Oracle VM VirtualBox detects the operating system for the ISO, the Type and Version fields are populated automatically and are disabled.
 
@@ -464,7 +462,7 @@ Create Virtual Machine Wizard: Virtual Hard Disk
 
 Use this page to specify a virtual hard disk for the virtual machine.
 
-There are many ways in which Oracle VM VirtualBox can provide hard disk space to a VM, see Chapter 5, Virtual Storage. The most common way is to use a large image file on your physical hard disk, whose contents Oracle VM VirtualBox presents to your VM as if it were a complete hard disk. This file then represents an entire hard disk, so you can even copy it to another host and use it with another Oracle VM VirtualBox installation.
+There are many ways in which Oracle VM VirtualBox can provide hard disk space to a VM. The most common way is to use a large image file on your physical hard disk, whose contents Oracle VM VirtualBox presents to your VM as if it were a complete hard disk. This file then represents an entire hard disk, so you can even copy it to another host and use it with another Oracle VM VirtualBox installation.
 
 The following fields are available on this wizard page:
 
@@ -482,8 +480,6 @@ The following fields are available on this wizard page:
 
 			 * Fixed-size file. This type of image file immediately occupies the file specified, even if only a fraction of that virtual hard disk space is actually in use. While occupying much more space, a fixed-size file incurs less overhead and is therefore slightly faster than a dynamically allocated file.
 
-		For more details about the differences, see Section 5.2, “Disk Image Files (VDI, VMDK, VHD, HDD)”.
-
  * Use an Existing Hard Disk File. Enables you to select an existing disk image file to use with the new VM.
 
 	The drop-down list presented in the window lists all disk images which are known by Oracle VM VirtualBox. These disk images are currently attached to a virtual machine, or have been attached to a virtual machine.
@@ -492,7 +488,7 @@ The following fields are available on this wizard page:
 
  * Do Not Add a Virtual Hard Disk. The new VM is created without a hard disk.
 
-	To prevent your physical hard disk on the host OS from filling up, Oracle VM VirtualBox limits the size of the image file. But the image file must be large enough to hold the contents of the guest OS and the applications you want to install. For a Windows or Linux guest, you will probably need several gigabytes for any serious use. The limit of the image file size can be changed later, see Section 8.31, “VBoxManage modifymedium”.
+	To prevent your physical hard disk on the host OS from filling up, Oracle VM VirtualBox limits the size of the image file. But the image file must be large enough to hold the contents of the guest OS and the applications you want to install. For a Windows or Linux guest, you will probably need several gigabytes for any serious use. The limit of the image file size can be changed later.
 
 .. note:: You can skip attaching a virtual hard disk file to the new virtual machine you are creating. But you will then need to attach an hard disk later on, in order to install a guest operating system.
 
@@ -539,7 +535,7 @@ To start a virtual machine, you have the following options:
 
  * Go to the ``VirtualBox VMs`` folder in your system user's home directory. Find the subdirectory of the machine you want to start and double-click on the machine settings file. This file has a .vbox file extension.
 
-Starting a virtual machine displays a new window, and the virtual machine which you selected will boot up. Everything which would normally be seen on the virtual system's monitor is shown in the window. See Figure 1.1, “Windows Server 2016 Virtual Machine, Displayed on a macOS Host”.
+Starting a virtual machine displays a new window, and the virtual machine which you selected will boot up. Everything which would normally be seen on the virtual system's monitor is shown in the window.
 
 In general, you can use the virtual machine as you would use a real computer. The following topics describe a few points to note when running a VM.
 
@@ -553,13 +549,13 @@ Follow the onscreen instructions to install your OS.
 Capturing and Releasing Keyboard and Mouse
 ********************************************
 
-Oracle VM VirtualBox provides a virtual USB tablet device to new virtual machines through which mouse events are communicated to the guest OS. If you are running a modern guest OS that can handle such devices, mouse support may work out of the box without the mouse being captured as described below. See Section 3.5.1, “Motherboard Tab”.
+Oracle VM VirtualBox provides a virtual USB tablet device to new virtual machines through which mouse events are communicated to the guest OS. If you are running a modern guest OS that can handle such devices, mouse support may work out of the box without the mouse being captured as described below.
 
 Otherwise, if the virtual machine detects only standard PS/2 mouse and keyboard devices, since the OS in the virtual machine does not know that it is not running on a real computer, it expects to have exclusive control over your keyboard and mouse. But unless you are running the VM in full screen mode, your VM needs to share keyboard and mouse with other applications and possibly other VMs on your host.
 
 After installing a guest OS and before you install the Guest Additions, described in Chapter 4, Guest Additions, either your VM or the rest of your computer can own the keyboard and the mouse. Both cannot own the keyboard and mouse at the same time. You will see a second mouse pointer which is always confined to the limits of the VM window. You activate the VM by clicking inside it.
 
-To return ownership of keyboard and mouse to your host OS, Oracle VM VirtualBox reserves a special key on your keyboard: the Host key. By default, this is the right Ctrl key on your keyboard. On a Mac host, the default Host key is the left Command key. You can change this default using the Preferences window. See Section 1.17, “Preferences”. The current setting for the Host key is always displayed at the bottom right of your VM window.
+To return ownership of keyboard and mouse to your host OS, Oracle VM VirtualBox reserves a special key on your keyboard: the Host key. By default, this is the right Ctrl key on your keyboard. On a Mac host, the default Host key is the left Command key. You can change this default using the Preferences window. The current setting for the Host key is always displayed at the bottom right of your VM window.
 
 This means the following:
 
