@@ -22,6 +22,7 @@ Welcome to our project documentation!
    ScriptDock
    MobaX
    DockerVS
+   rosbag_reader
 
 Indices and tables
 ==================
