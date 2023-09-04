@@ -18,6 +18,7 @@ extensions = ['sphinx_copybutton']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+rst_epilog = "\n.. include:: .special.rst\n"
 
 
 

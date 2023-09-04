@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Making a rosbag frame, topic and value reader &#8212; Documentatie ros2 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/groundwork.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Making a rosbag frame, topic and value reader</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="making-a-rosbag-frame-topic-and-value-reader">
+<h1>Making a rosbag frame, topic and value reader<a class="headerlink" href="#making-a-rosbag-frame-topic-and-value-reader" title="Permalink to this heading">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">rclpy.serialization</span> <span class="kn">import</span> <span class="n">deserialize_message</span>
+<span class="kn">from</span> <span class="nn">rosidl_runtime_py.utilities</span> <span class="kn">import</span> <span class="n">get_message</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">import</span> <span class="nn">rosbag2_py</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">read_messages</span><span class="p">(</span><span class="n">input_bag</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="s2">&quot;-1&quot;</span>
+
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">SequentialReader</span><span class="p">()</span>
+    <span class="n">reader</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+        <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">StorageOptions</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">input_bag</span><span class="p">,</span> <span class="n">storage_id</span><span class="o">=</span><span class="s2">&quot;mcap&quot;</span><span class="p">),</span>
+        <span class="n">rosbag2_py</span><span class="o">.</span><span class="n">ConverterOptions</span><span class="p">(</span>
+            <span class="n">input_serialization_format</span><span class="o">=</span><span class="s2">&quot;cdr&quot;</span><span class="p">,</span> <span class="n">output_serialization_format</span><span class="o">=</span><span class="s2">&quot;cdr&quot;</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">topic_types</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">get_all_topics_and_types</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">typename</span><span class="p">(</span><span class="n">topic_name</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">topic_type</span> <span class="ow">in</span> <span class="n">topic_types</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">topic_type</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">topic_name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">topic_type</span><span class="o">.</span><span class="n">type</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;topic </span><span class="si">{</span><span class="n">topic_name</span><span class="si">}</span><span class="s2"> not in bag&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="n">reader</span><span class="o">.</span><span class="n">has_next</span><span class="p">():</span>
+        <span class="n">topic</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">read_next</span><span class="p">()</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">timestamp</span> <span class="o">%</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">14</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">9</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">first</span> <span class="o">==</span> <span class="s2">&quot;-1&quot;</span><span class="p">:</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">frame</span>
+
+        <span class="n">msg_type</span> <span class="o">=</span> <span class="n">get_message</span><span class="p">(</span><span class="n">typename</span><span class="p">(</span><span class="n">topic</span><span class="p">))</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">deserialize_message</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">msg_type</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">frame</span> <span class="o">-</span> <span class="n">first</span>
+    <span class="k">del</span> <span class="n">reader</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;FRAME&quot;</span><span class="p">,</span> <span class="s2">&quot;TOPIC&quot;</span><span class="p">,</span> <span class="s2">&quot;LX&quot;</span><span class="p">,</span> <span class="s2">&quot;LY&quot;</span><span class="p">,</span> <span class="s2">&quot;LZ&quot;</span><span class="p">,</span> <span class="s2">&quot;AX&quot;</span><span class="p">,</span> <span class="s2">&quot;AY&quot;</span><span class="p">,</span> <span class="s2">&quot;AZ&quot;</span><span class="p">])</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;input bag path (folder or filepath) to read from&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--topic&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="s1">&#39;--frame&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--value&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="n">read_messages</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">Twist</span><span class="p">):</span>
+            <span class="n">new_row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;FRAME&quot;</span><span class="p">:</span> <span class="n">frame</span><span class="p">,</span> <span class="s2">&quot;TOPIC&quot;</span><span class="p">:</span> <span class="n">topic</span><span class="p">,</span> <span class="s2">&quot;LX&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;LY&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;LZ&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="s2">&quot;AX&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;AY&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;AZ&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span><span class="p">}</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)]</span> <span class="o">=</span> <span class="n">new_row</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">top</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">topic</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">frm</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">frame</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">args</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Search result: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;FRAME&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">frm</span><span class="p">))</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;TOPIC&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">str</span><span class="p">(</span><span class="n">top</span><span class="p">)),</span><span class="w"> </span><span class="n">val</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot; topic: </span><span class="si">{</span><span class="n">top</span><span class="si">}</span><span class="s2">, frame: </span><span class="si">{</span><span class="n">frm</span><span class="si">}</span><span class="s2">, column: </span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[ERROR] Invalid input!&quot;</span><span class="p">)</span>
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/framefinder.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Making a rosbag frame, topic and value reader</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, Alin Dulceanu, Eduard Cimpean.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+  </body>
+</html>

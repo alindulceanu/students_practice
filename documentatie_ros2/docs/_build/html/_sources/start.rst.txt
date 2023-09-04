@@ -36,8 +36,10 @@ Continuing with the camera example, the camera node can publish the image on the
 Image data from the ``camera/image_raw`` topic can be used by a node that shows the image on the computer screen. The node that receives the information is said to subscribe to the topic being published, in this case ``camera/image_raw``.
 
 
-Creating our first ros2 project
--------------------------------
+Creating the environment
+------------------------
+
+For this, we will need two things: A ``WORKSPACE`` and a ``PROJECT`` to work on.
 
 Creating the workspace
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -47,7 +49,29 @@ In order to create a workspace we need a directory with the sole purpose of cont
    mkdir ros2_ws
    cd ros2_ws
 
-Now, in that directory we want to create a source directory::
-   
+In that directory we want to create a source directory::
+
    mkdir src 
    cd src
+
+Now, we can go back to the root and build it using ``colcon``::
+
+   colcon build
+
+The last step is to source our workspace so ROS2 is aware of it::
+
+   # In the root folder:
+   source install/setup.bash
+
+Creating the first project
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ROS2 comes preinstalled with a tool for package generation::
+
+   # In src:
+   ros2 pkg create --build-type ament_python <package_name>
+   # Make sure you replace <package_name> with a desired name
+
+
+
+

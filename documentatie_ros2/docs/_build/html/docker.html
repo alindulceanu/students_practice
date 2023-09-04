@@ -16,7 +16,9 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="VMBox" href="VMBox.html" />
+    <link rel="prev" title="Basic talker tutorial" href="step1_ros.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,6 +26,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="VMBox.html" title="VMBox"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="step1_ros.html" title="Basic talker tutorial"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Installing Docker Desktop</a></li> 
       </ul>
@@ -137,7 +145,7 @@
 <p>Danger Zone: If you’re feeling particularly adventurous you can try rm -rf bin in the container. Make sure you run this command in the container and not in your laptop/desktop. Doing this will make any other commands like ls, uptime not work. Once everything stops working, you can exit the container (type exit and press Enter) and then start it up again with the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> -it busybox sh command. Since Docker creates a new container every time, everything should start working again.</p>
 </div>
 <p>That concludes a whirlwind tour of the mighty <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command, which would most likely be the command you’ll use most often. It makes sense to spend some time getting comfortable with it. To find out more about run, use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> –help to see a list of all flags it supports. As we proceed further, we’ll see a few more variants of <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>.</p>
-<p>Before we move ahead though, let’s quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we’ve exited by running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>. Throughout this tutorial, you’ll run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I’m done with them. To do that, you can run the docker rm command. Just copy the container IDs from above and paste them alongside the command.</p>
+<p>Before we move ahead though, let’s quickly talk about deleting containers. We saw above that we can still see remnants of the container even after we’ve exited by running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>. Throughout this tutorial, you’ll run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> multiple times and leaving stray containers will eat up disk space. Hence, as a rule of thumb, I clean up containers once I’m done with them. To do that, you can run the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span></code> command. Just copy the container IDs from above and paste them alongside the command.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>rm<span class="w"> </span>305297d7a235<span class="w"> </span>ff0a5c3750b9
 <span class="go">305297d7a235</span>
 <span class="go">ff0a5c3750b9</span>
@@ -147,10 +155,10 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>rm<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>-q<span class="w"> </span>-f<span class="w"> </span><span class="nv">status</span><span class="o">=</span>exited<span class="k">)</span>
 </pre></div>
 </div>
-<p>This command deletes all containers that have a status of exited. In case you’re wondering, the -q flag, only returns the numeric IDs and -f filters output based on conditions provided. One last thing that’ll be useful is the –rm flag that can be passed to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> which automatically deletes the container once it’s exited from. For one off docker runs, –rm flag is very useful.</p>
+<p>This command deletes all containers that have a status of <code class="docutils literal notranslate"><span class="pre">exited</span></code>. In case you’re wondering, the <code class="docutils literal notranslate"><span class="pre">-q</span></code> flag, only returns the numeric IDs and <code class="docutils literal notranslate"><span class="pre">-f</span></code> filters output based on conditions provided. One last thing that’ll be useful is the <code class="docutils literal notranslate"><span class="pre">--rm</span></code> flag that can be passed to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> which automatically deletes the container once it’s exited from. For one off docker runs, <code class="docutils literal notranslate"><span class="pre">--rm</span></code> flag is very useful.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In later versions of Docker, the docker container prune command can be used to achieve the same effect.</p>
+<p>In later versions of Docker, the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">prune</span></code> command can be used to achieve the same effect.</p>
 </div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>container<span class="w"> </span>prune
 <span class="go">WARNING! This will remove all stopped containers.</span>
@@ -162,1291 +170,324 @@
 <span class="go">Total reclaimed space: 212 B</span>
 </pre></div>
 </div>
-<p>Lastly, you can also delete images that you no longer need by running docker rmi.</p>
+<p>Lastly, you can also delete images that you no longer need by running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span></code>.</p>
 </section>
 <section id="terminology">
 <h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">¶</a></h2>
 <p>In the last section, we used a lot of Docker-specific jargon which might be confusing to some. So before we go further, let me clarify some terminology that is used frequently in the Docker ecosystem.</p>
-<p>Images - The blueprints of our application which form the basis of containers. In the demo above, we used the docker pull command to download the busybox image.</p>
-<p>Containers - Created from Docker images and run the actual application. We create a container using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> which we did using the busybox image that we downloaded. A list of running containers can be seen using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> command.</p>
-<p>Docker Daemon - The background service running on the host that manages building, running and distributing Docker containers. The daemon is the process that runs in the operating system which clients talk to.</p>
-<p>Docker Client - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as Kitematic which provide a GUI to the users.</p>
-<p>Docker Hub - A registry of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Images - The blueprints of our application which form the basis of containers. In the demo above, we used the docker pull command to download the busybox image.</p></li>
+<li><p>Containers - Created from Docker images and run the actual application. We create a container using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> which we did using the busybox image that we downloaded. A list of running containers can be seen using the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> command.</p></li>
+<li><p>Docker Daemon - The background service running on the host that manages building, running and distributing Docker containers. The daemon is the process that runs in the operating system which clients talk to.</p></li>
+<li><p>Docker Client - The command line tool that allows the user to interact with the daemon. More generally, there can be other forms of clients too - such as Kitematic which provide a GUI to the users.</p></li>
+<li><p>Docker Hub - A registry of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.</p></li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 <section id="webapps-with-docker">
 <h1>WEBAPPS WITH DOCKER<a class="headerlink" href="#webapps-with-docker" title="Permalink to this heading">¶</a></h1>
-<p>Great! So we have now looked at <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>, played with a Docker container and also got a hang of some terminology. Armed with all this knowledge, we are now ready to get to the real-stuff, i.e. deploying web applications with Docker!</p>
-<p>Static Sites
-Let’s start by taking baby-steps. The first thing we’re going to look at is how we can run a dead-simple static website. We’re going to pull a Docker image from Docker Hub, run the container and see how easy it is to run a webserver.</p>
-<p>Let’s begin. The image that we are going to use is a single-page website that I’ve already created for the purpose of this demo and hosted on the registry - prakhar1989/static-site. We can download and run the image directly in one go using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>. As noted above, the –rm flag automatically removes the container when it exits and the -it flag specifies an interactive terminal which makes it easier to kill the container with Ctrl+C (on windows).</p>
-<p>$ docker run –rm -it prakhar1989/static-site
-Since the image doesn’t exist locally, the client will first fetch the image from the registry and then run the image. If all goes well, you should see a Nginx is running… message in your terminal. Okay now that the server is running, how to see the website? What port is it running on? And more importantly, how do we access the container directly from our host machine? Hit Ctrl+C to stop the container.</p>
-<p>Well, in this case, the client is not exposing any ports so we need to re-run the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command to publish ports. While we’re at it, we should also find a way so that our terminal is not attached to the running container. This way, you can happily close your terminal and keep the container running. This is called detached mode.</p>
-<p>$ docker run -d -P –name static-site prakhar1989/static-site
-e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
-In the above command, -d will detach our terminal, -P will publish all exposed ports to random ports and finally –name corresponds to a name we want to give. Now we can see the ports by running the docker port [CONTAINER] command</p>
-<p>$ docker port static-site
-80/tcp -&gt; 0.0.0.0:32769
-443/tcp -&gt; 0.0.0.0:32768
-You can open <a class="reference external" href="http://localhost:32769">http://localhost:32769</a> in your browser.</p>
-<p>Note: If you’re using docker-toolbox, then you might need to use docker-machine ip default to get the IP.</p>
-<p>You can also specify a custom port to which the client will forward connections to the container.</p>
-<p>$ docker run -p 8888:80 prakhar1989/static-site
-Nginx is running…
-static site
-To stop a detached container, run docker stop by giving the container ID. In this case, we can use the name static-site we used to start the container.</p>
-<p>$ docker stop static-site
-static-site
-I’m sure you agree that was super simple. To deploy this on a real server you would just need to install Docker, and run the above Docker command. Now that you’ve seen how to run a webserver inside a Docker image, you must be wondering - how do I create my own Docker image? This is the question we’ll be exploring in the next section.</p>
-<p>Docker Images
-We’ve looked at images before, but in this section we’ll dive deeper into what Docker images are and build our own image! Lastly, we’ll also use that image to run our application locally and finally deploy on AWS to share it with our friends! Excited? Great! Let’s get started.</p>
-<p>Docker images are the basis of containers. In the previous example, we pulled the Busybox image from the registry and asked the Docker client to run a container based on that image. To see the list of images that are available locally, use the docker images command.</p>
-<p>$ docker images
-REPOSITORY                      TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-prakhar1989/catnip              latest              c7ffb5626a50        2 hours ago         697.9 MB
-prakhar1989/static-site         latest              b270625a1631        21 hours ago        133.9 MB
-python                          3-onbuild           cf4002b2c383        5 days ago          688.8 MB
-martin/docker-cleanup-volumes   latest              b42990daaca2        7 weeks ago         22.14 MB
-ubuntu                          latest              e9ae3c220b23        7 weeks ago         187.9 MB
-busybox                         latest              c51f86c28340        9 weeks ago         1.109 MB
-hello-world                     latest              0a6ba66e537a        11 weeks ago        960 B
-The above gives a list of images that I’ve pulled from the registry, along with ones that I’ve created myself (we’ll shortly see how). The TAG refers to a particular snapshot of the image and the IMAGE ID is the corresponding unique identifier for that image.</p>
-<p>For simplicity, you can think of an image akin to a git repository - images can be committed with changes and have multiple versions. If you don’t provide a specific version number, the client defaults to latest. For example, you can pull a specific version of ubuntu image</p>
-<p>$ docker pull ubuntu:18.04
-To get a new Docker image you can either get it from a registry (such as the Docker Hub) or create your own. There are tens of thousands of images available on Docker Hub. You can also search for images directly from the command line using docker search.</p>
-<p>An important distinction to be aware of when it comes to images is the difference between base and child images.</p>
-<p>Base images are images that have no parent image, usually images with an OS like ubuntu, busybox or debian.</p>
-<p>Child images are images that build on base images and add additional functionality.</p>
-<p>Then there are official and user images, which can be both base and child images.</p>
-<p>Official images are images that are officially maintained and supported by the folks at Docker. These are typically one word long. In the list of images above, the python, ubuntu, busybox and hello-world images are official images.</p>
-<p>User images are images created and shared by users like you and me. They build on base images and add additional functionality. Typically, these are formatted as user/image-name.</p>
-<p>Our First Image
-Now that we have a better understanding of images, it’s time to create our own. Our goal in this section will be to create an image that sandboxes a simple Flask application. For the purposes of this workshop, I’ve already created a fun little Flask app that displays a random cat .gif every time it is loaded - because you know, who doesn’t like cats? If you haven’t already, please go ahead and clone the repository locally like so -</p>
-<p>$ git clone <a class="reference external" href="https://github.com/prakhar1989/docker-curriculum.git">https://github.com/prakhar1989/docker-curriculum.git</a>
-$ cd docker-curriculum/flask-app
-This should be cloned on the machine where you are running the docker commands and not inside a docker container.</p>
+<p>Great! So we have now looked at <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>, played with a Docker container and also got a hang of some terminology.
+Our First Image
+<strong>************</strong></p>
+<p>Now that we have a better understanding of images, it’s time to create our own. Our goal in this section will be to create an image that sandboxes a simple Flask application. For the purposes of this workshop, I’ve already created a fun little Flask app that displays a random cat <code class="docutils literal notranslate"><span class="pre">.gif</span></code> every time it is loaded - because you know, who doesn’t like cats? If you haven’t already, please go ahead and clone the repository locally like so -</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/prakhar1989/docker-curriculum.git
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>docker-curriculum/flask-app
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should be cloned on the machine where you are running the docker commands and not inside a docker container.</p>
+</div>
 <p>The next step now is to create an image with this web app. As mentioned above, all user images are based on a base image. Since our application is written in Python, the base image we’re going to use will be Python 3.</p>
-<p>Dockerfile
-A Dockerfile is a simple text file that contains a list of commands that the Docker client calls while creating an image. It’s a simple way to automate the image creation process. The best part is that the commands you write in a Dockerfile are almost identical to their equivalent Linux commands. This means you don’t really have to learn new syntax to create your own dockerfiles.</p>
-<p>The application directory does contain a Dockerfile but since we’re doing this for the first time, we’ll create one from scratch. To start, create a new blank file in our favorite text-editor and save it in the same folder as the flask app by the name of Dockerfile.</p>
-<p>We start with specifying our base image. Use the FROM keyword to do that -</p>
-<p>FROM python:3.8
-The next step usually is to write the commands of copying the files and installing the dependencies. First, we set a working directory and then copy all the files for our app.</p>
-<p># set a directory for the app
-WORKDIR /usr/src/app</p>
-<p># copy all the files to the container
-COPY . .
-Now, that we have the files, we can install the dependencies.</p>
-<p># install dependencies
-RUN pip install –no-cache-dir -r requirements.txt
-The next thing we need to specify is the port number that needs to be exposed. Since our flask app is running on port 5000, that’s what we’ll indicate.</p>
-<p>EXPOSE 5000
-The last step is to write the command for running the application, which is simply - python ./app.py. We use the CMD command to do that -</p>
-<p>CMD [“python”, “./app.py”]
-The primary purpose of CMD is to tell the container which command it should run when it is started. With that, our Dockerfile is now ready. This is how it looks -</p>
-<p>FROM python:3.8</p>
-<p># set a directory for the app
-WORKDIR /usr/src/app</p>
-<p># copy all the files to the container
-COPY . .</p>
-<p># install dependencies
-RUN pip install –no-cache-dir -r requirements.txt</p>
-<p># define the port number the container should expose
-EXPOSE 5000</p>
-<p># run the command
-CMD [“python”, “./app.py”]
-Now that we have our Dockerfile, we can build our image. The docker build command does the heavy-lifting of creating a Docker image from a Dockerfile.</p>
-<p>The section below shows you the output of running the same. Before you run the command yourself (don’t forget the period), make sure to replace my username with yours. This username should be the same one you created when you registered on Docker hub. If you haven’t done that yet, please go ahead and create an account. The docker build command is quite simple - it takes an optional tag name with -t and a location of the directory containing the Dockerfile.</p>
-<p>$ docker build -t yourusername/catnip .
-Sending build context to Docker daemon 8.704 kB
-Step 1 : FROM python:3.8
-# Executing 3 build triggers…
-Step 1 : COPY requirements.txt /usr/src/app/</p>
-<blockquote>
-<div><p>—&gt; Using cache</p>
-</div></blockquote>
-<dl class="simple">
-<dt>Step 1<span class="classifier">RUN pip install –no-cache-dir -r requirements.txt</span></dt><dd><p>—&gt; Using cache</p>
-</dd>
-<dt>Step 1<span class="classifier">COPY . /usr/src/app</span></dt><dd><p>—&gt; 1d61f639ef9e</p>
-</dd>
-</dl>
-<p>Removing intermediate container 4de6ddf5528c
-Step 2 : EXPOSE 5000</p>
-<blockquote>
-<div><p>—&gt; Running in 12cfcf6d67ee
-—&gt; f423c2f179d1</p>
-</div></blockquote>
-<p>Removing intermediate container 12cfcf6d67ee
-Step 3 : CMD python ./app.py</p>
-<blockquote>
-<div><p>—&gt; Running in f01401a5ace9
-—&gt; 13e87ed1fbc2</p>
-</div></blockquote>
-<p>Removing intermediate container f01401a5ace9
-Successfully built 13e87ed1fbc2
-If you don’t have the python:3.8 image, the client will first pull the image and then create your image. Hence, your output from running the command will look different from mine. If everything went well, your image should be ready! Run docker images and see if your image shows.</p>
+<section id="dockerfile">
+<h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this heading">¶</a></h2>
+<p>A Dockerfile is a simple text file that contains a list of commands that the Docker client calls while creating an image. It’s a simple way to automate the image creation process. The best part is that the commands you write in a Dockerfile are almost identical to their equivalent Linux commands. This means you don’t really have to learn new syntax to create your own dockerfiles.</p>
+<p>The application directory does contain a Dockerfile but since we’re doing this for the first time, we’ll create one from scratch. To start, create a new blank file in our favorite text-editor and save it in the same folder as the flask app by the name of <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p>
+<p>We start with specifying our base image. Use the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> keyword to do that -</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">python</span><span class="p">:</span><span class="mf">3.8</span>
+</pre></div>
+</div>
+<p>The next step usually is to write the commands of copying the files and installing the dependencies. First, we set a working directory and then copy all the files for our app.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># set a directory for the app</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">app</span>
+
+<span class="c1"># copy all the files to the container</span>
+<span class="n">COPY</span> <span class="o">.</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Now, that we have the files, we can install the dependencies.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># install dependencies</span>
+<span class="n">RUN</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The next thing we need to specify is the port number that needs to be exposed. Since our flask app is running on port <code class="docutils literal notranslate"><span class="pre">5000</span></code>, that’s what we’ll indicate.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">EXPOSE</span> <span class="mi">5000</span>
+</pre></div>
+</div>
+<p>The last step is to write the command for running the application, which is simply - <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">./app.py</span></code>. We use the CMD command to do that -</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;./app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The primary purpose of <code class="docutils literal notranslate"><span class="pre">CMD</span></code> is to tell the container which command it should run when it is started. With that, our <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> is now ready. This is how it looks -</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FROM</span> <span class="n">python</span><span class="p">:</span><span class="mf">3.8</span>
+
+<span class="c1"># set a directory for the app</span>
+<span class="n">WORKDIR</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">app</span>
+
+<span class="c1"># copy all the files to the container</span>
+<span class="n">COPY</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="c1"># install dependencies</span>
+<span class="n">RUN</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">cache</span><span class="o">-</span><span class="nb">dir</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># define the port number the container should expose</span>
+<span class="n">EXPOSE</span> <span class="mi">5000</span>
+
+<span class="c1"># run the command</span>
+<span class="n">CMD</span> <span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;./app.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now that we have our <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>, we can build our image. The <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command does the heavy-lifting of creating a Docker image from a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p>
+<p>The section below shows you the output of running the same. Before you run the command yourself (don’t forget the period), make sure to replace my username with yours. This username should be the same one you created when you registered on Docker hub. If you haven’t done that yet, please go ahead and create an account. The <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command is quite simple - it takes an optional tag name with <code class="docutils literal notranslate"><span class="pre">-t</span></code> and a location of the directory containing the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>yourusername/catnip<span class="w"> </span>.
+<span class="go">Sending build context to Docker daemon 8.704 kB</span>
+<span class="go">Step 1 : FROM python:3.8</span>
+<span class="gp"># </span>Executing<span class="w"> </span><span class="m">3</span><span class="w"> </span>build<span class="w"> </span>triggers...
+<span class="go">Step 1 : COPY requirements.txt /usr/src/app/</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go">Step 1 : RUN pip install --no-cache-dir -r requirements.txt</span>
+<span class="go"> ---&gt; Using cache</span>
+<span class="go">Step 1 : COPY . /usr/src/app</span>
+<span class="go"> ---&gt; 1d61f639ef9e</span>
+<span class="go">Removing intermediate container 4de6ddf5528c</span>
+<span class="go">Step 2 : EXPOSE 5000</span>
+<span class="go"> ---&gt; Running in 12cfcf6d67ee</span>
+<span class="go"> ---&gt; f423c2f179d1</span>
+<span class="go">Removing intermediate container 12cfcf6d67ee</span>
+<span class="go">Step 3 : CMD python ./app.py</span>
+<span class="go"> ---&gt; Running in f01401a5ace9</span>
+<span class="go"> ---&gt; 13e87ed1fbc2</span>
+<span class="go">Removing intermediate container f01401a5ace9</span>
+<span class="go">Successfully built 13e87ed1fbc2</span>
+</pre></div>
+</div>
+<p>If you don’t have the <code class="docutils literal notranslate"><span class="pre">python:3.8</span></code> image, the client will first pull the image and then create your image. Hence, your output from running the command will look different from mine. If everything went well, your image should be ready! Run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code> and see if your image shows.</p>
 <p>The last step in this section is to run the image and see if it actually works (replacing my username with yours).</p>
-<dl class="simple">
-<dt>$ docker run -p 8888:5000 yourusername/catnip</dt><dd><ul class="simple">
-<li><p>Running on <a class="reference external" href="http://0.0.0.0:5000/">http://0.0.0.0:5000/</a> (Press CTRL+C to quit)</p></li>
-</ul>
-</dd>
-</dl>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:5000<span class="w"> </span>yourusername/catnip
+<span class="go"> * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)</span>
+</pre></div>
+</div>
 <p>The command we just ran used port 5000 for the server inside the container and exposed this externally on port 8888. Head over to the URL with port 8888, where your app should be live.</p>
-<p>cat gif website
-Congratulations! You have successfully created your first docker image.</p>
-<p>Docker on AWS
-What good is an application that can’t be shared with friends, right? So in this section we are going to see how we can deploy our awesome application to the cloud so that we can share it with our friends! We’re going to use AWS Elastic Beanstalk to get our application up and running in a few clicks. We’ll also see how easy it is to make our application scalable and manageable with Beanstalk!</p>
-<p>Docker push
-The first thing that we need to do before we deploy our app to AWS is to publish our image on a registry which can be accessed by AWS. There are many different Docker registries you can use (you can even host your own). For now, let’s use Docker Hub to publish the image.</p>
-<p>If this is the first time you are pushing an image, the client will ask you to login. Provide the same credentials that you used for logging into Docker Hub.</p>
-<p>$ docker login
-Login in with your Docker ID to push and pull images from Docker Hub. If you do not have a Docker ID, head over to <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a> to create one.
-Username: yourusername
-Password:
-WARNING! Your password will be stored unencrypted in /Users/yourusername/.docker/config.json
-Configure a credential helper to remove this warning. See
-<a class="reference external" href="https://docs.docker.com/engine/reference/commandline/login/credential-store">https://docs.docker.com/engine/reference/commandline/login/credential-store</a></p>
-<p>Login Succeeded
-To publish, just type the below command remembering to replace the name of the image tag above with yours. It is important to have the format of yourusername/image_name so that the client knows where to publish.</p>
-<p>$ docker push yourusername/catnip
-Once that is done, you can view your image on Docker Hub. For example, here’s the web page for my image.</p>
-<p>Note: One thing that I’d like to clarify before we go ahead is that it is not imperative to host your image on a public registry (or any registry) in order to deploy to AWS. In case you’re writing code for the next million-dollar unicorn startup you can totally skip this step. The reason why we’re pushing our images publicly is that it makes deployment super simple by skipping a few intermediate configuration steps.</p>
-<p>Now that your image is online, anyone who has docker installed can play with your app by typing just a single command.</p>
-<p>$ docker run -p 8888:5000 yourusername/catnip
-If you’ve pulled your hair out in setting up local dev environments / sharing application configuration in the past, you very well know how awesome this sounds. That’s why Docker is so cool!</p>
-<p>Beanstalk
-AWS Elastic Beanstalk (EB) is a PaaS (Platform as a Service) offered by AWS. If you’ve used Heroku, Google App Engine etc. you’ll feel right at home. As a developer, you just tell EB how to run your app and it takes care of the rest - including scaling, monitoring and even updates. In April 2014, EB added support for running single-container Docker deployments which is what we’ll use to deploy our app. Although EB has a very intuitive CLI, it does require some setup, and to keep things simple we’ll use the web UI to launch our application.</p>
-<p>To follow along, you need a functioning AWS account. If you haven’t already, please go ahead and do that now - you will need to enter your credit card information. But don’t worry, it’s free and anything we do in this tutorial will also be free! Let’s get started.</p>
-<p>Here are the steps:</p>
-<p>Login to your AWS console.
-Click on Elastic Beanstalk. It will be in the compute section on the top left. Alternatively, you can access the Elastic Beanstalk console.
-Elastic Beanstalk start
-Click on “Create New Application” in the top right
-Give your app a memorable (but unique) name and provide an (optional) description
-In the New Environment screen, create a new environment and choose the Web Server Environment.
-Fill in the environment information by choosing a domain. This URL is what you’ll share with your friends so make sure it’s easy to remember.
-Under base configuration section. Choose Docker from the predefined platform.
-Elastic Beanstalk Environment Type
-Now we need to upload our application code. But since our application is packaged in a Docker container, we just need to tell EB about our container. Open the Dockerrun.aws.json file located in the flask-app folder and edit the Name of the image to your image’s name. Don’t worry, I’ll explain the contents of the file shortly. When you are done, click on the radio button for “Upload your Code”, choose this file, and click on “Upload”.
-Now click on “Create environment”. The final screen that you see will have a few spinners indicating that your environment is being set up. It typically takes around 5 minutes for the first-time setup.
-While we wait, let’s quickly see what the Dockerrun.aws.json file contains. This file is basically an AWS specific file that tells EB details about our application and docker configuration.</p>
-<dl>
-<dt>{</dt><dd><p>“AWSEBDockerrunVersion”: “1”,
-“Image”: {</p>
-<blockquote>
-<div><p>“Name”: “prakhar1989/catnip”,
-“Update”: “true”</p>
-</div></blockquote>
-<p>},
-“Ports”: [</p>
-<blockquote>
-<div><dl class="simple">
-<dt>{</dt><dd><p>“ContainerPort”: 5000,
-“HostPort”: 8000</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>],
-“Logging”: “/var/log/nginx”</p>
-</dd>
-</dl>
-<p>}
-The file should be pretty self-explanatory, but you can always reference the official documentation for more information. We provide the name of the image that EB should use along with a port that the container should open.</p>
-<p>Hopefully by now, our instance should be ready. Head over to the EB page and you should see a green tick indicating that your app is alive and kicking.</p>
-<p>EB deploy
-Go ahead and open the URL in your browser and you should see the application in all its glory. Feel free to email / IM / snapchat this link to your friends and family so that they can enjoy a few cat gifs, too.</p>
-<p>Cleanup
-Once you done basking in the glory of your app, remember to terminate the environment so that you don’t end up getting charged for extra resources.</p>
-<p>EB deploy
-Congratulations! You have deployed your first Docker application! That might seem like a lot of steps, but with the command-line tool for EB you can almost mimic the functionality of Heroku in a few keystrokes! Hopefully, you agree that Docker takes away a lot of the pains of building and deploying applications in the cloud. I would encourage you to read the AWS documentation on single-container Docker environments to get an idea of what features exist.</p>
-<p>In the next (and final) part of the tutorial, we’ll up the ante a bit and deploy an application that mimics the real-world more closely; an app with a persistent back-end storage tier. Let’s get straight to it!</p>
-<p>MULTI-CONTAINER ENVIRONMENTS
-In the last section, we saw how easy and fun it is to run applications with Docker. We started with a simple static website and then tried a Flask app. Both of which we could run locally and in the cloud with just a few commands. One thing both these apps had in common was that they were running in a single container.</p>
-<p>Those of you who have experience running services in production know that usually apps nowadays are not that simple. There’s almost always a database (or any other kind of persistent storage) involved. Systems such as Redis and Memcached have become de rigueur of most web application architectures. Hence, in this section we are going to spend some time learning how to Dockerize applications which rely on different services to run.</p>
-<p>In particular, we are going to see how we can run and manage multi-container docker environments. Why multi-container you might ask? Well, one of the key points of Docker is the way it provides isolation. The idea of bundling a process with its dependencies in a sandbox (called containers) is what makes this so powerful.</p>
-<p>Just like it’s a good strategy to decouple your application tiers, it is wise to keep containers for each of the services separate. Each tier is likely to have different resource needs and those needs might grow at different rates. By separating the tiers into different containers, we can compose each tier using the most appropriate instance type based on different resource needs. This also plays in very well with the whole microservices movement which is one of the main reasons why Docker (or any other container technology) is at the forefront of modern microservices architectures.</p>
-<p>SF Food Trucks
-The app that we’re going to Dockerize is called SF Food Trucks. My goal in building this app was to have something that is useful (in that it resembles a real-world application), relies on at least one service, but is not too complex for the purpose of this tutorial. This is what I came up with.</p>
-<p>SF Food Trucks
-The app’s backend is written in Python (Flask) and for search it uses Elasticsearch. Like everything else in this tutorial, the entire source is available on Github. We’ll use this as our candidate application for learning out how to build, run and deploy a multi-container environment.</p>
-<p>First up, let’s clone the repository locally.</p>
-<p>$ git clone <a class="reference external" href="https://github.com/prakhar1989/FoodTrucks">https://github.com/prakhar1989/FoodTrucks</a>
-$ cd FoodTrucks
-$ tree -L 2
-.
-├── Dockerfile
-├── README.md
-├── aws-compose.yml
-├── docker-compose.yml
-├── flask-app
-│   ├── app.py
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── requirements.txt
-│   ├── static
-│   ├── templates
-│   └── webpack.config.js
-├── setup-aws-ecs.sh
-├── setup-docker.sh
-├── shot.png
-└── utils</p>
-<blockquote>
-<div><p>├── generate_geojson.py
-└── trucks.geojson</p>
-</div></blockquote>
-<p>The flask-app folder contains the Python application, while the utils folder has some utilities to load the data into Elasticsearch. The directory also contains some YAML files and a Dockerfile, all of which we’ll see in greater detail as we progress through this tutorial. If you are curious, feel free to take a look at the files.</p>
-<p>Now that you’re excited (hopefully), let’s think of how we can Dockerize the app. We can see that the application consists of a Flask backend server and an Elasticsearch service. A natural way to split this app would be to have two containers - one running the Flask process and another running the Elasticsearch (ES) process. That way if our app becomes popular, we can scale it by adding more containers depending on where the bottleneck lies.</p>
-<p>Great, so we need two containers. That shouldn’t be hard right? We’ve already built our own Flask container in the previous section. And for Elasticsearch, let’s see if we can find something on the hub.</p>
-<p>$ docker search elasticsearch
-NAME                              DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
-elasticsearch                     Elasticsearch is a powerful open source se…   697       [OK]
-itzg/elasticsearch                Provides an easily configurable Elasticsea…   17                   [OK]
-tutum/elasticsearch               Elasticsearch image - listens in port 9200.     15                   [OK]
-barnybug/elasticsearch            Latest Elasticsearch 1.7.2 and previous re…   15                   [OK]
-digitalwonderland/elasticsearch   Latest Elasticsearch with Marvel &amp; Kibana       12                   [OK]
-monsantoco/elasticsearch          ElasticSearch Docker image                      9                    [OK]
-Quite unsurprisingly, there exists an officially supported image for Elasticsearch. To get ES running, we can simply use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> and have a single-node ES container running locally within no time.</p>
-<p>Note: Elastic, the company behind Elasticsearch, maintains its own registry for Elastic products. It’s recommended to use the images from that registry if you plan to use Elasticsearch.</p>
-<p>Let’s first pull the image</p>
-<p>$ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.3.2
-and then run it in development mode by specifying ports and setting an environment variable that configures the Elasticsearch cluster to run as a single-node.</p>
-<p>$ docker run -d –name es -p 9200:9200 -p 9300:9300 -e “discovery.type=single-node” docker.elastic.co/elasticsearch/elasticsearch:6.3.2
-277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943
-Note: If your container runs into memory issues, you might need to tweak some JVM flags to limit its memory consumption.</p>
-<p>As seen above, we use –name es to give our container a name which makes it easy to use in subsequent commands. Once the container is started, we can see the logs by running docker container logs with the container name (or ID) to inspect the logs. You should see logs similar to below if Elasticsearch started successfully.</p>
-<p>Note: Elasticsearch takes a few seconds to start so you might need to wait before you see initialized in the logs.</p>
-<p>$ docker container ls
-CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-277451c15ec1        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   “/usr/local/bin/dock…”   2 minutes ago       Up 2 minutes        0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   es</p>
-<p>$ docker container logs es
-[2018-07-29T05:49:09,304][INFO ][o.e.n.Node               ] [] initializing …
-[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] using [1] data paths, mounts [[/ (overlay)]], net usable_space [54.1gb], net total_space [62.7gb], types [overlay]
-[2018-07-29T05:49:09,385][INFO ][o.e.e.NodeEnvironment    ] [L1VMyzt] heap size [990.7mb], compressed ordinary object pointers [true]
-[2018-07-29T05:49:11,979][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-security]
-[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-sql]
-[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-upgrade]
-[2018-07-29T05:49:11,980][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded module [x-pack-watcher]
-[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-geoip]
-[2018-07-29T05:49:11,981][INFO ][o.e.p.PluginsService     ] [L1VMyzt] loaded plugin [ingest-user-agent]
-[2018-07-29T05:49:17,659][INFO ][o.e.d.DiscoveryModule    ] [L1VMyzt] using discovery type [single-node]
-[2018-07-29T05:49:18,962][INFO ][o.e.n.Node               ] [L1VMyzt] initialized
-[2018-07-29T05:49:18,963][INFO ][o.e.n.Node               ] [L1VMyzt] starting …
-[2018-07-29T05:49:19,218][INFO ][o.e.t.TransportService   ] [L1VMyzt] publish_address {172.17.0.2:9300}, bound_addresses {0.0.0.0:9300}
-[2018-07-29T05:49:19,302][INFO ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [L1VMyzt] publish_address {172.17.0.2:9200}, bound_addresses {0.0.0.0:9200}
-[2018-07-29T05:49:19,303][INFO ][o.e.n.Node               ] [L1VMyzt] started
-[2018-07-29T05:49:19,439][WARN ][o.e.x.s.a.s.m.NativeRoleMappingStore] [L1VMyzt] Failed to clear cache for realms [[]]
-[2018-07-29T05:49:19,542][INFO ][o.e.g.GatewayService     ] [L1VMyzt] recovered [0] indices into cluster_state
-Now, lets try to see if can send a request to the Elasticsearch container. We use the 9200 port to send a cURL request to the container.</p>
-<p>$ curl 0.0.0.0:9200
-{</p>
-<blockquote>
-<div><p>“name” : “ijJDAOm”,
-“cluster_name” : “docker-cluster”,
-“cluster_uuid” : “a_nSV3XmTCqpzYYzb-LhNw”,
-“version” : {</p>
-<blockquote>
-<div><p>“number” : “6.3.2”,
-“build_flavor” : “default”,
-“build_type” : “tar”,
-“build_hash” : “053779d”,
-“build_date” : “2018-07-20T05:20:23.451332Z”,
-“build_snapshot” : false,
-“lucene_version” : “7.3.1”,
-“minimum_wire_compatibility_version” : “5.6.0”,
-“minimum_index_compatibility_version” : “5.0.0”</p>
-</div></blockquote>
-<p>},
-“tagline” : “You Know, for Search”</p>
-</div></blockquote>
-<p>}
-Sweet! It’s looking good! While we are at it, let’s get our Flask container running too. But before we get to that, we need a Dockerfile. In the last section, we used python:3.8 image as our base image. This time, however, apart from installing Python dependencies via pip, we want our application to also generate our minified Javascript file for production. For this, we’ll require Nodejs. Since we need a custom build step, we’ll start from the ubuntu base image to build our Dockerfile from scratch.</p>
-<p>Note: if you find that an existing image doesn’t cater to your needs, feel free to start from another base image and tweak it yourself. For most of the images on Docker Hub, you should be able to find the corresponding Dockerfile on Github. Reading through existing Dockerfiles is one of the best ways to learn how to roll your own.</p>
-<p>Our Dockerfile for the flask app looks like below -</p>
-<p># start from base
-FROM ubuntu:18.04</p>
-<p>MAINTAINER Prakhar Srivastav &lt;<a class="reference external" href="mailto:prakhar&#37;&#52;&#48;prakhar&#46;me">prakhar<span>&#64;</span>prakhar<span>&#46;</span>me</a>&gt;</p>
-<p># install system-wide deps for python and node
-RUN apt-get -yqq update
-RUN apt-get -yqq install python3-pip python3-dev curl gnupg
-RUN curl -sL <a class="reference external" href="https://deb.nodesource.com/setup_10.x">https://deb.nodesource.com/setup_10.x</a> | bash
-RUN apt-get install -yq nodejs</p>
-<p># copy our application code
-ADD flask-app /opt/flask-app
-WORKDIR /opt/flask-app</p>
-<p># fetch app specific deps
-RUN npm install
-RUN npm run build
-RUN pip3 install -r requirements.txt</p>
-<p># expose port
-EXPOSE 5000</p>
-<p># start app
-CMD [ “python3”, “./app.py” ]
-Quite a few new things here so let’s quickly go over this file. We start off with the Ubuntu LTS base image and use the package manager apt-get to install the dependencies namely - Python and Node. The yqq flag is used to suppress output and assumes “Yes” to all prompts.</p>
-<p>We then use the ADD command to copy our application into a new volume in the container - /opt/flask-app. This is where our code will reside. We also set this as our working directory, so that the following commands will be run in the context of this location. Now that our system-wide dependencies are installed, we get around to installing app-specific ones. First off we tackle Node by installing the packages from npm and running the build command as defined in our package.json file. We finish the file off by installing the Python packages, exposing the port and defining the CMD to run as we did in the last section.</p>
-<p>Finally, we can go ahead, build the image and run the container (replace yourusername with your username below).</p>
-<p>$ docker build -t yourusername/foodtrucks-web .
-In the first run, this will take some time as the Docker client will download the ubuntu image, run all the commands and prepare your image. Re-running docker build after any subsequent changes you make to the application code will almost be instantaneous. Now let’s try running our app.</p>
-<p>$ docker run -P –rm yourusername/foodtrucks-web
-Unable to connect to ES. Retying in 5 secs…
-Unable to connect to ES. Retying in 5 secs…
-Unable to connect to ES. Retying in 5 secs…
-Out of retries. Bailing out…
-Oops! Our flask app was unable to run since it was unable to connect to Elasticsearch. How do we tell one container about the other container and get them to talk to each other? The answer lies in the next section.</p>
-<p>Docker Network
-Before we talk about the features Docker provides especially to deal with such scenarios, let’s see if we can figure out a way to get around the problem. Hopefully, this should give you an appreciation for the specific feature that we are going to study.</p>
-<p>Okay, so let’s run docker container ls (which is same as <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code>) and see what we have.</p>
-<p>$ docker container ls
-CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-277451c15ec1        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   “/usr/local/bin/dock…”   17 minutes ago      Up 17 minutes       0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   es
-So we have one ES container running on 0.0.0.0:9200 port which we can directly access. If we can tell our Flask app to connect to this URL, it should be able to connect and talk to ES, right? Let’s dig into our Python code and see how the connection details are defined.</p>
-<p>es = Elasticsearch(host=’es’)
-To make this work, we need to tell the Flask container that the ES container is running on 0.0.0.0 host (the port by default is 9200) and that should make it work, right? Unfortunately, that is not correct since the IP 0.0.0.0 is the IP to access ES container from the host machine i.e. from my Mac. Another container will not be able to access this on the same IP address. Okay if not that IP, then which IP address should the ES container be accessible by? I’m glad you asked this question.</p>
-<p>Now is a good time to start our exploration of networking in Docker. When docker is installed, it creates three networks automatically.</p>
-<p>$ docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-c2c695315b3a        bridge              bridge              local
-a875bec5d6fd        host                host                local
-ead0e804a67b        none                null                local
-The bridge network is the network in which containers are run by default. So that means that when I ran the ES container, it was running in this bridge network. To validate this, let’s inspect the network.</p>
-<p>$ docker network inspect bridge
-[</p>
-<blockquote>
-<div><dl>
-<dt>{</dt><dd><p>“Name”: “bridge”,
-“Id”: “c2c695315b3aaf8fc30530bb3c6b8f6692cedd5cc7579663f0550dfdd21c9a26”,
-“Created”: “2018-07-28T20:32:39.405687265Z”,
-“Scope”: “local”,
-“Driver”: “bridge”,
-“EnableIPv6”: false,
-“IPAM”: {</p>
-<blockquote>
-<div><p>“Driver”: “default”,
-“Options”: null,
-“Config”: [</p>
-<blockquote>
-<div><dl class="simple">
-<dt>{</dt><dd><p>“Subnet”: “172.17.0.0/16”,
-“Gateway”: “172.17.0.1”</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-“Internal”: false,
-“Attachable”: false,
-“Ingress”: false,
-“ConfigFrom”: {</p>
-<blockquote>
-<div><p>“Network”: “”</p>
-</div></blockquote>
-<p>},
-“ConfigOnly”: false,
-“Containers”: {</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“277451c15ec183dd939e80298ea4bcf55050328a39b04124b387d668e3ed3943”: {</dt><dd><p>“Name”: “es”,
-“EndpointID”: “5c417a2fc6b13d8ec97b76bbd54aaf3ee2d48f328c3f7279ee335174fbb4d6bb”,
-“MacAddress”: “02:42:ac:11:00:02”,
-“IPv4Address”: “172.17.0.2/16”,
-“IPv6Address”: “”</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>},
-“Options”: {</p>
-<blockquote>
-<div><p>“com.docker.network.bridge.default_bridge”: “true”,
-“com.docker.network.bridge.enable_icc”: “true”,
-“com.docker.network.bridge.enable_ip_masquerade”: “true”,
-“com.docker.network.bridge.host_binding_ipv4”: “0.0.0.0”,
-“com.docker.network.bridge.name”: “docker0”,
-“com.docker.network.driver.mtu”: “1500”</p>
-</div></blockquote>
-<p>},
-“Labels”: {}</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>]
-You can see that our container 277451c15ec1 is listed under the Containers section in the output. What we also see is the IP address this container has been allotted - 172.17.0.2. Is this the IP address that we’re looking for? Let’s find out by running our flask container and trying to access this IP.</p>
-<p>$ docker run -it –rm yourusername/foodtrucks-web bash
-<a class="reference external" href="mailto:root&#37;&#52;&#48;35180ccc206a">root<span>&#64;</span>35180ccc206a</a>:/opt/flask-app# curl 172.17.0.2:9200
-{</p>
-<blockquote>
-<div><p>“name” : “Jane Foster”,
-“cluster_name” : “elasticsearch”,
-“version” : {</p>
-<blockquote>
-<div><p>“number” : “2.1.1”,
-“build_hash” : “40e2c53a6b6c2972b3d13846e450e66f4375bd71”,
-“build_timestamp” : “2015-12-15T13:05:55Z”,
-“build_snapshot” : false,
-“lucene_version” : “5.3.1”</p>
-</div></blockquote>
-<p>},
-“tagline” : “You Know, for Search”</p>
-</div></blockquote>
-<p>}
-<a class="reference external" href="mailto:root&#37;&#52;&#48;35180ccc206a">root<span>&#64;</span>35180ccc206a</a>:/opt/flask-app# exit
-This should be fairly straightforward to you by now. We start the container in the interactive mode with the bash process. The –rm is a convenient flag for running one off commands since the container gets cleaned up when its work is done. We try a curl but we need to install it first. Once we do that, we see that we can indeed talk to ES on 172.17.0.2:9200. Awesome!</p>
-<p>Although we have figured out a way to make the containers talk to each other, there are still two problems with this approach -</p>
-<p>How do we tell the Flask container that es hostname stands for 172.17.0.2 or some other IP since the IP can change?</p>
-<p>Since the bridge network is shared by every container by default, this method is not secure. How do we isolate our network?</p>
-<p>The good news that Docker has a great answer to our questions. It allows us to define our own networks while keeping them isolated using the docker network command.</p>
-<p>Let’s first go ahead and create our own network.</p>
-<p>$ docker network create foodtrucks-net
-0815b2a3bb7a6608e850d05553cc0bda98187c4528d94621438f31d97a6fea3c</p>
-<p>$ docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-c2c695315b3a        bridge              bridge              local
-0815b2a3bb7a        foodtrucks-net      bridge              local
-a875bec5d6fd        host                host                local
-ead0e804a67b        none                null                local
-The network create command creates a new bridge network, which is what we need at the moment. In terms of Docker, a bridge network uses a software bridge which allows containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network. The Docker bridge driver automatically installs rules in the host machine so that containers on different bridge networks cannot communicate directly with each other. There are other kinds of networks that you can create, and you are encouraged to read about them in the official docs.</p>
-<p>Now that we have a network, we can launch our containers inside this network using the –net flag. Let’s do that - but first, in order to launch a new container with the same name, we will stop and remove our ES container that is running in the bridge (default) network.</p>
-<p>$ docker container stop es
-es</p>
-<p>$ docker container rm es
-es</p>
-<p>$ docker run -d –name es –net foodtrucks-net -p 9200:9200 -p 9300:9300 -e “discovery.type=single-node” docker.elastic.co/elasticsearch/elasticsearch:6.3.2
-13d6415f73c8d88bddb1f236f584b63dbaf2c3051f09863a3f1ba219edba3673</p>
-<p>$ docker network inspect foodtrucks-net
-[</p>
-<blockquote>
-<div><dl>
-<dt>{</dt><dd><p>“Name”: “foodtrucks-net”,
-“Id”: “0815b2a3bb7a6608e850d05553cc0bda98187c4528d94621438f31d97a6fea3c”,
-“Created”: “2018-07-30T00:01:29.1500984Z”,
-“Scope”: “local”,
-“Driver”: “bridge”,
-“EnableIPv6”: false,
-“IPAM”: {</p>
-<blockquote>
-<div><p>“Driver”: “default”,
-“Options”: {},
-“Config”: [</p>
-<blockquote>
-<div><dl class="simple">
-<dt>{</dt><dd><p>“Subnet”: “172.18.0.0/16”,
-“Gateway”: “172.18.0.1”</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-“Internal”: false,
-“Attachable”: false,
-“Ingress”: false,
-“ConfigFrom”: {</p>
-<blockquote>
-<div><p>“Network”: “”</p>
-</div></blockquote>
-<p>},
-“ConfigOnly”: false,
-“Containers”: {</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“13d6415f73c8d88bddb1f236f584b63dbaf2c3051f09863a3f1ba219edba3673”: {</dt><dd><p>“Name”: “es”,
-“EndpointID”: “29ba2d33f9713e57eb6b38db41d656e4ee2c53e4a2f7cf636bdca0ec59cd3aa7”,
-“MacAddress”: “02:42:ac:12:00:02”,
-“IPv4Address”: “172.18.0.2/16”,
-“IPv6Address”: “”</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>},
-“Options”: {},
-“Labels”: {}</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>]
-As you can see, our es container is now running inside the foodtrucks-net bridge network. Now let’s inspect what happens when we launch in our foodtrucks-net network.</p>
-<p>$ docker run -it –rm –net foodtrucks-net yourusername/foodtrucks-web bash
-<a class="reference external" href="mailto:root&#37;&#52;&#48;9d2722cf282c">root<span>&#64;</span>9d2722cf282c</a>:/opt/flask-app# curl es:9200
-{</p>
-<blockquote>
-<div><p>“name” : “wWALl9M”,
-“cluster_name” : “docker-cluster”,
-“cluster_uuid” : “BA36XuOiRPaghPNBLBHleQ”,
-“version” : {</p>
-<blockquote>
-<div><p>“number” : “6.3.2”,
-“build_flavor” : “default”,
-“build_type” : “tar”,
-“build_hash” : “053779d”,
-“build_date” : “2018-07-20T05:20:23.451332Z”,
-“build_snapshot” : false,
-“lucene_version” : “7.3.1”,
-“minimum_wire_compatibility_version” : “5.6.0”,
-“minimum_index_compatibility_version” : “5.0.0”</p>
-</div></blockquote>
-<p>},
-“tagline” : “You Know, for Search”</p>
-</div></blockquote>
-<p>}
-<a class="reference external" href="mailto:root&#37;&#52;&#48;53af252b771a">root<span>&#64;</span>53af252b771a</a>:/opt/flask-app# ls
-app.py  node_modules  package.json  requirements.txt  static  templates  webpack.config.js
-<a class="reference external" href="mailto:root&#37;&#52;&#48;53af252b771a">root<span>&#64;</span>53af252b771a</a>:/opt/flask-app# python3 app.py
-Index not found…
-Loading data in elasticsearch …
-Total trucks loaded:  733</p>
+<p>Congratulations! You have successfully created your first docker image.</p>
+<p>Docker Compose</p>
+<p>Till now we’ve spent all our time exploring the Docker client. In the Docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. A few of them are -</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Running on <a class="reference external" href="http://0.0.0.0:5000/">http://0.0.0.0:5000/</a> (Press CTRL+C to quit)</p></li>
+<li><p>Docker Machine - Create Docker hosts on your computer, on cloud providers, and inside your own data center</p></li>
+<li><p>Docker Compose - A tool for defining and running multi-container Docker applications.</p></li>
+<li><p>Docker Swarm - A native clustering solution for Docker</p></li>
+<li><p>Kubernetes - Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.</p></li>
 </ul>
 </div></blockquote>
-<p><a class="reference external" href="mailto:root&#37;&#52;&#48;53af252b771a">root<span>&#64;</span>53af252b771a</a>:/opt/flask-app# exit
-Wohoo! That works! On user-defined networks like foodtrucks-net, containers can not only communicate by IP address, but can also resolve a container name to an IP address. This capability is called automatic service discovery. Great! Let’s launch our Flask container for real now -</p>
-<p>$ docker run -d –net foodtrucks-net -p 5000:5000 –name foodtrucks-web yourusername/foodtrucks-web
-852fc74de2954bb72471b858dce64d764181dca0cf7693fed201d76da33df794</p>
-<p>$ docker container ls
-CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                                            NAMES
-852fc74de295        yourusername/foodtrucks-web                           “python3 ./app.py”       About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp                           foodtrucks-web
-13d6415f73c8        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   “/usr/local/bin/dock…”   17 minutes ago       Up 17 minutes       0.0.0.0:9200-&gt;9200/tcp, 0.0.0.0:9300-&gt;9300/tcp   es</p>
-<p>$ curl -I 0.0.0.0:5000
-HTTP/1.0 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 3697
-Server: Werkzeug/0.11.2 Python/2.7.6
-Date: Sun, 10 Jan 2016 23:58:53 GMT
-Head over to <a class="reference external" href="http://0.0.0.0:5000">http://0.0.0.0:5000</a> and see your glorious app live! Although that might have seemed like a lot of work, we actually just typed 4 commands to go from zero to running. I’ve collated the commands in a bash script.</p>
-<p>#!/bin/bash</p>
-<p># build the flask container
-docker build -t yourusername/foodtrucks-web .</p>
-<p># create the network
-docker network create foodtrucks-net</p>
-<p># start the ES container
-docker run -d –name es –net foodtrucks-net -p 9200:9200 -p 9300:9300 -e “discovery.type=single-node” docker.elastic.co/elasticsearch/elasticsearch:6.3.2</p>
-<p># start the flask app container
-docker run -d –net foodtrucks-net -p 5000:5000 –name foodtrucks-web yourusername/foodtrucks-web
-Now imagine you are distributing your app to a friend, or running on a server that has docker installed. You can get a whole app running with just one command!</p>
-<p>$ git clone <a class="reference external" href="https://github.com/prakhar1989/FoodTrucks">https://github.com/prakhar1989/FoodTrucks</a>
-$ cd FoodTrucks
-$ ./setup-docker.sh
-And that’s it! If you ask me, I find this to be an extremely awesome, and a powerful way of sharing and running your applications!</p>
-<p>Docker Compose
-Till now we’ve spent all our time exploring the Docker client. In the Docker ecosystem, however, there are a bunch of other open-source tools which play very nicely with Docker. A few of them are -</p>
-<p>Docker Machine - Create Docker hosts on your computer, on cloud providers, and inside your own data center
-Docker Compose - A tool for defining and running multi-container Docker applications.
-Docker Swarm - A native clustering solution for Docker
-Kubernetes - Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications.
-In this section, we are going to look at one of these tools, Docker Compose, and see how it can make dealing with multi-container apps easier.</p>
-<p>The background story of Docker Compose is quite interesting. Roughly around January 2014, a company called OrchardUp launched a tool called Fig. The idea behind Fig was to make isolated development environments work with Docker. The project was very well received on Hacker News - I oddly remember reading about it but didn’t quite get the hang of it.</p>
-<p>The first comment on the forum actually does a good job of explaining what Fig is all about.</p>
-<p>So really at this point, that’s what Docker is about: running processes. Now Docker offers a quite rich API to run the processes: shared volumes (directories) between containers (i.e. running images), forward port from the host to the container, display logs, and so on. But that’s it: Docker as of now, remains at the process level.</p>
-<p>While it provides options to orchestrate multiple containers to create a single “app”, it doesn’t address the management of such group of containers as a single entity. And that’s where tools such as Fig come in: talking about a group of containers as a single entity. Think “run an app” (i.e. “run an orchestrated cluster of containers”) instead of “run a container”.</p>
-<p>It turns out that a lot of people using docker agree with this sentiment. Slowly and steadily as Fig became popular, Docker Inc. took notice, acquired the company and re-branded Fig as Docker Compose.</p>
-<p>So what is Compose used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called docker-compose.yml that can be used to bring up an application and the suite of services it depends on with just one command. Compose works in all environments: production, staging, development, testing, as well as CI workflows, although Compose is ideal for development and testing environments.</p>
-<p>Let’s see if we can create a docker-compose.yml file for our SF-Foodtrucks app and evaluate whether Docker Compose lives up to its promise.</p>
-<p>The first step, however, is to install Docker Compose. If you’re running Windows or Mac, Docker Compose is already installed as it comes in the Docker Toolbox. Linux users can easily get their hands on Docker Compose by following the instructions on the docs. Since Compose is written in Python, you can also simply do pip install docker-compose. Test your installation with -</p>
+<p>In this section, we are going to look at one of these tools, Docker Compose, and see how it can make dealing with multi-container apps easier.</p>
+<p>So what is Compose used for? Compose is a tool that is used for defining and running multi-container Docker apps in an easy way. It provides a configuration file called <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> that can be used to bring up an application and the suite of services it depends on with just one command. Compose works in all environments: production, staging, development, testing, as well as CI workflows, although Compose is ideal for development and testing environments.</p>
+<p>Let’s see if we can create a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.</p>
+<p>The first step, however, is to install Docker Compose. If you’re running Windows or Mac, Docker Compose is already installed as it comes in the Docker Toolbox. Linux users can easily get their hands on Docker Compose by following the instructions on the docs. Since Compose is written in Python, you can also simply do <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">docker-compose</span></code>. Test your installation with -</p>
 <p>$ docker-compose –version
 docker-compose version 1.21.2, build a133471
 Now that we have it installed, we can jump on the next step i.e. the Docker Compose file docker-compose.yml. The syntax for YAML is quite simple and the repo already contains the docker-compose file that we’ll be using.</p>
-<p>version: “3”
-services:</p>
-<blockquote>
-<div><dl>
-<dt>es:</dt><dd><p>image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
-container_name: es
-environment:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>discovery.type=single-node</p></li>
-</ul>
-</div></blockquote>
-<dl class="simple">
-<dt>ports:</dt><dd><ul class="simple">
-<li><p>9200:9200</p></li>
-</ul>
-</dd>
-<dt>volumes:</dt><dd><ul class="simple">
-<li><p>esdata1:/usr/share/elasticsearch/data</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-<dt>web:</dt><dd><p>image: yourusername/foodtrucks-web
-command: python3 app.py
-depends_on:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>es</p></li>
-</ul>
-</div></blockquote>
-<dl class="simple">
-<dt>ports:</dt><dd><ul class="simple">
-<li><p>5000:5000</p></li>
-</ul>
-</dd>
-<dt>volumes:</dt><dd><ul class="simple">
-<li><p>./flask-app:/opt/flask-app</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>volumes:</dt><dd><dl class="simple">
-<dt>esdata1:</dt><dd><p>driver: local</p>
-</dd>
-</dl>
-</dd>
-</dl>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">version: &quot;3&quot;</span>
+<span class="go">services:</span>
+<span class="go">  es:</span>
+<span class="go">    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2</span>
+<span class="go">    container_name: es</span>
+<span class="go">    environment:</span>
+<span class="go">      - discovery.type=single-node</span>
+<span class="go">    ports:</span>
+<span class="go">      - 9200:9200</span>
+<span class="go">    volumes:</span>
+<span class="go">      - esdata1:/usr/share/elasticsearch/data</span>
+<span class="go">  web:</span>
+<span class="go">    image: yourusername/foodtrucks-web</span>
+<span class="go">    command: python3 app.py</span>
+<span class="go">    depends_on:</span>
+<span class="go">      - es</span>
+<span class="go">    ports:</span>
+<span class="go">      - 5000:5000</span>
+<span class="go">    volumes:</span>
+<span class="go">      - ./flask-app:/opt/flask-app</span>
+<span class="go">volumes:</span>
+<span class="go">  esdata1:</span>
+<span class="go">    driver: local</span>
+</pre></div>
+</div>
 <p>Let me breakdown what the file above means. At the parent level, we define the names of our services - es and web. The image parameter is always required, and for each service that we want Docker to run, we can add additional parameters. For es, we just refer to the elasticsearch image available on Elastic registry. For our Flask app, we refer to the image that we built at the beginning of this section.</p>
 <p>Other parameters such as command and ports provide more information about the container. The volumes parameter specifies a mount point in our web container where the code will reside. This is purely optional and is useful if you need access to logs, etc. We’ll later see how this can be useful during development. Refer to the online reference to learn more about the parameters this file supports. We also add volumes for the es container so that the data we load persists between restarts. We also specify depends_on, which tells docker to start the es container before web. You can read more about it on docker compose docs.</p>
-<p>Note: You must be inside the directory with the docker-compose.yml file in order to execute most Compose commands.</p>
-<p>Great! Now the file is ready, let’s see docker-compose in action. But before we start, we need to make sure the ports and names are free. So if you have the Flask and ES containers running, lets turn them off.</p>
-<p>$ docker stop es foodtrucks-web
-es
-foodtrucks-web</p>
-<p>$ docker rm es foodtrucks-web
-es
-foodtrucks-web
-Now we can run docker-compose. Navigate to the food trucks directory and run docker-compose up.</p>
-<p>$ docker-compose up
-Creating network “foodtrucks_default” with the default driver
-Creating foodtrucks_es_1
-Creating foodtrucks_web_1
-Attaching to foodtrucks_es_1, foodtrucks_web_1
-es_1  | [2016-01-11 03:43:50,300][INFO ][node                     ] [Comet] version[2.1.1], pid[1], build[40e2c53/2015-12-15T13:05:55Z]
-es_1  | [2016-01-11 03:43:50,307][INFO ][node                     ] [Comet] initializing …
-es_1  | [2016-01-11 03:43:50,366][INFO ][plugins                  ] [Comet] loaded [], sites []
-es_1  | [2016-01-11 03:43:50,421][INFO ][env                      ] [Comet] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sda1)]], net usable_space [16gb], net total_space [18.1gb], spins? [possibly], types [ext4]
-es_1  | [2016-01-11 03:43:52,626][INFO ][node                     ] [Comet] initialized
-es_1  | [2016-01-11 03:43:52,632][INFO ][node                     ] [Comet] starting …
-es_1  | [2016-01-11 03:43:52,703][WARN ][common.network           ] [Comet] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.17.0.2}
-es_1  | [2016-01-11 03:43:52,704][INFO ][transport                ] [Comet] publish_address {172.17.0.2:9300}, bound_addresses {[::]:9300}
-es_1  | [2016-01-11 03:43:52,721][INFO ][discovery                ] [Comet] elasticsearch/cEk4s7pdQ-evRc9MqS2wqw
-es_1  | [2016-01-11 03:43:55,785][INFO ][cluster.service          ] [Comet] new_master {Comet}{cEk4s7pdQ-evRc9MqS2wqw}{172.17.0.2}{172.17.0.2:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)
-es_1  | [2016-01-11 03:43:55,818][WARN ][common.network           ] [Comet] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.17.0.2}
-es_1  | [2016-01-11 03:43:55,819][INFO ][http                     ] [Comet] publish_address {172.17.0.2:9200}, bound_addresses {[::]:9200}
-es_1  | [2016-01-11 03:43:55,819][INFO ][node                     ] [Comet] started
-es_1  | [2016-01-11 03:43:55,826][INFO ][gateway                  ] [Comet] recovered [0] indices into cluster_state
-es_1  | [2016-01-11 03:44:01,825][INFO ][cluster.metadata         ] [Comet] [sfdata] creating index, cause [auto(index api)], templates [], shards [5]/[1], mappings [truck]
-es_1  | [2016-01-11 03:44:02,373][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
-es_1  | [2016-01-11 03:44:02,510][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
-es_1  | [2016-01-11 03:44:02,593][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
-es_1  | [2016-01-11 03:44:02,708][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
-es_1  | [2016-01-11 03:44:03,047][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]
-web_1 |  * Running on <a class="reference external" href="http://0.0.0.0:5000/">http://0.0.0.0:5000/</a> (Press CTRL+C to quit)
-Head over to the IP to see your app live. That was amazing wasn’t it? Just a few lines of configuration and we have two Docker containers running successfully in unison. Let’s stop the services and re-run in detached mode.</p>
-<p>web_1 |  * Running on <a class="reference external" href="http://0.0.0.0:5000/">http://0.0.0.0:5000/</a> (Press CTRL+C to quit)
-Killing foodtrucks_web_1 … done
-Killing foodtrucks_es_1 … done</p>
-<p>$ docker-compose up -d
-Creating es               … done
-Creating foodtrucks_web_1 … done</p>
-<dl class="simple">
-<dt>$ docker-compose ps</dt><dd><p>Name                    Command               State                Ports</p>
-</dd>
-</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must be inside the directory with the docker-compose.yml file in order to execute most Compose commands.</p>
+</div>
+<p>Great! Now the file is ready, let’s see <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> in action. But before we start, we need to make sure the ports and names are free. So if you have the Flask and ES containers running, lets turn them off.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>stop<span class="w"> </span>es<span class="w"> </span>foodtrucks-web
+<span class="go">es</span>
+<span class="go">foodtrucks-web</span>
+
+<span class="gp">$ </span>docker<span class="w"> </span>rm<span class="w"> </span>es<span class="w"> </span>foodtrucks-web
+<span class="go">es</span>
+<span class="go">foodtrucks-web</span>
+</pre></div>
+</div>
+<p>Now we can run <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>. Navigate to the food trucks directory and run <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker-compose<span class="w"> </span>up
+<span class="go">Creating network &quot;foodtrucks_default&quot; with the default driver</span>
+<span class="go">Creating foodtrucks_es_1</span>
+<span class="go">Creating foodtrucks_web_1</span>
+<span class="go">Attaching to foodtrucks_es_1, foodtrucks_web_1</span>
+<span class="go">es_1  | [2016-01-11 03:43:50,300][INFO ][node                     ] [Comet] version[2.1.1], pid[1], build[40e2c53/2015-12-15T13:05:55Z]</span>
+<span class="go">es_1  | [2016-01-11 03:43:50,307][INFO ][node                     ] [Comet] initializing ...</span>
+<span class="go">es_1  | [2016-01-11 03:43:50,366][INFO ][plugins                  ] [Comet] loaded [], sites []</span>
+<span class="go">es_1  | [2016-01-11 03:43:50,421][INFO ][env                      ] [Comet] using [1] data paths, mounts [[/usr/share/elasticsearch/data (/dev/sda1)]], net usable_space [16gb], net total_space [18.1gb], spins? [possibly], types [ext4]</span>
+<span class="go">es_1  | [2016-01-11 03:43:52,626][INFO ][node                     ] [Comet] initialized</span>
+<span class="go">es_1  | [2016-01-11 03:43:52,632][INFO ][node                     ] [Comet] starting ...</span>
+<span class="go">es_1  | [2016-01-11 03:43:52,703][WARN ][common.network           ] [Comet] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.17.0.2}</span>
+<span class="go">es_1  | [2016-01-11 03:43:52,704][INFO ][transport                ] [Comet] publish_address {172.17.0.2:9300}, bound_addresses {[::]:9300}</span>
+<span class="go">es_1  | [2016-01-11 03:43:52,721][INFO ][discovery                ] [Comet] elasticsearch/cEk4s7pdQ-evRc9MqS2wqw</span>
+<span class="go">es_1  | [2016-01-11 03:43:55,785][INFO ][cluster.service          ] [Comet] new_master {Comet}{cEk4s7pdQ-evRc9MqS2wqw}{172.17.0.2}{172.17.0.2:9300}, reason: zen-disco-join(elected_as_master, [0] joins received)</span>
+<span class="go">es_1  | [2016-01-11 03:43:55,818][WARN ][common.network           ] [Comet] publish address: {0.0.0.0} is a wildcard address, falling back to first non-loopback: {172.17.0.2}</span>
+<span class="go">es_1  | [2016-01-11 03:43:55,819][INFO ][http                     ] [Comet] publish_address {172.17.0.2:9200}, bound_addresses {[::]:9200}</span>
+<span class="go">es_1  | [2016-01-11 03:43:55,819][INFO ][node                     ] [Comet] started</span>
+<span class="go">es_1  | [2016-01-11 03:43:55,826][INFO ][gateway                  ] [Comet] recovered [0] indices into cluster_state</span>
+<span class="go">es_1  | [2016-01-11 03:44:01,825][INFO ][cluster.metadata         ] [Comet] [sfdata] creating index, cause [auto(index api)], templates [], shards [5]/[1], mappings [truck]</span>
+<span class="go">es_1  | [2016-01-11 03:44:02,373][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]</span>
+<span class="go">es_1  | [2016-01-11 03:44:02,510][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]</span>
+<span class="go">es_1  | [2016-01-11 03:44:02,593][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]</span>
+<span class="go">es_1  | [2016-01-11 03:44:02,708][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]</span>
+<span class="go">es_1  | [2016-01-11 03:44:03,047][INFO ][cluster.metadata         ] [Comet] [sfdata] update_mapping [truck]</span>
+<span class="go">web_1 |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)</span>
+</pre></div>
+</div>
+<p>Head over to the IP to see your app live. That was amazing wasn’t it? Just a few lines of configuration and we have two Docker containers running successfully in unison. Let’s stop the services and re-run in detached mode.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">web_1 |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)</span>
+<span class="go">Killing foodtrucks_web_1 ... done</span>
+<span class="go">Killing foodtrucks_es_1 ... done</span>
+
+<span class="gp">$ </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<span class="go">Creating es               ... done</span>
+<span class="go">Creating foodtrucks_web_1 ... done</span>
+
+<span class="gp">$ </span>docker-compose<span class="w"> </span>ps
+<span class="go">      Name                    Command               State                Ports</span>
+<span class="go">--------------------------------------------------------------------------------------------</span>
+<span class="go">es                 /usr/local/bin/docker-entr ...   Up      0.0.0.0:9200-&gt;9200/tcp, 9300/tcp</span>
+<span class="go">foodtrucks_web_1   python3 app.py                   Up      0.0.0.0:5000-&gt;5000/tcp</span>
+</pre></div>
+</div>
 <p>Unsurprisingly, we can see both the containers running successfully. Where do the names come from? Those were created automatically by Compose. But does Compose also create the network automatically? Good question! Let’s find out.</p>
-<p>First off, let us stop the services from running. We can always bring them back up in just one command. Data volumes will persist, so it’s possible to start the cluster again with the same data using docker-compose up. To destroy the cluster and the data volumes, just type docker-compose down -v.</p>
-<p>$ docker-compose down -v
-Stopping foodtrucks_web_1 … done
-Stopping es               … done
-Removing foodtrucks_web_1 … done
-Removing es               … done
-Removing network foodtrucks_default
-Removing volume foodtrucks_esdata1
-While we’re are at it, we’ll also remove the foodtrucks network that we created last time.</p>
-<p>$ docker network rm foodtrucks-net
-$ docker network ls
-NETWORK ID          NAME                 DRIVER              SCOPE
-c2c695315b3a        bridge               bridge              local
-a875bec5d6fd        host                 host                local
-ead0e804a67b        none                 null                local
-Great! Now that we have a clean slate, let’s re-run our services and see if Compose does its magic.</p>
-<p>$ docker-compose up -d
-Recreating foodtrucks_es_1
-Recreating foodtrucks_web_1</p>
-<p>$ docker container ls
-CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES
-f50bb33a3242        yourusername/foodtrucks-web  “python3 app.py”         14 seconds ago      Up 13 seconds       0.0.0.0:5000-&gt;5000/tcp   foodtrucks_web_1
-e299ceeb4caa        elasticsearch                “/docker-entrypoint.s”   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1
-So far, so good. Time to see if any networks were created.</p>
-<p>$ docker network ls
-NETWORK ID          NAME                 DRIVER
-c2c695315b3a        bridge               bridge              local
-f3b80f381ed3        foodtrucks_default   bridge              local
-a875bec5d6fd        host                 host                local
-ead0e804a67b        none                 null                local
-You can see that compose went ahead and created a new network called foodtrucks_default and attached both the new services in that network so that each of these are discoverable to the other. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name.</p>
-<p>$ docker ps
-CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES
-8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   “/usr/local/bin/dock…”   About a minute ago   Up About a minute   0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
-7640cec7feb7        yourusername/foodtrucks-web                           “python3 app.py”         About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1</p>
-<p>$ docker network inspect foodtrucks_default
-[</p>
-<blockquote>
-<div><dl>
-<dt>{</dt><dd><p>“Name”: “foodtrucks_default”,
-“Id”: “f3b80f381ed3e03b3d5e605e42c4a576e32d38ba24399e963d7dad848b3b4fe7”,
-“Created”: “2018-07-30T03:36:06.0384826Z”,
-“Scope”: “local”,
-“Driver”: “bridge”,
-“EnableIPv6”: false,
-“IPAM”: {</p>
-<blockquote>
-<div><p>“Driver”: “default”,
-“Options”: null,
-“Config”: [</p>
-<blockquote>
-<div><dl class="simple">
-<dt>{</dt><dd><p>“Subnet”: “172.19.0.0/16”,
-“Gateway”: “172.19.0.1”</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>]</p>
-</div></blockquote>
-<p>},
-“Internal”: false,
-“Attachable”: true,
-“Ingress”: false,
-“ConfigFrom”: {</p>
-<blockquote>
-<div><p>“Network”: “”</p>
-</div></blockquote>
-<p>},
-“ConfigOnly”: false,
-“Containers”: {</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“7640cec7feb7f5615eaac376271a93fb8bab2ce54c7257256bf16716e05c65a5”: {</dt><dd><p>“Name”: “foodtrucks_web_1”,
-“EndpointID”: “b1aa3e735402abafea3edfbba605eb4617f81d94f1b5f8fcc566a874660a0266”,
-“MacAddress”: “02:42:ac:13:00:02”,
-“IPv4Address”: “172.19.0.2/16”,
-“IPv6Address”: “”</p>
-</dd>
-</dl>
-<p>},
-“8c6bb7e818ec1f88c37f375c18f00beb030b31f4b10aee5a0952aad753314b57”: {</p>
-<blockquote>
-<div><p>“Name”: “es”,
-“EndpointID”: “649b3567d38e5e6f03fa6c004a4302508c14a5f2ac086ee6dcf13ddef936de7b”,
-“MacAddress”: “02:42:ac:13:00:03”,
-“IPv4Address”: “172.19.0.3/16”,
-“IPv6Address”: “”</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<p>},
-“Options”: {},
-“Labels”: {</p>
-<blockquote>
-<div><p>“com.docker.compose.network”: “default”,
-“com.docker.compose.project”: “foodtrucks”,
-“com.docker.compose.version”: “1.21.2”</p>
-</div></blockquote>
-<p>}</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>]
-Development Workflow
-Before we jump to the next section, there’s one last thing I wanted to cover about docker-compose. As stated earlier, docker-compose is really great for development and testing. So let’s see how we can configure compose to make our lives easier during development.</p>
-<p>Throughout this tutorial, we’ve worked with readymade docker images. While we’ve built images from scratch, we haven’t touched any application code yet and mostly restricted ourselves to editing Dockerfiles and YAML configurations. One thing that you must be wondering is how does the workflow look during development? Is one supposed to keep creating Docker images for every change, then publish it and then run it to see if the changes work as expected? I’m sure that sounds super tedious. There has to be a better way. In this section, that’s what we’re going to explore.</p>
-<p>Let’s see how we can make a change in the Foodtrucks app we just ran. Make sure you have the app running,</p>
-<p>$ docker container ls
-CONTAINER ID        IMAGE                                                 COMMAND                  CREATED             STATUS              PORTS                              NAMES
-5450ebedd03c        yourusername/foodtrucks-web                           “python3 app.py”         9 seconds ago       Up 6 seconds        0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1
-05d408b25dfe        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   “/usr/local/bin/dock…”   10 hours ago        Up 10 hours         0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es
-Now let’s see if we can change this app to display a Hello world! message when a request is made to /hello route. Currently, the app responds with a 404.</p>
-<p>$ curl -I 0.0.0.0:5000/hello
-HTTP/1.0 404 NOT FOUND
-Content-Type: text/html
-Content-Length: 233
-Server: Werkzeug/0.11.2 Python/2.7.15rc1
-Date: Mon, 30 Jul 2018 15:34:38 GMT
-Why does this happen? Since ours is a Flask app, we can see app.py (link) for answers. In Flask, routes are defined with &#64;app.route syntax. In the file, you’ll see that we only have three routes defined - /,/debugand/search. The/route renders the main app, thedebugroute is used to return some debug information and finallysearch is used by the app to query elasticsearch.</p>
-<p>$ curl 0.0.0.0:5000/debug
-{</p>
-<blockquote>
-<div><p>“msg”: “yellow open sfdata Ibkx7WYjSt-g8NZXOEtTMg 5 1 618 0 1.3mb 1.3mbn”,
-“status”: “success”</p>
-</div></blockquote>
-<p>}
-Given that context, how would we add a new route for hello? You guessed it! Let’s open flask-app/app.py in our favorite editor and make the following change</p>
-<p>&#64;app.route(‘/’)
-def index():</p>
-<blockquote>
-<div><p>return render_template(“index.html”)</p>
-</div></blockquote>
-<p># add a new hello route
-&#64;app.route(‘/hello’)
-def hello():</p>
-<blockquote>
-<div><p>return “hello world!”</p>
-</div></blockquote>
-<p>Now let’s try making a request again</p>
-<p>$ curl -I 0.0.0.0:5000/hello
-HTTP/1.0 404 NOT FOUND
-Content-Type: text/html
-Content-Length: 233
-Server: Werkzeug/0.11.2 Python/2.7.15rc1
-Date: Mon, 30 Jul 2018 15:34:38 GMT
-Oh no! That didn’t work! What did we do wrong? While we did make the change in app.py, the file resides in our machine (or the host machine), but since Docker is running our containers based off the yourusername/foodtrucks-web image, it doesn’t know about this change. To validate this, lets try the following -</p>
-<p>$ docker-compose run web bash
-Starting es … done
-<a class="reference external" href="mailto:root&#37;&#52;&#48;581e351c82b0">root<span>&#64;</span>581e351c82b0</a>:/opt/flask-app# ls
-app.py        package-lock.json  requirements.txt  templates
-node_modules  package.json       static            webpack.config.js
-<a class="reference external" href="mailto:root&#37;&#52;&#48;581e351c82b0">root<span>&#64;</span>581e351c82b0</a>:/opt/flask-app# grep hello app.py
-<a class="reference external" href="mailto:root&#37;&#52;&#48;581e351c82b0">root<span>&#64;</span>581e351c82b0</a>:/opt/flask-app# exit
-What we’re trying to do here is to validate that our changes are not in the app.py that’s running in the container. We do this by running the command docker-compose run, which is similar to its cousin <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> but takes additional arguments for the service (which is web in our case). As soon as we run bash, the shell opens in /opt/flask-app as specified in our Dockerfile. From the grep command we can see that our changes are not in the file.</p>
-<p>Lets see how we can fix it. First off, we need to tell docker compose to not use the image and instead use the files locally. We’ll also set debug mode to true so that Flask knows to reload the server when app.py changes. Replace the web portion of the docker-compose.yml file like so:</p>
-<p>version: “3”
-services:</p>
-<blockquote>
-<div><dl>
-<dt>es:</dt><dd><p>image: docker.elastic.co/elasticsearch/elasticsearch:6.3.2
-container_name: es
-environment:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>discovery.type=single-node</p></li>
-</ul>
-</div></blockquote>
-<dl class="simple">
-<dt>ports:</dt><dd><ul class="simple">
-<li><p>9200:9200</p></li>
-</ul>
-</dd>
-<dt>volumes:</dt><dd><ul class="simple">
-<li><p>esdata1:/usr/share/elasticsearch/data</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-<dt>web:</dt><dd><p>build: . # replaced image with build
-command: python3 app.py
-environment:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>DEBUG=True # set an env var for flask</p></li>
-</ul>
-</div></blockquote>
-<dl class="simple">
-<dt>depends_on:</dt><dd><ul class="simple">
-<li><p>es</p></li>
-</ul>
-</dd>
-<dt>ports:</dt><dd><ul class="simple">
-<li><p>“5000:5000”</p></li>
-</ul>
-</dd>
-<dt>volumes:</dt><dd><ul class="simple">
-<li><p>./flask-app:/opt/flask-app</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>volumes:</dt><dd><dl class="simple">
-<dt>esdata1:</dt><dd><p>driver: local</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>With that change (diff), let’s stop and start the containers.</p>
-<p>$ docker-compose down -v
-Stopping foodtrucks_web_1 … done
-Stopping es               … done
-Removing foodtrucks_web_1 … done
-Removing es               … done
-Removing network foodtrucks_default
-Removing volume foodtrucks_esdata1</p>
-<p>$ docker-compose up -d
-Creating network “foodtrucks_default” with the default driver
-Creating volume “foodtrucks_esdata1” with local driver
-Creating es … done
-Creating foodtrucks_web_1 … done
-As a final step, lets make the change in app.py by adding a new route. Now we try to curl</p>
-<p>$ curl 0.0.0.0:5000/hello
-hello world
-Wohoo! We get a valid response! Try playing around by making more changes in the app.</p>
-<p>That concludes our tour of Docker Compose. With Docker Compose, you can also pause your services, run a one-off command on a container and even scale the number of containers. I also recommend you checkout a few other use-cases of Docker compose. Hopefully, I was able to show you how easy it is to manage multi-container environments with Compose. In the final section, we are going to deploy our app to AWS!</p>
-<p>AWS Elastic Container Service
-In the last section we used docker-compose to run our app locally with a single command: docker-compose up. Now that we have a functioning app we want to share this with the world, get some users, make tons of money and buy a big house in Miami. Executing the last three are beyond the scope of the tutorial, so we’ll spend our time instead on figuring out how we can deploy our multi-container apps on the cloud with AWS.</p>
-<p>If you’ve read this far you are pretty much convinced that Docker is a pretty cool technology. And you are not alone. Seeing the meteoric rise of Docker, almost all Cloud vendors started working on adding support for deploying Docker apps on their platform. As of today, you can deploy containers on Google Cloud Platform, AWS, Azure and many others. We already got a primer on deploying single container apps with Elastic Beanstalk and in this section we are going to look at Elastic Container Service (or ECS) by AWS.</p>
-<p>AWS ECS is a scalable and super flexible container management service that supports Docker containers. It allows you to operate a Docker cluster on top of EC2 instances via an easy-to-use API. Where Beanstalk came with reasonable defaults, ECS allows you to completely tune your environment as per your needs. This makes ECS, in my opinion, quite complex to get started with.</p>
-<p>Luckily for us, ECS has a friendly CLI tool that understands Docker Compose files and automatically provisions the cluster on ECS! Since we already have a functioning docker-compose.yml it should not take a lot of effort in getting up and running on AWS. So let’s get started!</p>
-<p>The first step is to install the CLI. Instructions to install the CLI on both Mac and Linux are explained very clearly in the official docs. Go ahead, install the CLI and when you are done, verify the install by running</p>
-<p>$ ecs-cli –version
-ecs-cli version 1.18.1 (7e9df84)
-Next, we’ll be working on configuring the CLI so that we can talk to ECS. We’ll be following the steps as detailed in the official guide on AWS ECS docs. In case of any confusion, please feel free to refer to that guide.</p>
-<p>The first step will involve creating a profile that we’ll use for the rest of the tutorial. To continue, you’ll need your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. To obtain these, follow the steps as detailed under the section titled Access Key and Secret Access Key on this page.</p>
-<p>$ ecs-cli configure profile –profile-name ecs-foodtrucks –access-key $AWS_ACCESS_KEY_ID –secret-key $AWS_SECRET_ACCESS_KEY
-Next, we need to get a keypair which we’ll be using to log into the instances. Head over to your EC2 Console and create a new keypair. Download the keypair and store it in a safe location. Another thing to note before you move away from this screen is the region name. In my case, I have named my key - ecs and set my region as us-east-1. This is what I’ll assume for the rest of this walkthrough.</p>
-<p>EC2 Keypair
-The next step is to configure the CLI.</p>
-<p>$ ecs-cli configure –region us-east-1 –cluster foodtrucks
-INFO[0000] Saved ECS CLI configuration for cluster (foodtrucks)
-We provide the configure command with the region name we want our cluster to reside in and a cluster name. Make sure you provide the same region name that you used when creating the keypair. If you’ve not configured the AWS CLI on your computer before, you can use the official guide, which explains everything in great detail on how to get everything going.</p>
-<p>The next step enables the CLI to create a CloudFormation template.</p>
-<p>$ ecs-cli up –keypair ecs –capability-iam –size 1 –instance-type t2.medium
-INFO[0000] Using recommended Amazon Linux 2 AMI with ECS Agent 1.39.0 and Docker version 18.09.9-ce
-INFO[0000] Created cluster                               cluster=foodtrucks
-INFO[0001] Waiting for your cluster resources to be created
-INFO[0001] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
-INFO[0062] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
-INFO[0122] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
-INFO[0182] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
-INFO[0242] Cloudformation stack status                   stackStatus=CREATE_IN_PROGRESS
-VPC created: vpc-0bbed8536930053a6
-Security Group created: sg-0cf767fb4d01a3f99
-Subnet created: subnet-05de1db2cb1a50ab8
-Subnet created: subnet-01e1e8bc95d49d0fd
-Cluster creation succeeded.
-Here we provide the name of the keypair we downloaded initially (ecs in my case), the number of instances that we want to use (–size) and the type of instances that we want the containers to run on. The –capability-iam flag tells the CLI that we acknowledge that this command may create IAM resources.</p>
-<p>The last and final step is where we’ll use our docker-compose.yml file. We’ll need to make a few minor changes, so instead of modifying the original, let’s make a copy of it. The contents of this file (after making the changes) look like (below) -</p>
-<p>version: ‘2’
-services:</p>
-<blockquote>
-<div><dl>
-<dt>es:</dt><dd><p>image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
-cpu_shares: 100
-mem_limit: 3621440000
-environment:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>discovery.type=single-node</p></li>
-<li><p>bootstrap.memory_lock=true</p></li>
-<li><p>“ES_JAVA_OPTS=-Xms512m -Xmx512m”</p></li>
-</ul>
-</div></blockquote>
-<dl>
-<dt>logging:</dt><dd><p>driver: awslogs
-options:</p>
-<blockquote>
-<div><p>awslogs-group: foodtrucks
-awslogs-region: us-east-1
-awslogs-stream-prefix: es</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd>
-<dt>web:</dt><dd><p>image: yourusername/foodtrucks-web
-cpu_shares: 100
-mem_limit: 262144000
-ports:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>“80:5000”</p></li>
-</ul>
-</div></blockquote>
-<dl>
-<dt>links:</dt><dd><ul class="simple">
-<li><p>es</p></li>
-</ul>
-</dd>
-<dt>logging:</dt><dd><p>driver: awslogs
-options:</p>
-<blockquote>
-<div><p>awslogs-group: foodtrucks
-awslogs-region: us-east-1
-awslogs-stream-prefix: web</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
-<p>The only changes we made from the original docker-compose.yml are of providing the mem_limit (in bytes) and cpu_shares values for each container and adding some logging configuration. This allows us to view logs generated by our containers in AWS CloudWatch. Head over to CloudWatch to create a log group called foodtrucks. Note that since ElasticSearch typically ends up taking more memory, we’ve given around 3.4 GB of memory limit. Another thing we need to do before we move onto the next step is to publish our image on Docker Hub.</p>
-<p>$ docker push yourusername/foodtrucks-web
-Great! Now let’s run the final command that will deploy our app on ECS!</p>
-<p>$ cd aws-ecs
-$ ecs-cli compose up
-INFO[0000] Using ECS task definition                     TaskDefinition=ecscompose-foodtrucks:2
-INFO[0000] Starting container…                         container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es
-INFO[0000] Starting container…                         container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web
-INFO[0000] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
-INFO[0000] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
-INFO[0036] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
-INFO[0048] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
-INFO[0048] Describe ECS container status                 container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=PENDING taskDefinition=ecscompose-foodtrucks:2
-INFO[0060] Started container…                          container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/web desiredStatus=RUNNING lastStatus=RUNNING taskDefinition=ecscompose-foodtrucks:2
-INFO[0060] Started container…                          container=845e2368-170d-44a7-bf9f-84c7fcd9ae29/es desiredStatus=RUNNING lastStatus=RUNNING taskDefinition=ecscompose-foodtrucks:2
-It’s not a coincidence that the invocation above looks similar to the one we used with Docker Compose. If everything went well, you should see a desiredStatus=RUNNING lastStatus=RUNNING as the last line.</p>
-<p>Awesome! Our app is live, but how can we access it?</p>
-<p>ecs-cli ps
-Name                                      State    Ports                     TaskDefinition
-845e2368-170d-44a7-bf9f-84c7fcd9ae29/web  RUNNING  54.86.14.14:80-&gt;5000/tcp  ecscompose-foodtrucks:2
-845e2368-170d-44a7-bf9f-84c7fcd9ae29/es   RUNNING                            ecscompose-foodtrucks:2
-Go ahead and open http://54.86.14.14 in your browser and you should see the Food Trucks in all its black-yellow glory! Since we’re on the topic, let’s see how our AWS ECS console looks.</p>
-<p>Cluster Tasks
-We can see above that our ECS cluster called ‘foodtrucks’ was created and is now running 1 task with 2 container instances. Spend some time browsing this console to get a hang of all the options that are here.</p>
-<p>Cleanup
-Once you’ve played around with the deployed app, remember to turn down the cluster -</p>
-<p>$ ecs-cli down –force
-INFO[0001] Waiting for your cluster resources to be deleted…
-INFO[0001] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
-INFO[0062] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
-INFO[0124] Cloudformation stack status                   stackStatus=DELETE_IN_PROGRESS
-INFO[0155] Deleted cluster                               cluster=foodtrucks
-So there you have it. With just a few commands we were able to deploy our awesome app on the AWS cloud!</p>
-<p>CONCLUSION
-And that’s a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learned how to setup Docker, run your own containers, play with static and dynamic websites and most importantly got hands on experience with deploying your applications to the cloud!</p>
+<p>First off, let us stop the services from running. We can always bring them back up in just one command. Data volumes will persist, so it’s possible to start the cluster again with the same data using docker-compose up. To destroy the cluster and the data volumes, just type <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span> <span class="pre">-v</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker-compose<span class="w"> </span>down<span class="w"> </span>-v
+<span class="go">Stopping foodtrucks_web_1 ... done</span>
+<span class="go">Stopping es               ... done</span>
+<span class="go">Removing foodtrucks_web_1 ... done</span>
+<span class="go">Removing es               ... done</span>
+<span class="go">Removing network foodtrucks_default</span>
+<span class="go">Removing volume foodtrucks_esdata1</span>
+</pre></div>
+</div>
+<p>While we’re are at it, we’ll also remove the <code class="docutils literal notranslate"><span class="pre">foodtrucks</span></code> network that we created last time.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>network<span class="w"> </span>rm<span class="w"> </span>foodtrucks-net
+<span class="gp">$ </span>docker<span class="w"> </span>network<span class="w"> </span>ls
+<span class="go">NETWORK ID          NAME                 DRIVER              SCOPE</span>
+<span class="go">c2c695315b3a        bridge               bridge              local</span>
+<span class="go">a875bec5d6fd        host                 host                local</span>
+<span class="go">ead0e804a67b        none                 null                local</span>
+</pre></div>
+</div>
+<p>Great! Now that we have a clean slate, let’s re-run our services and see if Compose does its magic.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+<span class="go">Recreating foodtrucks_es_1</span>
+<span class="go">Recreating foodtrucks_web_1</span>
+
+<span class="gp">$ </span>docker<span class="w"> </span>container<span class="w"> </span>ls
+<span class="go">CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                    NAMES</span>
+<span class="go">f50bb33a3242        yourusername/foodtrucks-web  &quot;python3 app.py&quot;         14 seconds ago      Up 13 seconds       0.0.0.0:5000-&gt;5000/tcp   foodtrucks_web_1</span>
+<span class="go">e299ceeb4caa        elasticsearch                &quot;/docker-entrypoint.s&quot;   14 seconds ago      Up 14 seconds       9200/tcp, 9300/tcp       foodtrucks_es_1</span>
+</pre></div>
+</div>
+<p>So far, so good. Time to see if any networks were created.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>network<span class="w"> </span>ls
+<span class="go">NETWORK ID          NAME                 DRIVER</span>
+<span class="go">c2c695315b3a        bridge               bridge              local</span>
+<span class="go">f3b80f381ed3        foodtrucks_default   bridge              local</span>
+<span class="go">a875bec5d6fd        host                 host                local</span>
+<span class="go">ead0e804a67b        none                 null                local</span>
+</pre></div>
+</div>
+<p>You can see that compose went ahead and created a new network called <code class="docutils literal notranslate"><span class="pre">foodtrucks_default</span></code> and attached both the new services in that network so that each of these are discoverable to the other. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>ps
+<span class="go">CONTAINER ID        IMAGE                                                 COMMAND                  CREATED              STATUS              PORTS                              NAMES</span>
+<span class="go">8c6bb7e818ec        docker.elastic.co/elasticsearch/elasticsearch:6.3.2   &quot;/usr/local/bin/dock…&quot;   About a minute ago   Up About a minute   0.0.0.0:9200-&gt;9200/tcp, 9300/tcp   es</span>
+<span class="go">7640cec7feb7        yourusername/foodtrucks-web                           &quot;python3 app.py&quot;         About a minute ago   Up About a minute   0.0.0.0:5000-&gt;5000/tcp             foodtrucks_web_1</span>
+
+<span class="gp">$ </span>docker<span class="w"> </span>network<span class="w"> </span>inspect<span class="w"> </span>foodtrucks_default
+<span class="go">[</span>
+<span class="go">    {</span>
+<span class="go">        &quot;Name&quot;: &quot;foodtrucks_default&quot;,</span>
+<span class="go">        &quot;Id&quot;: &quot;f3b80f381ed3e03b3d5e605e42c4a576e32d38ba24399e963d7dad848b3b4fe7&quot;,</span>
+<span class="go">        &quot;Created&quot;: &quot;2018-07-30T03:36:06.0384826Z&quot;,</span>
+<span class="go">        &quot;Scope&quot;: &quot;local&quot;,</span>
+<span class="go">        &quot;Driver&quot;: &quot;bridge&quot;,</span>
+<span class="go">        &quot;EnableIPv6&quot;: false,</span>
+<span class="go">        &quot;IPAM&quot;: {</span>
+<span class="go">            &quot;Driver&quot;: &quot;default&quot;,</span>
+<span class="go">            &quot;Options&quot;: null,</span>
+<span class="go">            &quot;Config&quot;: [</span>
+<span class="go">                {</span>
+<span class="go">                    &quot;Subnet&quot;: &quot;172.19.0.0/16&quot;,</span>
+<span class="go">                    &quot;Gateway&quot;: &quot;172.19.0.1&quot;</span>
+<span class="go">                }</span>
+<span class="go">            ]</span>
+<span class="go">        },</span>
+<span class="go">        &quot;Internal&quot;: false,</span>
+<span class="go">        &quot;Attachable&quot;: true,</span>
+<span class="go">        &quot;Ingress&quot;: false,</span>
+<span class="go">        &quot;ConfigFrom&quot;: {</span>
+<span class="go">            &quot;Network&quot;: &quot;&quot;</span>
+<span class="go">        },</span>
+<span class="go">        &quot;ConfigOnly&quot;: false,</span>
+<span class="go">        &quot;Containers&quot;: {</span>
+<span class="go">            &quot;7640cec7feb7f5615eaac376271a93fb8bab2ce54c7257256bf16716e05c65a5&quot;: {</span>
+<span class="go">                &quot;Name&quot;: &quot;foodtrucks_web_1&quot;,</span>
+<span class="go">                &quot;EndpointID&quot;: &quot;b1aa3e735402abafea3edfbba605eb4617f81d94f1b5f8fcc566a874660a0266&quot;,</span>
+<span class="go">                &quot;MacAddress&quot;: &quot;02:42:ac:13:00:02&quot;,</span>
+<span class="go">                &quot;IPv4Address&quot;: &quot;172.19.0.2/16&quot;,</span>
+<span class="go">                &quot;IPv6Address&quot;: &quot;&quot;</span>
+<span class="go">            },</span>
+<span class="go">            &quot;8c6bb7e818ec1f88c37f375c18f00beb030b31f4b10aee5a0952aad753314b57&quot;: {</span>
+<span class="go">                &quot;Name&quot;: &quot;es&quot;,</span>
+<span class="go">                &quot;EndpointID&quot;: &quot;649b3567d38e5e6f03fa6c004a4302508c14a5f2ac086ee6dcf13ddef936de7b&quot;,</span>
+<span class="go">                &quot;MacAddress&quot;: &quot;02:42:ac:13:00:03&quot;,</span>
+<span class="go">                &quot;IPv4Address&quot;: &quot;172.19.0.3/16&quot;,</span>
+<span class="go">                &quot;IPv6Address&quot;: &quot;&quot;</span>
+<span class="go">            }</span>
+<span class="go">        },</span>
+<span class="go">        &quot;Options&quot;: {},</span>
+<span class="go">        &quot;Labels&quot;: {</span>
+<span class="go">            &quot;com.docker.compose.network&quot;: &quot;default&quot;,</span>
+<span class="go">            &quot;com.docker.compose.project&quot;: &quot;foodtrucks&quot;,</span>
+<span class="go">            &quot;com.docker.compose.version&quot;: &quot;1.21.2&quot;</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h1>CONCLUSION<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h1>
+<p>And that’s a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learned how to setup Docker and how to run your own containers.</p>
 <p>I hope that finishing this tutorial makes you more confident in your abilities to deal with servers. When you have an idea of building your next app, you can be sure that you’ll be able to get it in front of people with minimal effort.</p>
-<p>Next Steps
-Your journey into the container world has just started! My goal with this tutorial was to whet your appetite and show you the power of Docker. In the sea of new technology, it can be hard to navigate the waters alone and tutorials such as this one can provide a helping hand. This is the Docker tutorial I wish I had when I was starting out. Hopefully, it served its purpose of getting you excited about containers so that you no longer have to watch the action from the sides.</p>
-<p>Below are a few additional resources that will be beneficial. For your next project, I strongly encourage you to use Docker. Keep in mind - practice makes perfect!</p>
-<p>Additional Resources</p>
-<p>Awesome Docker
-Why Docker
-Docker Weekly and archives
-Codeship Blog
-Off you go, young padawan!</p>
-<p>Give Feedback
-Now that the tutorial is over, it’s my turn to ask questions. How did you like the tutorial? Did you find the tutorial to be a complete mess or did you have fun and learn something?</p>
-<p>Send in your thoughts directly to me or just create an issue. I’m on Twitter, too, so if that’s your deal, feel free to holler there!</p>
-<p>I would totally love to hear about your experience with this tutorial. Give suggestions on how to make this better or let me know about my mistakes. I want this tutorial to be one of the best introductory tutorials on the web and I can’t do it without your help.</p>
-<ul class="simple">
-<li><p>Index Page</p></li>
-<li><p>Support</p></li>
-<li><p>Installation</p></li>
-<li><p>Cookbook</p></li>
-<li><p>Command Line Options</p></li>
-<li><p>API</p></li>
-</ul>
-<p>Let’s go over the concepts we’ll cover,
-and then we can talk more about the pages to create.</p>
-<section id="concepts">
-<h2>Concepts<a class="headerlink" href="#concepts" title="Permalink to this heading">¶</a></h2>
-<p>A lot of these RST syntax examples are covered in the Sphinx <span class="xref std std-ref">sphinx:rst-primer</span>.</p>
-<section id="sections">
-<span id="index-0"></span><h3>Sections<a class="headerlink" href="#sections" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Title</span>
-<span class="gh">=====</span>
-
-<span class="gh">Section</span>
-<span class="gh">-------</span>
-
-<span class="gh">Subsection</span>
-<span class="gh">~~~~~~~~~~</span>
-</pre></div>
-</div>
-<p>Every Sphinx document has multiple level of headings.
-Section headers are created by underlining
-the section title with a punctuation character, at least
-as long as the text.</p>
-<p>They give structure to the document,
-which is used in navigation and in the display in all output formats.</p>
-</section>
-<section id="code-samples">
-<h3>Code Samples<a class="headerlink" href="#code-samples" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>You can use <span class="s">``backticks``</span> for showing <span class="s">``highlighted``</span> code.
-</pre></div>
-</div>
-<p>If you want to make sure that text is shown in monospaced fonts for code examples or concepts,
-use double backticks around it.
-It looks <code class="docutils literal notranslate"><span class="pre">like</span> <span class="pre">this</span></code> on output.</p>
-</section>
-<section id="hyperlink-syntax">
-<h3>Hyperlink Syntax<a class="headerlink" href="#hyperlink-syntax" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="s">`A cool website`_</span>
-
-<span class="p">..</span> <span class="nt">_A cool website:</span> http://sphinx-doc.org
-</pre></div>
-</div>
-<p>The link text is set by putting a <code class="docutils literal notranslate"><span class="pre">_</span></code> after some text.
-The <code class="docutils literal notranslate"><span class="pre">`</span></code> is used to group text,
-allowing you to include multiple words in your link text.
-You should use the <code class="docutils literal notranslate"><span class="pre">`</span></code>,
-even when the link text is only one word.
-This keeps the syntax consistent.</p>
-<p>The link target is defined at the bottom of the section with <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">_&lt;link</span> <span class="pre">text&gt;:</span> <span class="pre">&lt;target&gt;</span></code>.</p>
-</section>
-<section id="code-example-syntax">
-<span id="index-1"></span><h3>Code Example Syntax<a class="headerlink" href="#code-example-syntax" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>A cool bit of code<span class="se">::</span>
-
-<span class="s">   Some cool Code</span>
-
-<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> rst
-
-   A bit of <span class="gs">**rst**</span> which should be <span class="ge">*highlighted*</span> properly.
-</pre></div>
-</div>
-<p>The syntax for displaying code is <code class="docutils literal notranslate"><span class="pre">::</span></code>.
-When it is used at the end of a sentence,
-Sphinx is smart and displays one <code class="docutils literal notranslate"><span class="pre">:</span></code> in the output,
-and knows there is a code example in the following indented block.</p>
-<p>Sphinx,
-like Python,
-uses meaningful whitespace.
-Blocks of content are structured based on the indention level they are on.
-You can see this concept with our <code class="docutils literal notranslate"><span class="pre">code-block</span></code> directive later.</p>
-</section>
-<section id="table-of-contents-tree">
-<span id="toctree-syntax"></span><span id="index-2"></span><h3>Table of Contents Tree<a class="headerlink" href="#table-of-contents-tree" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
-   <span class="nc">:maxdepth:</span> 2
-
-   install
-   support
-</pre></div>
-</div>
-<p>Now would be a good time to introduce the <code class="docutils literal notranslate"><span class="pre">toctree</span></code>.
-One of the main concepts in Sphinx is that it allows multiple pages to be combined into a cohesive hierarchy.
-The <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive is a fundamental part of this structure.</p>
-<p>The above example will output a Table of Contents in the page where it occurs.
-The <code class="docutils literal notranslate"><span class="pre">maxdepth</span></code> argument tells Sphinx to include 2 levels of headers in it’s output.
-It will output the 2 top-level headers of the pages listed.
-This also tells Sphinx that the other pages are sub-pages of the current page,
-creating a “tree” structure of the pages:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>index
-├── install
-├── support
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The TOC Tree is also used for generating the navigation elements inside Sphinx.
-It is quite important,
-and one of the most powerful concepts in Sphinx.</p>
-</div>
-</section>
-</section>
-<section id="tasks">
-<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading">¶</a></h2>
-<section id="create-installation-page">
-<h3>Create Installation page<a class="headerlink" href="#create-installation-page" title="Permalink to this heading">¶</a></h3>
-<p>Installation documentation is really important.
-Anyone who is coming to the project will need to install it.
-For our example,
-we are installing a basic Python script,
-so it will be pretty easy.</p>
-<p>Include the following in your <code class="docutils literal notranslate"><span class="pre">install.rst</span></code>,
-on the same level as <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>, properly marked up:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Live Preview: <span class="xref std std-doc">crawler/docs/step1/install</span></p>
-</div>
-</section>
-<section id="create-support-page">
-<h3>Create Support page<a class="headerlink" href="#create-support-page" title="Permalink to this heading">¶</a></h3>
-<p>It’s always important that users can ask questions when they get stuck.
-There are many ways to handle this,
-but normal approaches are to have an IRC channel and mailing list.</p>
-<p>Go ahead and put this in your <code class="docutils literal notranslate"><span class="pre">support.rst</span></code>, but add the proper RST markup:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Live Preview: <span class="xref std std-doc">crawler/docs/step1/support</span></p>
-</div>
-<p>You can now open the <code class="docutils literal notranslate"><span class="pre">support.html</span></code> file directly,
-but it isn’t showing on the navigation..</p>
-</section>
-<section id="add-toctree">
-<h3>Add TocTree<a class="headerlink" href="#add-toctree" title="Permalink to this heading">¶</a></h3>
-<p>Now you need to tie all these files together.
-As we mentioned above,
-the <a class="reference internal" href="#toctree-syntax"><span class="std std-ref">Table of Contents Tree</span></a> is the best way to do this.
-Go ahead and complete the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive in your <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file,
-adding the new <code class="docutils literal notranslate"><span class="pre">install</span></code> and <code class="docutils literal notranslate"><span class="pre">support</span></code>.</p>
-</section>
-<section id="sanity-check">
-<h3>Sanity Check<a class="headerlink" href="#sanity-check" title="Permalink to this heading">¶</a></h3>
-<p>Your filesystem should now look something like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>crawler
-├── src
-└── docs
-    ├── index.rst
-    ├── support.rst
-    ├── install.rst
-    ├── Makefile
-    ├── conf.py
-</pre></div>
-</div>
-</section>
-<section id="build-docs">
-<h3>Build Docs<a class="headerlink" href="#build-docs" title="Permalink to this heading">¶</a></h3>
-<p>Now that you have a few pages of content,
-go ahead and build your docs again:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
-</pre></div>
-</div>
-<p>If you open up your <code class="docutils literal notranslate"><span class="pre">index.html</span></code>,
-you should see the basic structure of your docs from the included <code class="docutils literal notranslate"><span class="pre">toctree</span></code> directive.</p>
-</section>
-</section>
-<section id="extra-credit">
-<h2>Extra Credit<a class="headerlink" href="#extra-credit" title="Permalink to this heading">¶</a></h2>
-<p>Have some extra time left?
-Check out these other cool things you can do with Sphinx.</p>
-<section id="make-a-manpage">
-<h3>Make a manpage<a class="headerlink" href="#make-a-manpage" title="Permalink to this heading">¶</a></h3>
-<p>The beauty of Sphinx is that it can output in multiple formats,
-not just HTML.
-All of those formats share the same base format though,
-so you only have to change things in one place.
-So you can generate a manpage for your docs:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">man</span>
-</pre></div>
-</div>
-<p>This will place a manpage in <code class="docutils literal notranslate"><span class="pre">_build/man</span></code>.
-You can then view it with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">man</span> <span class="n">_build</span><span class="o">/</span><span class="n">man</span><span class="o">/</span><span class="n">crawler</span><span class="mf">.1</span>
-</pre></div>
-</div>
-</section>
-<section id="create-a-single-page-document">
-<h3>Create a single page document<a class="headerlink" href="#create-a-single-page-document" title="Permalink to this heading">¶</a></h3>
-<p>Some people prefer one large HTML document,
-instead of having to look through multiple pages.
-This is another area where Sphinx shines.
-You can write your documentation in multiple files to make editing and updating easier.
-Then if you want to distribute a single page HTML version:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">singlehtml</span>
-</pre></div>
-</div>
-<p>This will combine all of your HTML pages into a single page.
-Check it out by opening it in your browser:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="n">_build</span><span class="o">/</span><span class="n">singlehtml</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You’ll notice that it included the documents in the order
-that your <a class="reference internal" href="#toctree-syntax"><span class="std std-ref">TOC Tree</span></a> was defined.</p>
-</div>
-</section>
-<section id="play-with-rst">
-<h3>Play with RST<a class="headerlink" href="#play-with-rst" title="Permalink to this heading">¶</a></h3>
-<p>RST takes a bit of practice to wrap your head around.
-Go over to <a class="reference external" href="http://rst.ninjs.org">http://rst.ninjs.org</a>,
-which is a live preview.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Use the <span class="xref std std-doc">cheatsheet</span> for lots more ideas!</p>
-</div>
-<p>Looking for some ideas of what the syntax contains?
-The <span class="xref std std-ref">rst-primer</span> in the Sphinx docs is a great place to start.</p>
-</section>
-<section id="moving-on">
-<h3>Moving on<a class="headerlink" href="#moving-on" title="Permalink to this heading">¶</a></h3>
-<p>Now it is time to move on to <span class="xref std std-doc">step-2</span>.</p>
-</section>
-</section>
 </section>
 
 
@@ -1473,33 +514,22 @@ The <span class="xref std std-ref">rst-primer</span> in the Sphinx docs is a gre
 </ul>
 </li>
 <li><a class="reference internal" href="#webapps-with-docker">WEBAPPS WITH DOCKER</a><ul>
-<li><a class="reference internal" href="#concepts">Concepts</a><ul>
-<li><a class="reference internal" href="#sections">Sections</a></li>
-<li><a class="reference internal" href="#code-samples">Code Samples</a></li>
-<li><a class="reference internal" href="#hyperlink-syntax">Hyperlink Syntax</a></li>
-<li><a class="reference internal" href="#code-example-syntax">Code Example Syntax</a></li>
-<li><a class="reference internal" href="#table-of-contents-tree">Table of Contents Tree</a></li>
+<li><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tasks">Tasks</a><ul>
-<li><a class="reference internal" href="#create-installation-page">Create Installation page</a></li>
-<li><a class="reference internal" href="#create-support-page">Create Support page</a></li>
-<li><a class="reference internal" href="#add-toctree">Add TocTree</a></li>
-<li><a class="reference internal" href="#sanity-check">Sanity Check</a></li>
-<li><a class="reference internal" href="#build-docs">Build Docs</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#extra-credit">Extra Credit</a><ul>
-<li><a class="reference internal" href="#make-a-manpage">Make a manpage</a></li>
-<li><a class="reference internal" href="#create-a-single-page-document">Create a single page document</a></li>
-<li><a class="reference internal" href="#play-with-rst">Play with RST</a></li>
-<li><a class="reference internal" href="#moving-on">Moving on</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#conclusion">CONCLUSION</a></li>
 </ul>
 
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="step1_ros.html"
+                          title="previous chapter">Basic talker tutorial</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="VMBox.html"
+                          title="next chapter">VMBox</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -1528,6 +558,12 @@ The <span class="xref std std-ref">rst-primer</span> in the Sphinx docs is a gre
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="VMBox.html" title="VMBox"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="step1_ros.html" title="Basic talker tutorial"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Installing Docker Desktop</a></li> 
       </ul>

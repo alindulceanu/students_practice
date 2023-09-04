@@ -17,6 +17,7 @@
     <script src="_static/copybutton.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic talker tutorial" href="step1_ros.html" />
     <link rel="prev" title="Preparations" href="setup.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -25,6 +26,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="step1_ros.html" title="Basic talker tutorial"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="setup.html" title="Preparations"
              accesskey="P">previous</a> |</li>
@@ -69,8 +73,9 @@
 <p>Image data from the <code class="docutils literal notranslate"><span class="pre">camera/image_raw</span></code> topic can be used by a node that shows the image on the computer screen. The node that receives the information is said to subscribe to the topic being published, in this case <code class="docutils literal notranslate"><span class="pre">camera/image_raw</span></code>.</p>
 </section>
 </section>
-<section id="creating-our-first-ros2-project">
-<h2>Creating our first ros2 project<a class="headerlink" href="#creating-our-first-ros2-project" title="Permalink to this heading">¶</a></h2>
+<section id="creating-the-environment">
+<h2>Creating the environment<a class="headerlink" href="#creating-the-environment" title="Permalink to this heading">¶</a></h2>
+<p>For this, we will need two things: A <code class="docutils literal notranslate"><span class="pre">WORKSPACE</span></code> and a <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> to work on.</p>
 <section id="creating-the-workspace">
 <h3>Creating the workspace<a class="headerlink" href="#creating-the-workspace" title="Permalink to this heading">¶</a></h3>
 <p>In order to create a workspace we need a directory with the sole purpose of containing all the files required for ROS2 to work:</p>
@@ -78,9 +83,27 @@
 <span class="n">cd</span> <span class="n">ros2_ws</span>
 </pre></div>
 </div>
-<p>Now, in that directory we want to create a source directory:</p>
+<p>In that directory we want to create a source directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">src</span>
 <span class="n">cd</span> <span class="n">src</span>
+</pre></div>
+</div>
+<p>Now, we can go back to the root and build it using <code class="docutils literal notranslate"><span class="pre">colcon</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span>
+</pre></div>
+</div>
+<p>The last step is to source our workspace so ROS2 is aware of it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># In the root folder:</span>
+<span class="n">source</span> <span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-the-first-project">
+<h3>Creating the first project<a class="headerlink" href="#creating-the-first-project" title="Permalink to this heading">¶</a></h3>
+<p>ROS2 comes preinstalled with a tool for package generation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># In src:</span>
+<span class="n">ros2</span> <span class="n">pkg</span> <span class="n">create</span> <span class="o">--</span><span class="n">build</span><span class="o">-</span><span class="nb">type</span> <span class="n">ament_python</span> <span class="o">&lt;</span><span class="n">package_name</span><span class="o">&gt;</span>
+<span class="c1"># Make sure you replace &lt;package_name&gt; with a desired name</span>
 </pre></div>
 </div>
 </section>
@@ -104,8 +127,9 @@
 <li><a class="reference internal" href="#what-is-a-topic">What is a topic?</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#creating-our-first-ros2-project">Creating our first ros2 project</a><ul>
+<li><a class="reference internal" href="#creating-the-environment">Creating the environment</a><ul>
 <li><a class="reference internal" href="#creating-the-workspace">Creating the workspace</a></li>
+<li><a class="reference internal" href="#creating-the-first-project">Creating the first project</a></li>
 </ul>
 </li>
 </ul>
@@ -117,6 +141,11 @@
     <h4>Previous topic</h4>
     <p class="topless"><a href="setup.html"
                           title="previous chapter">Preparations</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="step1_ros.html"
+                          title="next chapter">Basic talker tutorial</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -145,6 +174,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="step1_ros.html" title="Basic talker tutorial"
+             >next</a> |</li>
         <li class="right" >
           <a href="setup.html" title="Preparations"
              >previous</a> |</li>
