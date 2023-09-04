@@ -10,6 +10,7 @@ Welcome to our project documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   installers
    setup
    docker
    VMBox
@@ -19,9 +20,9 @@ Welcome to our project documentation!
    ScriptDock
    start
    step1_ros
-   framefinder
    talker
    subscriber
+   rosbag_recording
    rosbag_reader
 
 Indices and tables
