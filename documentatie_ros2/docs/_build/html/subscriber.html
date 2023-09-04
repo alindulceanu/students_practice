@@ -44,158 +44,217 @@
             
   <section id="making-a-ros2-subscriber">
 <h1>Making a ros2 subscriber<a class="headerlink" href="#making-a-ros2-subscriber" title="Permalink to this heading">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">`python</span>
-<span class="pre">class</span> <span class="pre">Subscriber(Node):</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Subscriber</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>The code defines a Python class called <cite>Subscriber</cite>. This class is derived from the <cite>Node</cite> class, which allows it to function as a ROS2 node.</p></li>
 </ul>
 <section id="initialization-method">
 <h2>Initialization Method<a class="headerlink" href="#initialization-method" title="Permalink to this heading">¶</a></h2>
-<dl class="simple">
-<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python</dt><dd><p>def __init__(self, topic: str):</p>
-</dd>
-</dl>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Within the <cite>Subscriber</cite> class, the <cite>__init__</cite> method serves as the constructor. It is called when you create an instance of the class. This method accepts one argument, <cite>topic</cite>, which represents the ROS2 topic to subscribe to.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python</dt><dd><p>super().__init__(“subscriber”)</p>
-</dd>
-</dl>
-<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;subscriber&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>This line invokes the constructor of the parent class, <cite>Node</cite>, to initialize the ROS2 node. The argument <cite>“subscriber”</cite> is the name of the node.</p></li>
 </ul>
 </section>
 <section id="callback-function">
 <h2>Callback Function<a class="headerlink" href="#callback-function" title="Permalink to this heading">¶</a></h2>
-<dl class="simple">
-<dt><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python</dt><dd><p>def pose_callback(self, msg: Twist):</p>
-</dd>
-</dl>
-<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pose_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Twist</span><span class="p">):</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>The <cite>pose_callback</cite> method is a callback function that is executed whenever a new message is received on the subscribed ROS2 topic. This method accepts one argument, <cite>msg</cite>, which is a <cite>Twist</cite> message containing linear and angular velocities.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a>python</dt><dd><p>self.get_logger().info(“Transfered”)</p>
-</dd>
-</dl>
-<p><a href="#id29"><span class="problematic" id="id30">``</span></a><a href="#id31"><span class="problematic" id="id32">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Transfered&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Within the callback, this line logs a message to the console indicating that a message has been received. It uses the <cite>get_logger()</cite> method to access the logger associated with the ROS2 node.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id33"><span class="problematic" id="id34">``</span></a><a href="#id35"><span class="problematic" id="id36">`</span></a>python</dt><dd><p>row = {“TOPIC”: self.topic, “LX”: msg.linear.x, “LY”: msg.linear.y, “LZ”: msg.linear.z, “AX”: msg.angular.x, “AY”: msg.angular.y, “AZ”: msg.angular.z, ‘msg’: msg}</p>
-</dd>
-</dl>
-<p><a href="#id37"><span class="problematic" id="id38">``</span></a><a href="#id39"><span class="problematic" id="id40">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;TOPIC&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="s2">&quot;LX&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;LY&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;LZ&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="s2">&quot;AX&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;AY&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;AZ&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="n">msg</span><span class="p">}</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>This line constructs a dictionary called <cite>row</cite> that contains various fields extracted from the received <cite>Twist</cite> message. It includes information such as the topic name, linear and angular velocities, and the original message itself.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id41"><span class="problematic" id="id42">``</span></a><a href="#id43"><span class="problematic" id="id44">`</span></a>python</dt><dd><p>self.df.loc[len(self.df)] = row</p>
-</dd>
-</dl>
-<p><a href="#id45"><span class="problematic" id="id46">``</span></a><a href="#id47"><span class="problematic" id="id48">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">)]</span> <span class="o">=</span> <span class="n">row</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>This line appends the <cite>row</cite> dictionary to a Pandas DataFrame called <cite>df</cite>. The DataFrame is used to accumulate and store data from received messages.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id49"><span class="problematic" id="id50">``</span></a><a href="#id51"><span class="problematic" id="id52">`</span></a>python</dt><dd><p>print(self.df.to_string())</p>
-</dd>
-</dl>
-<p><a href="#id53"><span class="problematic" id="id54">``</span></a><a href="#id55"><span class="problematic" id="id56">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Here, the code prints the entire DataFrame to the console, displaying the collected data for debugging and monitoring purposes.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id57"><span class="problematic" id="id58">``</span></a><a href="#id59"><span class="problematic" id="id60">`</span></a>python</dt><dd><p>self.df.to_csv()</p>
-</dd>
-</dl>
-<p><a href="#id61"><span class="problematic" id="id62">``</span></a><a href="#id63"><span class="problematic" id="id64">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Finally, this line saves the DataFrame to a CSV file. However, it’s important to note that this line may produce an error because the <cite>to_csv()</cite> method requires specifying the CSV file path. You should provide a valid file path to save the data properly.</p></li>
 </ul>
 </section>
 <section id="main-function">
 <h2>Main Function<a class="headerlink" href="#main-function" title="Permalink to this heading">¶</a></h2>
-<p><a href="#id65"><span class="problematic" id="id66">``</span></a><a href="#id67"><span class="problematic" id="id68">`</span></a>python
-def main(args=None):</p>
-<blockquote>
-<div><p>rclpy.init(args=args)
-parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument(“input”, help=”add topic”)
-args = parser.parse_args()
-node = Subscriber(str(args.input))
-rclpy.spin(node)
-rclpy.shutdown()</p>
-</div></blockquote>
-<p><a href="#id69"><span class="problematic" id="id70">``</span></a><a href="#id71"><span class="problematic" id="id72">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;add topic&quot;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">Subscriber</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">))</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>The <cite>main</cite> function serves as the entry point for the script.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id73"><span class="problematic" id="id74">``</span></a><a href="#id75"><span class="problematic" id="id76">`</span></a>python</dt><dd><p>rclpy.init(args=args)</p>
-</dd>
-</dl>
-<p><a href="#id77"><span class="problematic" id="id78">``</span></a><a href="#id79"><span class="problematic" id="id80">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>This line initializes the ROS2 client library using <cite>rclpy.init()</cite>. The <cite>args</cite> parameter allows you to pass command-line arguments to ROS2, if necessary.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id81"><span class="problematic" id="id82">``</span></a><a href="#id83"><span class="problematic" id="id84">`</span></a>python</dt><dd><p>parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument(“input”, help=”add topic”)
-args = parser.parse_args()</p>
-</dd>
-</dl>
-<p><a href="#id85"><span class="problematic" id="id86">``</span></a><a href="#id87"><span class="problematic" id="id88">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;add topic&quot;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>Here, an argument parser is set up to handle command-line arguments. It expects one argument, <cite>“input”</cite>, which represents the topic name.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id89"><span class="problematic" id="id90">``</span></a><a href="#id91"><span class="problematic" id="id92">`</span></a>python</dt><dd><p>node = Subscriber(str(args.input))</p>
-</dd>
-</dl>
-<p><a href="#id93"><span class="problematic" id="id94">``</span></a><a href="#id95"><span class="problematic" id="id96">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">node</span> <span class="o">=</span> <span class="n">Subscriber</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">))</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>An instance of the <cite>Subscriber</cite> class is created, passing the specified topic name as an argument.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id97"><span class="problematic" id="id98">``</span></a><a href="#id99"><span class="problematic" id="id100">`</span></a>python</dt><dd><p>rclpy.spin(node)</p>
-</dd>
-</dl>
-<p><a href="#id101"><span class="problematic" id="id102">``</span></a><a href="#id103"><span class="problematic" id="id104">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>The script enters the ROS2 spin loop using <cite>rclpy.spin(node)</cite>. This loop allows the node to continuously listen for and process incoming messages.</p></li>
 </ul>
-<dl class="simple">
-<dt><a href="#id105"><span class="problematic" id="id106">``</span></a><a href="#id107"><span class="problematic" id="id108">`</span></a>python</dt><dd><p>rclpy.shutdown()</p>
-</dd>
-</dl>
-<p><a href="#id109"><span class="problematic" id="id110">``</span></a><a href="#id111"><span class="problematic" id="id112">`</span></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>After the spin loop is terminated (e.g., when you manually stop the script), <cite>rclpy.shutdown()</cite> is called to gracefully shut down the ROS2 node.</p></li>
 </ul>
+</section>
+<section id="final-result">
+<h2>Final result<a class="headerlink" href="#final-result" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">rclpy</span>
+<span class="kn">from</span> <span class="nn">rclpy.node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">class</span> <span class="nc">Subscriber</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;subscriber&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">topic</span> <span class="o">=</span> <span class="n">topic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;TOPIC&quot;</span><span class="p">,</span><span class="s2">&quot;LX&quot;</span><span class="p">,</span> <span class="s2">&quot;LY&quot;</span><span class="p">,</span> <span class="s2">&quot;LZ&quot;</span><span class="p">,</span> <span class="s2">&quot;AX&quot;</span><span class="p">,</span> <span class="s2">&quot;AY&quot;</span><span class="p">,</span> <span class="s2">&quot;AZ&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscriber</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">Twist</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pose_callback</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pose_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="n">Twist</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_logger</span><span class="p">()</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Transfered&quot;</span><span class="p">)</span>
+        <span class="n">row</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;TOPIC&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span> <span class="s2">&quot;LX&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;LY&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;LZ&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="s2">&quot;AX&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;AY&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;AZ&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">angular</span><span class="o">.</span><span class="n">z</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">:</span><span class="n">msg</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">)]</span><span class="o">=</span><span class="n">row</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;add topic&quot;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">Subscriber</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input</span><span class="p">))</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+    <span class="n">rclpy</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
 <section id="execution">
 <h3>Execution<a class="headerlink" href="#execution" title="Permalink to this heading">¶</a></h3>
 <p>To execute this script, follow these steps:</p>
-<ol class="arabic">
-<li><p>Run the script from the command line, providing the desired ROS2 topic as an argument:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">python</span> <span class="pre">script_name.py</span> <span class="pre">topic_name</span>
-<span class="pre">`</span></code></p>
-<p>Replace <cite>script_name.py</cite> with the actual name of your Python script, and <cite>topic_name</cite> with the name of the ROS2 topic you want to subscribe to.</p>
-</li>
+<ol class="arabic simple">
+<li><p>Run the script from the command line, providing the desired ROS2 topic as an argument:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">     python script_name.py topic_name</span>
+
+<span class="go">Replace `script_name.py` with the actual name of your Python script, and `topic_name` with the name of the ROS2 topic you want to subscribe to.</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
 <li><p>The script will subscribe to the specified ROS2 topic and start recording incoming messages’ data.</p></li>
 <li><p>It will log messages to the console, including the data received from the subscribed topic.</p></li>
 <li><p>The script will also save the recorded data to a CSV file for further analysis.</p></li>
 </ol>
-<p>Note: Ensure that you have the necessary ROS2 packages and dependencies installed for the script to work correctly. Additionally, consider providing a valid file path when saving the data to a CSV file in the <cite>pose_callback</cite> method.
-<a href="#id113"><span class="problematic" id="id114">``</span></a><a href="#id115"><span class="problematic" id="id116">`</span></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that you have the necessary ROS2 packages and dependencies installed for the script to work correctly. Additionally, consider providing a valid file path when saving the data to a CSV file in the <cite>pose_callback</cite> method.</p>
+</div>
 </section>
+</section>
+<section id="add-an-entry-point">
+<h2>Add an entry point<a class="headerlink" href="#add-an-entry-point" title="Permalink to this heading">¶</a></h2>
+<p>Reopen <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and add the entry point for the subscriber node below the publisher’s entry point.
+The <code class="docutils literal notranslate"><span class="pre">entry_points</span></code> field should now look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+  <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s1">&#39;talker = py_pubsub.publisher_member_function:main&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;listener = py_pubsub.subscriber_member_function:main&#39;</span><span class="p">,</span>
+  <span class="p">],</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>Make sure to save the file, and then your pub/sub system should be ready.</p>
+<p>You likely already have the <code class="docutils literal notranslate"><span class="pre">rclpy</span></code> and <code class="docutils literal notranslate"><span class="pre">std_msgs</span></code> packages installed as part of your ROS 2 system.
+It’s good practice to run <code class="docutils literal notranslate"><span class="pre">rosdep</span></code> in the root of your workspace (<code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>) to check for missing dependencies before building:</p>
+<p>Still in the root of your workspace, <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>, build your new package:</p>
+<p>Open a new terminal, navigate to <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code>, and source the setup files:</p>
+<p>Now run the talker node:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run py_pubsub talker</span>
+</pre></div>
+</div>
+<p>The terminal should start publishing info messages every 0.5 seconds, like so:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 0&quot;</span>
+<span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 1&quot;</span>
+<span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 2&quot;</span>
+<span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 3&quot;</span>
+<span class="go">[INFO] [minimal_publisher]: Publishing: &quot;Hello World: 4&quot;</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>Open another terminal, source the setup files from inside <code class="docutils literal notranslate"><span class="pre">ros2_ws</span></code> again, and then start the listener node:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ros2 run py_pubsub listener</span>
+</pre></div>
+</div>
+<p>The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 10&quot;</span>
+<span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 11&quot;</span>
+<span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 12&quot;</span>
+<span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 13&quot;</span>
+<span class="go">[INFO] [minimal_subscriber]: I heard: &quot;Hello World: 14&quot;</span>
+</pre></div>
+</div>
+<p>Enter <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in each terminal to stop the nodes from spinning.</p>
 </section>
 </section>
 
@@ -212,10 +271,12 @@ args = parser.parse_args()</p>
 <li><a class="reference internal" href="#">Making a ros2 subscriber</a><ul>
 <li><a class="reference internal" href="#initialization-method">Initialization Method</a></li>
 <li><a class="reference internal" href="#callback-function">Callback Function</a></li>
-<li><a class="reference internal" href="#main-function">Main Function</a><ul>
+<li><a class="reference internal" href="#main-function">Main Function</a></li>
+<li><a class="reference internal" href="#final-result">Final result</a><ul>
 <li><a class="reference internal" href="#execution">Execution</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#add-an-entry-point">Add an entry point</a></li>
 </ul>
 </li>
 </ul>
