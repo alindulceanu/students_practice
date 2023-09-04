@@ -1,54 +1,238 @@
 
-<!DOCTYPE html>
 
-<html lang="en">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="" lang="" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Installing Docker Desktop &#8212; Documentatie ros2 1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/groundwork.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="VMBox" href="VMBox.html" />
-    <link rel="prev" title="Basic talker tutorial" href="step1_ros.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="VMBox.html" title="VMBox"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="step1_ros.html" title="Basic talker tutorial"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Installing Docker Desktop</a></li> 
-      </ul>
-    </div>  
+  
+  <title>What is Docker? &mdash; Documentatie ros2 1.0 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <section id="installing-docker-desktop">
-<h1>Installing Docker Desktop<a class="headerlink" href="#installing-docker-desktop" title="Permalink to this heading">¶</a></h1>
-<section id="what-is-docker">
-<h2>What is Docker?<a class="headerlink" href="#what-is-docker" title="Permalink to this heading">¶</a></h2>
+  
+
+  
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="_static/css/pdj.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/pdj.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Documentatie ros2 1.0 documentation" href="index.html"/>
+        <link rel="next" title="VMBox" href="VMBox.html"/>
+        <link rel="prev" title="Basic talker tutorial" href="step1_ros.html"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Documentatie ros2 </a>
+        <div role="search">
+	  <form id ="rtd-search-form" class="wy-form"
+		action="search.html" method="get">
+	    <input type="text" name="q" placeholder="Search docs" />
+	    <input type="hidden" name="check_keywords" value="yes" />
+	    <input type="hidden" name="area" value="default" />
+	  </form>
+	</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	
+          
+          
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Preparations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#ubuntu-debian-packages">Ubuntu (Debian packages)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#system-setup">System setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#setup-environment">Setup environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#try-some-examples">Try some examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#creating-the-environment">Creating the environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="step1_ros.html">Basic talker tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step1_ros.html#creating-a-talker-using-python">Creating a talker using python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1_ros.html#building-and-running-the-node">Building and running the node</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">What is Docker?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-use-containers">Why use containers?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hello-world">HELLO WORLD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#playing-with-busybox">Playing with Busybox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-run">Docker Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webapps-with-docker">WEBAPPS WITH DOCKER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusion">CONCLUSION</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html">VMBox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#welcome-to-oracle-vm-virtualbox">Welcome to Oracle VM VirtualBox.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#why-is-virtualization-useful">Why is Virtualization Useful?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#some-terminology">Some Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#features-overview">Features Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#supported-host-operating-systems">Supported Host Operating Systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#host-cpu-requirements">Host CPU Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#installing-oracle-vm-virtualbox-and-extension-packs">Installing Oracle VM VirtualBox and Extension Packs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#starting-oracle-vm-virtualbox">Starting Oracle VM VirtualBox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#virtualbox-manager">VirtualBox Manager</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#the-machine-list">The Machine List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#the-details-pane">The Details Pane</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager-toolbar">VirtualBox Manager Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#preview-window">Preview Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#notification-center">Notification Center</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#virtualbox-manager-tools">VirtualBox Manager Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#global-tools">Global Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#machine-tools">Machine Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#help-viewer">Help Viewer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#about-virtualbox-manager-wizards">About VirtualBox Manager Wizards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#creating-your-first-virtual-machine">Creating Your First Virtual Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-name-and-operating-system">Create Virtual Machine Wizard: Name and Operating System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-hardware">Create Virtual Machine Wizard: Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-virtual-hard-disk">Create Virtual Machine Wizard: Virtual Hard Disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-summary">Create Virtual Machine Wizard: Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#some-examples-of-unattended-installation">Some Examples of Unattended Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html#running-your-virtual-machine">Running Your Virtual Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#starting-a-new-vm-for-the-first-time">Starting a New VM for the First Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#capturing-and-releasing-keyboard-and-mouse">Capturing and Releasing Keyboard and Mouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#typing-special-characters">Typing Special Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#changing-removable-media">Changing Removable Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#resizing-the-machine-s-window">Resizing the Machine’s Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#saving-the-state-of-the-machine">Saving the State of the Machine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framefinder.html">Making a rosbag frame, topic and value reader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl2.html">WSL2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wsl2.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wsl2.html#setting-up-the-linux-user">Setting up the linux user</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="talker.html">Making a ros2 talker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscriber.html">Making a ros2 subscriber</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#initialization-method">Initialization Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#callback-function">Callback Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#main-function">Main Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#final-result">Final result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#add-an-entry-point">Add an entry point</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ScriptDock.html">Making a script to directly open the virtual image with docker and mount itself in vs code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MobaX.html">Installing MobaXTerm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MobaX.html#mobaxterm-x-server-and-ssh-client">MobaXterm X server and SSH client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MobaX.html#key-features">Key features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html">Docker container in VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#installing-docker-on-ubuntu">Installing Docker on Ubuntu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#os-requirements">OS requirements:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#uninstall-old-versions">Uninstall old versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#installation-methods">Installation methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#install-using-the-apt-repository">Install using the apt repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#set-up-the-repository">Set up the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#install-docker-engine">Install Docker Engine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#uninstall-docker-engine">Uninstall Docker Engine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#linux-post-installation-steps-for-docker-engine">Linux post-installation steps for Docker Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#manage-docker-as-a-non-root-user">Manage Docker as a non-root user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#configure-docker-to-start-on-boot-with-systemd">Configure Docker to start on boot with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rosbag_reader.html">Making a rosbag reader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#what-is-pandas">What is pandas?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#making-the-script">Making the script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#executing-the-code">Executing the code</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+
+      </div>
+      &nbsp;
+    </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      <nav class="wy-nav-top" id="barra-mobile" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Porão do Juca</a>
+      </nav>
+
+      <div class="wy-nav-content">
+	<div class="fundo-claro">
+	</div>
+	<div class="fundo-escuro">
+	</div>
+
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+	    
+	    <!-- <ul class="wy-breadcrumbs"> -->
+	    <!--   <li><a href="#">Docs</a> &raquo;</li> -->
+
+	    <!--   <li>Features</li> -->
+	    <!--   <li class="wy-breadcrumbs-aside"> -->
+
+	    <!-- 	<a href="_sources/index.txt" rel="nofollow"> View page source</a> -->
+
+	    <!--   </li> -->
+	    <!-- </ul> -->
+	    <!-- <hr/> -->
+	  </div>
+
+          <div role="main" class="">
+
+	    <div id="content" class="hfeed entry-container hentry">
+  <section id="what-is-docker">
+<h1>What is Docker?<a class="headerlink" href="#what-is-docker" title="Permalink to this heading">¶</a></h1>
 <p>Wikipedia defines Docker as an open-source project that automates the deployment of software applications inside containers by providing an additional layer of abstraction and automation of OS-level virtualization on Linux.</p>
 <p>Wow! That’s a mouthful. In simpler words, Docker is a tool that allows developers, sys-admins etc. to easily deploy their applications in a sandbox (called containers) to run on the host operating system i.e. Linux. The key benefit of Docker is that it allows users to package an application with all of its dependencies into a standardized unit for software development. Unlike virtual machines, containers do not have high overhead and hence enable more efficient usage of the underlying system and resources.</p>
-</section>
 <section id="what-are-containers">
 <h2>What are containers?<a class="headerlink" href="#what-are-containers" title="Permalink to this heading">¶</a></h2>
 <p>The industry standard today is to use Virtual Machines (VMs) to run software applications. VMs run applications inside a guest Operating System, which runs on virtual hardware powered by the server’s host OS.</p>
@@ -61,32 +245,9 @@
 <p>From an operations standpoint, apart from portability containers also give more granular control over resources giving your infrastructure improved efficiency which can result in better utilization of your compute resources.</p>
 <p>Due to these benefits, containers (&amp; Docker) have seen widespread adoption. Companies like Google, Facebook, Netflix and Salesforce leverage containers to make large engineering teams more productive and to improve utilization of compute resources. In fact, Google credited containers for eliminating the need for an entire data center.</p>
 </section>
-<section id="setting-up-your-computer">
-<h2>Setting up your computer<a class="headerlink" href="#setting-up-your-computer" title="Permalink to this heading">¶</a></h2>
-<p>First go to the official Docker Desktop page and download it:</p>
-<p><a class="reference external" href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a></p>
-<p>After installation test your Docker installation by running the following:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>hello-world
-</pre></div>
-</div>
-<p>It should display this message:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Hello from Docker.</span>
-<span class="go">This message shows that your installation appears to be working correctly.</span>
-<span class="go">...</span>
-</pre></div>
-</div>
-<p>If you get an error:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker: error during connect: this error may indicate that the docker daemon is not running:</span>
-<span class="go">Post &quot;&lt;http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/create&gt;&quot;:</span>
-<span class="go">open //./pipe/docker_engine: The system cannot find the file specified.</span>
-<span class="go">See &#39;docker run --help&#39;.</span>
-</pre></div>
-</div>
-<p>Make sure that you are running Docker.</p>
-</section>
-</section>
 <section id="hello-world">
-<h1>HELLO WORLD<a class="headerlink" href="#hello-world" title="Permalink to this heading">¶</a></h1>
+<h2>HELLO WORLD<a class="headerlink" href="#hello-world" title="Permalink to this heading">¶</a></h2>
+</section>
 <section id="playing-with-busybox">
 <h2>Playing with Busybox<a class="headerlink" href="#playing-with-busybox" title="Permalink to this heading">¶</a></h2>
 <p>Now that we have everything setup, it’s time to get our hands dirty. In this section, we are going to run a Busybox container on our system and get a taste of the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
@@ -185,9 +346,8 @@
 </ul>
 </div></blockquote>
 </section>
-</section>
 <section id="webapps-with-docker">
-<h1>WEBAPPS WITH DOCKER<a class="headerlink" href="#webapps-with-docker" title="Permalink to this heading">¶</a></h1>
+<h2>WEBAPPS WITH DOCKER<a class="headerlink" href="#webapps-with-docker" title="Permalink to this heading">¶</a></h2>
 <p>Great! So we have now looked at <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>, played with a Docker container and also got a hang of some terminology.
 Our First Image
 <strong>************</strong></p>
@@ -201,6 +361,7 @@ Our First Image
 <p>This should be cloned on the machine where you are running the docker commands and not inside a docker container.</p>
 </div>
 <p>The next step now is to create an image with this web app. As mentioned above, all user images are based on a base image. Since our application is written in Python, the base image we’re going to use will be Python 3.</p>
+</section>
 <section id="dockerfile">
 <h2>Dockerfile<a class="headerlink" href="#dockerfile" title="Permalink to this heading">¶</a></h2>
 <p>A Dockerfile is a simple text file that contains a list of commands that the Docker client calls while creating an image. It’s a simple way to automate the image creation process. The best part is that the commands you write in a Dockerfile are almost identical to their equivalent Linux commands. This means you don’t really have to learn new syntax to create your own dockerfiles.</p>
@@ -483,94 +644,83 @@ Now that we have it installed, we can jump on the next step i.e. the Docker Comp
 </pre></div>
 </div>
 </section>
-</section>
 <section id="conclusion">
-<h1>CONCLUSION<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h1>
+<h2>CONCLUSION<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h2>
 <p>And that’s a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learned how to setup Docker and how to run your own containers.</p>
 <p>I hope that finishing this tutorial makes you more confident in your abilities to deal with servers. When you have an idea of building your next app, you can be sure that you’ll be able to get it in front of people with minimal effort.</p>
 </section>
+</section>
 
 
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Installing Docker Desktop</a><ul>
-<li><a class="reference internal" href="#what-is-docker">What is Docker?</a></li>
-<li><a class="reference internal" href="#what-are-containers">What are containers?</a></li>
-<li><a class="reference internal" href="#why-use-containers">Why use containers?</a></li>
-<li><a class="reference internal" href="#setting-up-your-computer">Setting up your computer</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#hello-world">HELLO WORLD</a><ul>
-<li><a class="reference internal" href="#playing-with-busybox">Playing with Busybox</a></li>
-<li><a class="reference internal" href="#docker-run">Docker Run</a></li>
-<li><a class="reference internal" href="#terminology">Terminology</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#webapps-with-docker">WEBAPPS WITH DOCKER</a><ul>
-<li><a class="reference internal" href="#dockerfile">Dockerfile</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#conclusion">CONCLUSION</a></li>
-</ul>
+	    </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="VMBox.html" class="btn btn-neutral float-right" title="VMBox">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="step1_ros.html" class="btn btn-neutral" title="Basic talker tutorial"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Alin Dulceanu, Eduard Cimpean.
+    </p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="step1_ros.html"
-                          title="previous chapter">Basic talker tutorial</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="VMBox.html"
-                          title="next chapter">VMBox</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/docker.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="VMBox.html" title="VMBox"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="step1_ros.html" title="Basic talker tutorial"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Installing Docker Desktop</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Alin Dulceanu, Eduard Cimpean.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
-    </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/jucacrispim/sphinx_pdj_theme">theme</a> provided by <a href="http://poraodojuca.net">Porão do Juca</a>.
+
+</footer>
+	</div>
+	</div>
+	  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+    <script type="text/javascript" src="_static/documentation_options.js">
+
+    </script>
+    <script type="text/javascript" src="_static/doctools.js">
+
+    </script>
+    <script type="text/javascript" src="_static/sphinx_highlight.js">
+
+    </script>
+    <script type="text/javascript" src="_static/clipboard.min.js">
+
+    </script>
+    <script type="text/javascript" src="_static/copybutton.js">
+
+    </script>
+
+  
+
+   <script type="text/javascript"
+           src="_static/js/theme.js"></script>
+
+   <script type="text/javascript"
+           src="_static/js/pdj.js"></script>
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
   </body>
 </html>

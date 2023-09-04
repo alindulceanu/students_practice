@@ -12,7 +12,7 @@ Choose ``New Dev Container`` and choose the image that you want.
 Now follow the steps below to install Docker on Ubuntu as an example:
 
 Installing Docker on Ubuntu
-============================
+****************************
 
 To get started with Docker Engine on Ubuntu, make sure you meet the prerequisites, and then follow the installation steps.
 
@@ -147,7 +147,7 @@ You have now successfully installed and started Docker Engine.
 .. note::  Receiving errors when trying to run without root? The docker user group exists but contains no users, which is why you’re required to use sudo to run Docker commands. Continue to Linux postinstall to allow non-privileged users to run Docker commands and for other optional configuration steps.
 
 Uninstall Docker Engine
-==========================
+****************************
 
 1. Uninstall the Docker Engine, CLI, containerd, and Docker Compose packages:
 
@@ -166,7 +166,7 @@ Uninstall Docker Engine
 .. note:: You have to delete any edited configuration files manually.
 
 Linux post-installation steps for Docker Engine
-==================================================
+**************************************************
 
 These optional post-installation procedures shows you how to configure your
 Linux host machine to work better with Docker.
@@ -185,8 +185,7 @@ distributions, the system automatically creates this group when installing
 Docker Engine using a package manager. In that case, there is no need for you to
 manually create the group.
 
-.. note:: The ``docker`` group grants root-level privileges to the user. To run Docker without root privileges, see
-https://docs.docker.com/engine/security/rootless/
+.. note:: The ``docker`` group grants root-level privileges to the user. To run Docker without root privileges, see https://docs.docker.com/engine/security/rootless/
 
 To create the ``docker`` group and add your user:
 
@@ -225,6 +224,7 @@ If you initially ran Docker CLI commands using ``sudo`` before adding your user
 to the ``docker`` group, you may see the following error:
 
 .. code-block:: console
+
 	WARNING: Error loading config file: /home/user/.docker/config.json -
 	stat /home/user/.docker/config.json: permission denied
 

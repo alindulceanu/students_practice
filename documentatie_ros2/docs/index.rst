@@ -11,17 +11,17 @@ Welcome to our project documentation!
    :caption: Contents:
 
    setup
-   start
-   step1_ros
    docker
    VMBox
-   framefinder
+   MobaX
    wsl2
+   DockerVS
+   ScriptDock
+   start
+   step1_ros
+   framefinder
    talker
    subscriber
-   ScriptDock
-   MobaX
-   DockerVS
    rosbag_reader
 
 Indices and tables

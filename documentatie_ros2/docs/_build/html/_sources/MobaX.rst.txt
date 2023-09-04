@@ -1,8 +1,5 @@
-Installing MobaXTerm
-================================
-
 MobaXterm X server and SSH client
-**********************************
+==================================
 
 MobaXterm is your ultimate toolbox for remote computing. In a single Windows application, it provides loads of functions that are tailored for programmers, webmasters, IT administrators and pretty much all users who need to handle their remote jobs in a more simple fashion.
 
@@ -54,7 +51,3 @@ Key features
  * Professional application
  
 	MobaXterm Professional has been designed for security and stability
-	
-To install it simply download the installer and run it:
-
-https://mobaxterm.mobatek.net/download.html

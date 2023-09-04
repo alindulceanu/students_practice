@@ -1,8 +1,5 @@
-Installing Docker Desktop
-================================
-
 What is Docker?
-***************
+=================
 
 Wikipedia defines Docker as an open-source project that automates the deployment of software applications inside containers by providing an additional layer of abstraction and automation of OS-level virtualization on Linux.
 
@@ -26,40 +23,8 @@ From an operations standpoint, apart from portability containers also give more 
 
 Due to these benefits, containers (& Docker) have seen widespread adoption. Companies like Google, Facebook, Netflix and Salesforce leverage containers to make large engineering teams more productive and to improve utilization of compute resources. In fact, Google credited containers for eliminating the need for an entire data center.
 
-Setting up your computer
-************************
-
-First go to the official Docker Desktop page and download it:
-
-https://www.docker.com/products/docker-desktop/
-
-After installation test your Docker installation by running the following:
-
-.. code-block:: console
-
-	$ docker run hello-world
-
-It should display this message:
-
-.. code-block:: console
-
-	Hello from Docker.
-	This message shows that your installation appears to be working correctly.
-	...
-
-If you get an error:
-
-.. code-block:: console
-
-	docker: error during connect: this error may indicate that the docker daemon is not running:
-	Post "<http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/create>":
-	open //./pipe/docker_engine: The system cannot find the file specified.
-	See 'docker run --help'.
-	  
-Make sure that you are running Docker.
-
 HELLO WORLD
-==============
+***************
 
 Playing with Busybox
 ********************
@@ -81,6 +46,7 @@ The ``pull`` command fetches the busybox image from the Docker registry and save
 	$ docker images
 	REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 	busybox                 latest              c51f86c28340        4 weeks ago         1.109 MB
+	
 Docker Run
 **********
 
@@ -180,7 +146,7 @@ In the last section, we used a lot of Docker-specific jargon which might be conf
  * Docker Hub - A registry of Docker images. You can think of the registry as a directory of all available Docker images. If required, one can host their own Docker registries and can use them for pulling images.
 
 WEBAPPS WITH DOCKER
-====================
+********************
 
 Great! So we have now looked at ``docker run``, played with a Docker container and also got a hang of some terminology.
 Our First Image
@@ -525,7 +491,7 @@ You can see that compose went ahead and created a new network called ``foodtruck
 	]
 	
 CONCLUSION
-==============
+***************
 
 And that's a wrap! After a long, exhaustive but fun tutorial you are now ready to take the container world by storm! If you followed along till the very end then you should definitely be proud of yourself. You learned how to setup Docker and how to run your own containers.
 

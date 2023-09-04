@@ -100,7 +100,7 @@ On top of this special capacity, Oracle VM VirtualBox offers you more unique fea
  * USB over RDP. Using RDP virtual channel support, Oracle VM VirtualBox also enables you to connect arbitrary USB devices locally to a virtual machine which is running remotely on an Oracle VM VirtualBox RDP server.
 
 Supported Host Operating Systems
-====================================
+**********************************
 
 Currently, Oracle VM VirtualBox runs on the following host OSes:
 
@@ -171,29 +171,8 @@ Host CPU Requirements
 
 SSE2 (Streaming SIMD Extensions 2) support is required for host CPUs.
 
-Installing Oracle VM VirtualBox and Extension Packs
-====================================================
-
-Oracle VM VirtualBox comes in many different packages, and installation depends on your host OS. If you have installed software before, installation should be straightforward. On each host platform, Oracle VM VirtualBox uses the installation method that is most common and easy to use.
-
-Oracle VM VirtualBox is split into the following components:
-
- * Base package. The base package consists of all open source components and is licensed under the GNU General Public License V2.
-
- * Extension packs. Additional extension packs can be downloaded which extend the functionality of the Oracle VM VirtualBox base package. Currently, Oracle provides a single extension pack, available from: http://www.virtualbox.org. The extension pack provides the following added functionality:
-
-	 * VirtualBox Remote Desktop Protocol (VRDP) support.
-
-	 * Host webcam passthrough.
-	
-	 * Intel PXE boot ROM.
-
-	 * Disk image encryption with AES algorithm.
-
-	 * Cloud integration features.
-
 Starting Oracle VM VirtualBox
-==============================
+*******************************
 
 After installation, you can start Oracle VM VirtualBox as follows:
 
@@ -206,7 +185,7 @@ After installation, you can start Oracle VM VirtualBox as follows:
 When you start Oracle VM VirtualBox, the VirtualBox Manager interface is shown.
 
 VirtualBox Manager
-===================
+********************
 
 VirtualBox Manager is the user interface for Oracle VM VirtualBox. You can use VirtualBox Manager to create, configure, and manage your virtual machines.
 
@@ -225,7 +204,7 @@ The toolbar buttons on the Details pane can be used to create and work with virt
  * Help Viewer. A window that displays context-sensitive help topics for VirtualBox Manager tasks.
 
 The Machine List
-=================
+*********************
 
 The list of virtual machines in the left pane is called the machine list.
 
@@ -238,7 +217,7 @@ The following methods can be used to control and configure virtual machines in t
  * Click a button in the toolbar in the Details pane.
 
 The Details Pane
-=================
+******************
 
 The Details pane shows configuration information for a virtual machine that is selected in the machine list. The pane also includes a toolbar for performing tasks.
 
@@ -295,7 +274,7 @@ Most system messages that do not require user interaction are displayed in the N
 The progress of some tasks can be observed and stopped using the Notification Center.
 
 VirtualBox Manager Tools
-=========================
+***************************
 
 VirtualBox Manager provides two types of user tools, to enable you to perform common tasks easily.
 
@@ -344,7 +323,7 @@ A drop-down list enables you to select from the following machine tools:
  * File Manager. Displays the Guest Control File Manager tool. This tool enables you to manage files on the guest system.
 
 Help Viewer
-============
+************
 
 The Help Viewer is a window that displays context-sensitive help to assist you in completing common VirtualBox Manager tasks. You can display the Help Viewer in the following ways:
 
@@ -375,7 +354,7 @@ The Help Viewer has the following features:
  * Printing. Help topics can be printed to PDF file or to a local printer.
 
 About VirtualBox Manager Wizards
-=================================
+**********************************
 
 VirtualBox Manager includes wizards that enable you to complete tasks easily. Examples of such tasks are when you create a new virtual machine or use the cloud integration features of Oracle VM VirtualBox.
 
@@ -390,7 +369,7 @@ Some wizards can be displayed in either of the following modes:
 Click the button at the bottom of the wizard window to switch between Guided mode and Expert mode.
 
 Creating Your First Virtual Machine
-====================================
+************************************
 
 Click New in the VirtualBox Manager window. The Create Virtual Machine wizard is shown, to guide you through the required steps for setting up a new virtual machine (VM).
 
@@ -525,7 +504,7 @@ The ISO image is inserted automatically into the DVD drive of the new VM. The gu
 The ISO image is inserted automatically into the DVD drive of the new VM. The guest OS installation must then be completed manually.
 
 Running Your Virtual Machine
-==============================
+*********************************
 
 To start a virtual machine, you have the following options:
 

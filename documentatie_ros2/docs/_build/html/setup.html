@@ -1,59 +1,326 @@
 
-<!DOCTYPE html>
 
-<html lang="en">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="" lang="" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Preparations &#8212; Documentatie ros2 1.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/groundwork.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Getting started" href="start.html" />
-    <link rel="prev" title="Welcome to our project documentation!" href="index.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="start.html" title="Getting started"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to our project documentation!"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Preparations</a></li> 
-      </ul>
-    </div>  
+  
+  <title>Preparations &mdash; Documentatie ros2 1.0 documentation</title>
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+  
+
+  
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="_static/css/pdj.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/pdj.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Documentatie ros2 1.0 documentation" href="index.html"/>
+        <link rel="next" title="What is Docker?" href="docker.html"/>
+        <link rel="prev" title="Welcome to our project documentation!" href="index.html"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> Documentatie ros2 </a>
+        <div role="search">
+	  <form id ="rtd-search-form" class="wy-form"
+		action="search.html" method="get">
+	    <input type="text" name="q" placeholder="Search docs" />
+	    <input type="hidden" name="check_keywords" value="yes" />
+	    <input type="hidden" name="area" value="default" />
+	  </form>
+	</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	
+          
+          
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Preparations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-docker-desktop">Installing Docker Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-mobaxterm">Installing MobaXTerm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wsl-instalation">WSL Instalation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-oracle-vm-virtualbox-and-extension-packs">Installing Oracle VM VirtualBox and Extension Packs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">What is Docker?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#what-are-containers">What are containers?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#why-use-containers">Why use containers?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#hello-world">HELLO WORLD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#playing-with-busybox">Playing with Busybox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#docker-run">Docker Run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#webapps-with-docker">WEBAPPS WITH DOCKER</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#dockerfile">Dockerfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#conclusion">CONCLUSION</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VMBox.html">VMBox</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#welcome-to-oracle-vm-virtualbox">Welcome to Oracle VM VirtualBox.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#why-is-virtualization-useful">Why is Virtualization Useful?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#some-terminology">Some Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#features-overview">Features Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#supported-host-operating-systems">Supported Host Operating Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#host-cpu-requirements">Host CPU Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#starting-oracle-vm-virtualbox">Starting Oracle VM VirtualBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager">VirtualBox Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#the-machine-list">The Machine List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#the-details-pane">The Details Pane</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager-toolbar">VirtualBox Manager Toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#preview-window">Preview Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#notification-center">Notification Center</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager-tools">VirtualBox Manager Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#global-tools">Global Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#machine-tools">Machine Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#help-viewer">Help Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#about-virtualbox-manager-wizards">About VirtualBox Manager Wizards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#creating-your-first-virtual-machine">Creating Your First Virtual Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-name-and-operating-system">Create Virtual Machine Wizard: Name and Operating System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-hardware">Create Virtual Machine Wizard: Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-virtual-hard-disk">Create Virtual Machine Wizard: Virtual Hard Disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-summary">Create Virtual Machine Wizard: Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#some-examples-of-unattended-installation">Some Examples of Unattended Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#running-your-virtual-machine">Running Your Virtual Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#starting-a-new-vm-for-the-first-time">Starting a New VM for the First Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#capturing-and-releasing-keyboard-and-mouse">Capturing and Releasing Keyboard and Mouse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#typing-special-characters">Typing Special Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#changing-removable-media">Changing Removable Media</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#resizing-the-machine-s-window">Resizing the Machine’s Window</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#saving-the-state-of-the-machine">Saving the State of the Machine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MobaX.html">MobaXterm X server and SSH client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MobaX.html#key-features">Key features</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="wsl2.html">WSL2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="wsl2.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wsl2.html#setting-up-the-linux-user">Setting up the linux user</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html">Docker container in VSCode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#installing-docker-on-ubuntu">Installing Docker on Ubuntu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#os-requirements">OS requirements:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#uninstall-old-versions">Uninstall old versions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#installation-methods">Installation methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#install-using-the-apt-repository">Install using the apt repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#set-up-the-repository">Set up the repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#install-docker-engine">Install Docker Engine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#uninstall-docker-engine">Uninstall Docker Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#linux-post-installation-steps-for-docker-engine">Linux post-installation steps for Docker Engine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#manage-docker-as-a-non-root-user">Manage Docker as a non-root user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#configure-docker-to-start-on-boot-with-systemd">Configure Docker to start on boot with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ScriptDock.html">Making a script to directly open the virtual image with docker and mount itself in vs code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#creating-the-environment">Creating the environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="step1_ros.html">Basic talker tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step1_ros.html#creating-a-talker-using-python">Creating a talker using python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step1_ros.html#building-and-running-the-node">Building and running the node</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="framefinder.html">Making a rosbag frame, topic and value reader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="talker.html">Making a ros2 talker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscriber.html">Making a ros2 subscriber</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#initialization-method">Initialization Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#callback-function">Callback Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#main-function">Main Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#final-result">Final result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="subscriber.html#add-an-entry-point">Add an entry point</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rosbag_reader.html">Making a rosbag reader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#what-is-pandas">What is pandas?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#making-the-script">Making the script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#executing-the-code">Executing the code</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+
+      </div>
+      &nbsp;
+    </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      <nav class="wy-nav-top" id="barra-mobile" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Porão do Juca</a>
+      </nav>
+
+      <div class="wy-nav-content">
+	<div class="fundo-claro">
+	</div>
+	<div class="fundo-escuro">
+	</div>
+
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+	    
+	    <!-- <ul class="wy-breadcrumbs"> -->
+	    <!--   <li><a href="#">Docs</a> &raquo;</li> -->
+
+	    <!--   <li>Features</li> -->
+	    <!--   <li class="wy-breadcrumbs-aside"> -->
+
+	    <!-- 	<a href="_sources/index.txt" rel="nofollow"> View page source</a> -->
+
+	    <!--   </li> -->
+	    <!-- </ul> -->
+	    <!-- <hr/> -->
+	  </div>
+
+          <div role="main" class="">
+
+	    <div id="content" class="hfeed entry-container hentry">
   <section id="preparations">
 <h1>Preparations<a class="headerlink" href="#preparations" title="Permalink to this heading">¶</a></h1>
+<section id="installing-docker-desktop">
+<h2>Installing Docker Desktop<a class="headerlink" href="#installing-docker-desktop" title="Permalink to this heading">¶</a></h2>
+<p>First go to the official Docker Desktop page and download it:</p>
+<p><a class="reference external" href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a></p>
+<p>After installation test your Docker installation by running the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</pre></div>
+</div>
+<p>It should display this message:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Hello from Docker.</span>
+<span class="go">This message shows that your installation appears to be working correctly.</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>If you get an error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker: error during connect: this error may indicate that the docker daemon is not running:</span>
+<span class="go">Post &quot;&lt;http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/create&gt;&quot;:</span>
+<span class="go">open //./pipe/docker_engine: The system cannot find the file specified.</span>
+<span class="go">See &#39;docker run --help&#39;.</span>
+</pre></div>
+</div>
+<p>Make sure that you are running Docker.</p>
+</section>
+<section id="installing-mobaxterm">
+<h2>Installing MobaXTerm<a class="headerlink" href="#installing-mobaxterm" title="Permalink to this heading">¶</a></h2>
+<p>To install it simply download the installer and run it:</p>
+<p><a class="reference external" href="https://mobaxterm.mobatek.net/download.html">https://mobaxterm.mobatek.net/download.html</a></p>
+</section>
+<section id="wsl-instalation">
+<h2>WSL Instalation<a class="headerlink" href="#wsl-instalation" title="Permalink to this heading">¶</a></h2>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation" id="id2">Installation</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-the-linux-user" id="id3">Setting up the linux user</a></p></li>
+</ul>
+</nav>
+<p><code class="docutils literal notranslate"><span class="pre">WSL2</span></code> (Windows Subsystem for Linux) is a tool that allows you to use linux commands directly on your windows machine without using a VM.</p>
+<p>WSL comes preinstalled in every windows system, but it is not activated.</p>
+<section id="installation">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h3>
+<p>In order to activate WSL2 in your machine you just need to type this command in CMD as administrator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="o">--</span><span class="n">install</span>
+</pre></div>
+</div>
+<p>This command will automatically choose Ubuntu as the defaul distro, if you want another linux distro do this instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="o">--</span><span class="n">install</span> <span class="o">-</span><span class="n">d</span> <span class="o">&lt;</span><span class="n">Distro_Name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>If you want to see a list of Distros that are available in the microsoft store, do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>Where -l stands for <code class="docutils literal notranslate"><span class="pre">list</span></code> and -o for <code class="docutils literal notranslate"><span class="pre">online</span></code></p>
+</section>
+<section id="setting-up-the-linux-user">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Setting up the linux user</a><a class="headerlink" href="#setting-up-the-linux-user" title="Permalink to this heading">¶</a></h3>
+<p>Now that you have WSL2 installed, you will be asked to enter a UNIX user and password.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The credidentials you use do not need to be related to your windows account.</p>
+<p>When typing your password nothing will display on your screen. This is called blind typing and is completely normal.</p>
+<p>The username must be between one and eight characters long, must start with a lowercase letter or an underscore, it can contain lowercase letters, digits, underscores and dashes and can end with a dollar sign.</p>
+<p>In RegEx: <code class="docutils literal notranslate"><span class="pre">[a-z_][a-z0-9_-]*[$]?</span></code></p>
+<p>Passwords must be at least 8 characters long, they cannot be dictionary words or the same as the username, you also have to use at least 3 of 4 character sets: uppercase, lowercase, digits, symbols.</p>
+<p>Do not use spaces in your password!!</p>
+</div>
+<p>Now that your WSL2 setup is ready to go, don’t forget to do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+</pre></div>
+</div>
+<p>once in a while</p>
+</section>
+</section>
+<section id="installing-oracle-vm-virtualbox-and-extension-packs">
+<h2>Installing Oracle VM VirtualBox and Extension Packs<a class="headerlink" href="#installing-oracle-vm-virtualbox-and-extension-packs" title="Permalink to this heading">¶</a></h2>
+<p>Oracle VM VirtualBox comes in many different packages, and installation depends on your host OS. If you have installed software before, installation should be straightforward. On each host platform, Oracle VM VirtualBox uses the installation method that is most common and easy to use.</p>
+<p>Oracle VM VirtualBox is split into the following components:</p>
+<blockquote>
+<div><ul>
+<li><p>Base package. The base package consists of all open source components and is licensed under the GNU General Public License V2.</p></li>
+<li><p>Extension packs. Additional extension packs can be downloaded which extend the functionality of the Oracle VM VirtualBox base package. Currently, Oracle provides a single extension pack, available from: <a class="reference external" href="http://www.virtualbox.org">http://www.virtualbox.org</a>. The extension pack provides the following added functionality:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>VirtualBox Remote Desktop Protocol (VRDP) support.</p></li>
+<li><p>Host webcam passthrough.</p></li>
+<li><p>Intel PXE boot ROM.</p></li>
+<li><p>Disk image encryption with AES algorithm.</p></li>
+<li><p>Cloud integration features.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
 <p>In order to get started we first need to install <code class="docutils literal notranslate"><span class="pre">ros2</span></code> in our system.</p>
 <section id="ubuntu-debian-packages">
-<h2>Ubuntu (Debian packages)<a class="headerlink" href="#ubuntu-debian-packages" title="Permalink to this heading">¶</a></h2>
+<h3>Ubuntu (Debian packages)<a class="headerlink" href="#ubuntu-debian-packages" title="Permalink to this heading">¶</a></h3>
 <p>Debian packages for ROS 2 Iron are currently available for Ubuntu Jammy.
 The Rolling Ridley distribution will change target platforms from time to time as new platforms are selected for development.
 The target platforms are defined in <a class="reference external" href="https://github.com/ros-infrastructure/rep/blob/master/rep-2000.rst">REP 2000</a>
 Most people will want to use a stable ROS distribution.</p>
 </section>
 <section id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">¶</a></h2>
+<h3>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Status Page:</p>
 <ul>
@@ -65,9 +332,9 @@ Most people will want to use a stable ROS distribution.</p>
 </ul>
 </section>
 <section id="system-setup">
-<h2>System setup<a class="headerlink" href="#system-setup" title="Permalink to this heading">¶</a></h2>
+<h3>System setup<a class="headerlink" href="#system-setup" title="Permalink to this heading">¶</a></h3>
 <section id="set-locale">
-<h3>Set locale<a class="headerlink" href="#set-locale" title="Permalink to this heading">¶</a></h3>
+<h4>Set locale<a class="headerlink" href="#set-locale" title="Permalink to this heading">¶</a></h4>
 <p>Make sure you have a locale which supports <code class="docutils literal notranslate"><span class="pre">UTF-8</span></code>.
 If you are in a minimal environment (such as a docker container), the locale may be something minimal like <code class="docutils literal notranslate"><span class="pre">POSIX</span></code>.
 We test with the following settings. However, it should be fine if you’re using a different UTF-8 supported locale.</p>
@@ -83,7 +350,7 @@ locale<span class="w">  </span><span class="c1"># verify settings</span>
 </div>
 </section>
 <section id="enable-required-repositories">
-<h3>Enable required repositories<a class="headerlink" href="#enable-required-repositories" title="Permalink to this heading">¶</a></h3>
+<h4>Enable required repositories<a class="headerlink" href="#enable-required-repositories" title="Permalink to this heading">¶</a></h4>
 <p>You will need to add the ROS 2 apt repository to your system.</p>
 <p>First ensure that the <a class="reference external" href="https://help.ubuntu.com/community/Repositories/Ubuntu">Ubuntu Universe repository</a> is enabled.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>software-properties-common
@@ -101,7 +368,7 @@ sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </s
 </div>
 </section>
 <section id="install-development-tools-optional">
-<span id="linux-install-debians-install-ros-2-packages"></span><h3>Install development tools (optional)<a class="headerlink" href="#install-development-tools-optional" title="Permalink to this heading">¶</a></h3>
+<span id="linux-install-debians-install-ros-2-packages"></span><h4>Install development tools (optional)<a class="headerlink" href="#install-development-tools-optional" title="Permalink to this heading">¶</a></h4>
 <p>We recommend installing developer tools as well:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-dev-tools
 </pre></div>
@@ -109,7 +376,7 @@ sudo<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </s
 </section>
 </section>
 <section id="install-ros-2">
-<h2>Install ROS 2<a class="headerlink" href="#install-ros-2" title="Permalink to this heading">¶</a></h2>
+<h3>Install ROS 2<a class="headerlink" href="#install-ros-2" title="Permalink to this heading">¶</a></h3>
 <p>Update your apt repository caches after setting up the repositories.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
 </pre></div>
@@ -135,13 +402,13 @@ No GUI tools.</p>
 </pre></div>
 </div>
 <section id="install-additional-rmw-implementations-optional">
-<h3>Install additional RMW implementations (optional)<a class="headerlink" href="#install-additional-rmw-implementations-optional" title="Permalink to this heading">¶</a></h3>
+<h4>Install additional RMW implementations (optional)<a class="headerlink" href="#install-additional-rmw-implementations-optional" title="Permalink to this heading">¶</a></h4>
 <p>The default middleware that ROS 2 uses is <code class="docutils literal notranslate"><span class="pre">Fast</span> <span class="pre">DDS</span></code>, but the middleware (RMW) can be replaced at runtime.
 See the <span class="xref std std-doc">guide</span> on how to work with multiple RMWs.</p>
 </section>
 </section>
 <section id="setup-environment">
-<h2>Setup environment<a class="headerlink" href="#setup-environment" title="Permalink to this heading">¶</a></h2>
+<h3>Setup environment<a class="headerlink" href="#setup-environment" title="Permalink to this heading">¶</a></h3>
 <p>Set up your environment by sourcing the following file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &quot;.bash&quot; with your shell if you&#39;re not using bash</span>
 <span class="c1"># Possible values are: setup.bash, setup.sh, setup.zsh</span>
@@ -150,7 +417,7 @@ See the <span class="xref std std-doc">guide</span> on how to work with multiple
 </div>
 </section>
 <section id="try-some-examples">
-<h2>Try some examples<a class="headerlink" href="#try-some-examples" title="Permalink to this heading">¶</a></h2>
+<h3>Try some examples<a class="headerlink" href="#try-some-examples" title="Permalink to this heading">¶</a></h3>
 <p>If you installed <code class="docutils literal notranslate"><span class="pre">ros-{DISTRO}-desktop</span></code> above you can try some examples.</p>
 <p>In one terminal, source the setup file and then run a C++ <code class="docutils literal notranslate"><span class="pre">talker</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>/opt/ros/<span class="o">{</span>DISTRO<span class="o">}</span>/setup.bash
@@ -167,87 +434,78 @@ This verifies both the C++ and Python APIs are working properly.
 Hooray!</p>
 </section>
 </section>
+</section>
 
 
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Preparations</a><ul>
-<li><a class="reference internal" href="#ubuntu-debian-packages">Ubuntu (Debian packages)</a></li>
-<li><a class="reference internal" href="#resources">Resources</a></li>
-<li><a class="reference internal" href="#system-setup">System setup</a><ul>
-<li><a class="reference internal" href="#set-locale">Set locale</a></li>
-<li><a class="reference internal" href="#enable-required-repositories">Enable required repositories</a></li>
-<li><a class="reference internal" href="#install-development-tools-optional">Install development tools (optional)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#install-ros-2">Install ROS 2</a><ul>
-<li><a class="reference internal" href="#install-additional-rmw-implementations-optional">Install additional RMW implementations (optional)</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#setup-environment">Setup environment</a></li>
-<li><a class="reference internal" href="#try-some-examples">Try some examples</a></li>
-</ul>
-</li>
-</ul>
+	    </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="docker.html" class="btn btn-neutral float-right" title="What is Docker?">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to our project documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Alin Dulceanu, Eduard Cimpean.
+    </p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="index.html"
-                          title="previous chapter">Welcome to our project documentation!</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="start.html"
-                          title="next chapter">Getting started</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/setup.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="start.html" title="Getting started"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="index.html" title="Welcome to our project documentation!"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Documentatie ros2 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Preparations</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, Alin Dulceanu, Eduard Cimpean.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
-    </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/jucacrispim/sphinx_pdj_theme">theme</a> provided by <a href="http://poraodojuca.net">Porão do Juca</a>.
+
+</footer>
+	</div>
+	</div>
+	  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+    <script type="text/javascript" src="_static/documentation_options.js">
+
+    </script>
+    <script type="text/javascript" src="_static/doctools.js">
+
+    </script>
+    <script type="text/javascript" src="_static/sphinx_highlight.js">
+
+    </script>
+    <script type="text/javascript" src="_static/clipboard.min.js">
+
+    </script>
+    <script type="text/javascript" src="_static/copybutton.js">
+
+    </script>
+
+  
+
+   <script type="text/javascript"
+           src="_static/js/theme.js"></script>
+
+   <script type="text/javascript"
+           src="_static/js/pdj.js"></script>
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
   </body>
 </html>

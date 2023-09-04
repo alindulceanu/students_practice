@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   
-  <title>Getting started &mdash; Documentatie ros2 1.0 documentation</title>
+  <title>Installing all the software required &mdash; Documentatie ros2 1.0 documentation</title>
   
 
   
@@ -33,8 +33,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Documentatie ros2 1.0 documentation" href="index.html"/>
-        <link rel="next" title="Basic talker tutorial" href="step1_ros.html"/>
-        <link rel="prev" title="Preparations" href="setup.html"/>
+        <link rel="prev" title="Making a rosbag reader" href="rosbag_reader.html"/>
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="cache-control" content="public" />
@@ -77,9 +76,9 @@
 <li class="toctree-l2"><a class="reference internal" href="setup.html#try-some-examples">Try some examples</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-the-environment">Creating the environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start.html#creating-the-environment">Creating the environment</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="step1_ros.html">Basic talker tutorial</a><ul>
@@ -87,62 +86,45 @@
 <li class="toctree-l2"><a class="reference internal" href="step1_ros.html#building-and-running-the-node">Building and running the node</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html">Installing Docker Desktop</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#what-is-docker">What is Docker?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">What is Docker?</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#what-are-containers">What are containers?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#why-use-containers">Why use containers?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html#setting-up-your-computer">Setting up your computer</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html#hello-world">HELLO WORLD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#hello-world">HELLO WORLD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#playing-with-busybox">Playing with Busybox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#docker-run">Docker Run</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#terminology">Terminology</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html#webapps-with-docker">WEBAPPS WITH DOCKER</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#webapps-with-docker">WEBAPPS WITH DOCKER</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#dockerfile">Dockerfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#conclusion">CONCLUSION</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html#conclusion">CONCLUSION</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VMBox.html">VMBox</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#welcome-to-oracle-vm-virtualbox">Welcome to Oracle VM VirtualBox.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#why-is-virtualization-useful">Why is Virtualization Useful?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#some-terminology">Some Terminology</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#features-overview">Features Overview</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#supported-host-operating-systems">Supported Host Operating Systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#supported-host-operating-systems">Supported Host Operating Systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#host-cpu-requirements">Host CPU Requirements</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#installing-oracle-vm-virtualbox-and-extension-packs">Installing Oracle VM VirtualBox and Extension Packs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#starting-oracle-vm-virtualbox">Starting Oracle VM VirtualBox</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#virtualbox-manager">VirtualBox Manager</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#the-machine-list">The Machine List</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#the-details-pane">The Details Pane</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#starting-oracle-vm-virtualbox">Starting Oracle VM VirtualBox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager">VirtualBox Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#the-machine-list">The Machine List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#the-details-pane">The Details Pane</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager-toolbar">VirtualBox Manager Toolbar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#settings">Settings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#preview-window">Preview Window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#notification-center">Notification Center</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#virtualbox-manager-tools">VirtualBox Manager Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#virtualbox-manager-tools">VirtualBox Manager Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#global-tools">Global Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#machine-tools">Machine Tools</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#help-viewer">Help Viewer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#about-virtualbox-manager-wizards">About VirtualBox Manager Wizards</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#creating-your-first-virtual-machine">Creating Your First Virtual Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#help-viewer">Help Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#about-virtualbox-manager-wizards">About VirtualBox Manager Wizards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#creating-your-first-virtual-machine">Creating Your First Virtual Machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-name-and-operating-system">Create Virtual Machine Wizard: Name and Operating System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-hardware">Create Virtual Machine Wizard: Hardware</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-virtual-hard-disk">Create Virtual Machine Wizard: Virtual Hard Disk</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#create-virtual-machine-wizard-summary">Create Virtual Machine Wizard: Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#some-examples-of-unattended-installation">Some Examples of Unattended Installation</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="VMBox.html#running-your-virtual-machine">Running Your Virtual Machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VMBox.html#running-your-virtual-machine">Running Your Virtual Machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#starting-a-new-vm-for-the-first-time">Starting a New VM for the First Time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#capturing-and-releasing-keyboard-and-mouse">Capturing and Releasing Keyboard and Mouse</a></li>
 <li class="toctree-l2"><a class="reference internal" href="VMBox.html#typing-special-characters">Typing Special Characters</a></li>
@@ -167,13 +149,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ScriptDock.html">Making a script to directly open the virtual image with docker and mount itself in vs code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="MobaX.html">Installing MobaXTerm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MobaX.html#mobaxterm-x-server-and-ssh-client">MobaXterm X server and SSH client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MobaX.html">MobaXterm X server and SSH client</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="MobaX.html#key-features">Key features</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="DockerVS.html">Docker container in VSCode</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#installing-docker-on-ubuntu">Installing Docker on Ubuntu</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html">Docker container in VSCode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#installing-docker-on-ubuntu">Installing Docker on Ubuntu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DockerVS.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DockerVS.html#os-requirements">OS requirements:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DockerVS.html#uninstall-old-versions">Uninstall old versions</a></li>
@@ -183,8 +164,8 @@
 <li class="toctree-l2"><a class="reference internal" href="DockerVS.html#install-docker-engine">Install Docker Engine</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#uninstall-docker-engine">Uninstall Docker Engine</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#linux-post-installation-steps-for-docker-engine">Linux post-installation steps for Docker Engine</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="DockerVS.html#uninstall-docker-engine">Uninstall Docker Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DockerVS.html#linux-post-installation-steps-for-docker-engine">Linux post-installation steps for Docker Engine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DockerVS.html#manage-docker-as-a-non-root-user">Manage Docker as a non-root user</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DockerVS.html#configure-docker-to-start-on-boot-with-systemd">Configure Docker to start on boot with systemd</a></li>
 </ul>
@@ -193,6 +174,13 @@
 <li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#what-is-pandas">What is pandas?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#making-the-script">Making the script</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rosbag_reader.html#executing-the-code">Executing the code</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing all the software required</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-docker-desktop">Installing Docker Desktop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-mobaxterm">Installing MobaXTerm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wsl-instalation">WSL Instalation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-oracle-vm-virtualbox-and-extension-packs">Installing Oracle VM VirtualBox and Extension Packs</a></li>
 </ul>
 </li>
 </ul>
@@ -235,71 +223,102 @@
           <div role="main" class="">
 
 	    <div id="content" class="hfeed entry-container hentry">
-  <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
-<p>Now that we have ROS2 installed and working (hopefully!) we can start building our project!</p>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+  <section id="installing-all-the-software-required">
+<h1>Installing all the software required<a class="headerlink" href="#installing-all-the-software-required" title="Permalink to this heading">¶</a></h1>
+<section id="installing-docker-desktop">
+<h2>Installing Docker Desktop<a class="headerlink" href="#installing-docker-desktop" title="Permalink to this heading">¶</a></h2>
+<p>First go to the official Docker Desktop page and download it:</p>
+<p><a class="reference external" href="https://www.docker.com/products/docker-desktop/">https://www.docker.com/products/docker-desktop/</a></p>
+<p>After installation test your Docker installation by running the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>hello-world
+</pre></div>
+</div>
+<p>It should display this message:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Hello from Docker.</span>
+<span class="go">This message shows that your installation appears to be working correctly.</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>If you get an error:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker: error during connect: this error may indicate that the docker daemon is not running:</span>
+<span class="go">Post &quot;&lt;http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/create&gt;&quot;:</span>
+<span class="go">open //./pipe/docker_engine: The system cannot find the file specified.</span>
+<span class="go">See &#39;docker run --help&#39;.</span>
+</pre></div>
+</div>
+<p>Make sure that you are running Docker.</p>
+</section>
+<section id="installing-mobaxterm">
+<h2>Installing MobaXTerm<a class="headerlink" href="#installing-mobaxterm" title="Permalink to this heading">¶</a></h2>
+<p>To install it simply download the installer and run it:</p>
+<p><a class="reference external" href="https://mobaxterm.mobatek.net/download.html">https://mobaxterm.mobatek.net/download.html</a></p>
+</section>
+<section id="wsl-instalation">
+<h2>WSL Instalation<a class="headerlink" href="#wsl-instalation" title="Permalink to this heading">¶</a></h2>
 <nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#what-is-ros2" id="id1">What is ROS2?</a></p></li>
-<li><p><a class="reference internal" href="#what-is-a-node" id="id2">What is a node?</a></p></li>
-<li><p><a class="reference internal" href="#what-is-a-topic" id="id3">What is a topic?</a></p></li>
+<li><p><a class="reference internal" href="#installation" id="id1">Installation</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-the-linux-user" id="id2">Setting up the linux user</a></p></li>
 </ul>
 </nav>
-<p>The target of this tutorial is to understand what nodes, topics and rosbags are and create a project that stores the data received by those node into a pandas dataframe.</p>
-<section id="what-is-ros2">
-<h3><a class="toc-backref" href="#id1" role="doc-backlink">What is ROS2?</a><a class="headerlink" href="#what-is-ros2" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">ROS2</span></code> stands for “Robot Operating System 2” and is a free, open-source software development tool mainly used in robotics.</p>
-<p>The purpose of ROS 2 is to offer a standard software platform to developers across industries that will carry them from research and prototyping through to deployment and production. ROS 2 builds on the success of ROS 1, which is used today in myriad robotics applications around the world.</p>
-</section>
-<section id="what-is-a-node">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">What is a node?</a><a class="headerlink" href="#what-is-a-node" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Nodes</span></code> are processes that perform some computation or task. The nodes themselves are really software processes but with the capability to register with the ROS Master node and communicate with other nodes in the system. The ROS design idea is that each node is independent and interacts with other nodes using the ROS communication capability.</p>
-</section>
-<section id="what-is-a-topic">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">What is a topic?</a><a class="headerlink" href="#what-is-a-topic" title="Permalink to this heading">¶</a></h3>
-<p>Some nodes provide information for other nodes, as a camera feed would do, for example. Such a node is said to publish information that can be received by other nodes. The information in ROS is called a topic. A topic defines the types of messages that will be sent concerning that topic.</p>
-<p>The nodes that transmit data publish the topic name and the type of message to be sent. The actual data is published by the node. A node can subscribe to a topic and transmitted messages on that topic are received by the node subscribing.</p>
-<p>Continuing with the camera example, the camera node can publish the image on the <code class="docutils literal notranslate"><span class="pre">camera/image_raw</span> <span class="pre">topic</span></code>.</p>
-<p>Image data from the <code class="docutils literal notranslate"><span class="pre">camera/image_raw</span></code> topic can be used by a node that shows the image on the computer screen. The node that receives the information is said to subscribe to the topic being published, in this case <code class="docutils literal notranslate"><span class="pre">camera/image_raw</span></code>.</p>
-</section>
-</section>
-<section id="creating-the-environment">
-<h2>Creating the environment<a class="headerlink" href="#creating-the-environment" title="Permalink to this heading">¶</a></h2>
-<p>For this, we will need two things: A <code class="docutils literal notranslate"><span class="pre">WORKSPACE</span></code> and a <code class="docutils literal notranslate"><span class="pre">PROJECT</span></code> to work on.</p>
-<section id="creating-the-workspace">
-<h3>Creating the workspace<a class="headerlink" href="#creating-the-workspace" title="Permalink to this heading">¶</a></h3>
-<p>In order to create a workspace we need a directory with the sole purpose of containing all the files required for ROS2 to work:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">ros2_ws</span>
-<span class="n">cd</span> <span class="n">ros2_ws</span>
+<p><code class="docutils literal notranslate"><span class="pre">WSL2</span></code> (Windows Subsystem for Linux) is a tool that allows you to use linux commands directly on your windows machine without using a VM.</p>
+<p>WSL comes preinstalled in every windows system, but it is not activated.</p>
+<section id="installation">
+<h3><a class="toc-backref" href="#id1" role="doc-backlink">Installation</a><a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h3>
+<p>In order to activate WSL2 in your machine you just need to type this command in CMD as administrator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="o">--</span><span class="n">install</span>
 </pre></div>
 </div>
-<p>In that directory we want to create a source directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">src</span>
-<span class="n">cd</span> <span class="n">src</span>
+<p>This command will automatically choose Ubuntu as the defaul distro, if you want another linux distro do this instead:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="o">--</span><span class="n">install</span> <span class="o">-</span><span class="n">d</span> <span class="o">&lt;</span><span class="n">Distro_Name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>Now, we can go back to the root and build it using <code class="docutils literal notranslate"><span class="pre">colcon</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">colcon</span> <span class="n">build</span>
+<p>If you want to see a list of Distros that are available in the microsoft store, do the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="o">-</span><span class="n">l</span> <span class="o">-</span><span class="n">o</span>
 </pre></div>
 </div>
-<p>The last step is to source our workspace so ROS2 is aware of it:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># In the root folder:</span>
-<span class="n">source</span> <span class="n">install</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">bash</span>
-</pre></div>
-</div>
+<p>Where -l stands for <code class="docutils literal notranslate"><span class="pre">list</span></code> and -o for <code class="docutils literal notranslate"><span class="pre">online</span></code></p>
 </section>
-<section id="creating-the-first-project">
-<h3>Creating the first project<a class="headerlink" href="#creating-the-first-project" title="Permalink to this heading">¶</a></h3>
-<p>ROS2 comes preinstalled with a tool for package generation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># In src:</span>
-<span class="n">ros2</span> <span class="n">pkg</span> <span class="n">create</span> <span class="o">--</span><span class="n">build</span><span class="o">-</span><span class="nb">type</span> <span class="n">ament_python</span> <span class="o">&lt;</span><span class="n">package_name</span><span class="o">&gt;</span>
-<span class="c1"># Make sure you replace &lt;package_name&gt; with a desired name</span>
+<section id="setting-up-the-linux-user">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Setting up the linux user</a><a class="headerlink" href="#setting-up-the-linux-user" title="Permalink to this heading">¶</a></h3>
+<p>Now that you have WSL2 installed, you will be asked to enter a UNIX user and password.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The credidentials you use do not need to be related to your windows account.</p>
+<p>When typing your password nothing will display on your screen. This is called blind typing and is completely normal.</p>
+<p>The username must be between one and eight characters long, must start with a lowercase letter or an underscore, it can contain lowercase letters, digits, underscores and dashes and can end with a dollar sign.</p>
+<p>In RegEx: <code class="docutils literal notranslate"><span class="pre">[a-z_][a-z0-9_-]*[$]?</span></code></p>
+<p>Passwords must be at least 8 characters long, they cannot be dictionary words or the same as the username, you also have to use at least 3 of 4 character sets: uppercase, lowercase, digits, symbols.</p>
+<p>Do not use spaces in your password!!</p>
+</div>
+<p>Now that your WSL2 setup is ready to go, don’t forget to do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
 </pre></div>
 </div>
+<p>once in a while</p>
 </section>
+</section>
+<section id="installing-oracle-vm-virtualbox-and-extension-packs">
+<h2>Installing Oracle VM VirtualBox and Extension Packs<a class="headerlink" href="#installing-oracle-vm-virtualbox-and-extension-packs" title="Permalink to this heading">¶</a></h2>
+<p>Oracle VM VirtualBox comes in many different packages, and installation depends on your host OS. If you have installed software before, installation should be straightforward. On each host platform, Oracle VM VirtualBox uses the installation method that is most common and easy to use.</p>
+<p>Oracle VM VirtualBox is split into the following components:</p>
+<blockquote>
+<div><ul>
+<li><p>Base package. The base package consists of all open source components and is licensed under the GNU General Public License V2.</p></li>
+<li><p>Extension packs. Additional extension packs can be downloaded which extend the functionality of the Oracle VM VirtualBox base package. Currently, Oracle provides a single extension pack, available from: <a class="reference external" href="http://www.virtualbox.org">http://www.virtualbox.org</a>. The extension pack provides the following added functionality:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>VirtualBox Remote Desktop Protocol (VRDP) support.</p></li>
+<li><p>Host webcam passthrough.</p></li>
+<li><p>Intel PXE boot ROM.</p></li>
+<li><p>Disk image encryption with AES algorithm.</p></li>
+<li><p>Cloud integration features.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 
@@ -309,10 +328,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="step1_ros.html" class="btn btn-neutral float-right" title="Basic talker tutorial">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="setup.html" class="btn btn-neutral" title="Preparations"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="rosbag_reader.html" class="btn btn-neutral" title="Making a rosbag reader"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
