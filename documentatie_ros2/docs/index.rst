@@ -20,7 +20,6 @@ Welcome to our project documentation!
    ScriptDock
    start
    step1_ros
-   talker
    subscriber
    rosbag_recording
    rosbag_reader
