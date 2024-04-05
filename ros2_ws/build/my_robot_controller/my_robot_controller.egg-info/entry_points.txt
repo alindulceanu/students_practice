@@ -1,9 +1,0 @@
-[console_scripts]
-draw_circle = my_robot_controller.draw_circle:main
-pose_subscriber = my_robot_controller.pose_subscriber:main
-publisher = my_robot_controller.publisher:main
-subscriber = my_robot_controller.subscriber:main
-subscriber2 = my_robot_controller.subscriber2:main
-test_node = my_robot_controller.my_first_node:main
-turtle_controller = my_robot_controller.turtle_controller:main
-
