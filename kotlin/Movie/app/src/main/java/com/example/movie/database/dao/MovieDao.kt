@@ -29,7 +29,7 @@ interface MovieDao {
     suspend fun orderMoviesByPopularity(): Flow<List<MovieEntity>>
 
     @Query("SELECT * FROM MovieEntity ORDER BY favourite")
-    suspend fun showFavouriteMovies(): Flow<List<MovieEntity>>
+    suspend fun orderFavouriteMovies(): Flow<List<MovieEntity>>
 
     @Query("SELECT * FROM MovieEntity ORDER BY voteAverage")
     suspend fun orderMoviesByRating(): Flow<List<MovieEntity>>
