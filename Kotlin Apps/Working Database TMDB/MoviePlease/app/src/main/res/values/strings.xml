@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Movie Please</string>
+    <string-array name="filter_array">
+        <item>Popularity</item>
+        <item>Release Date</item>
+        <item>Vote Average</item>
+        <item>Vote Count</item>
+    </string-array>
+</resources>
